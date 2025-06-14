@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "f5028184-ac3b-47dc-be9f-4293038a2dba",
+        "ID": "B1033.072c",
+        "Description": "Costing on a per bay basis, equivalent to current AISC R=3.  Braces may be HSS, WF, or Angle.  Costing does not include fireproofing removal or reapplication cost.",
+        "BasicUnit": "Each",
+        "Name": "Braced frame, design for factored loads, no additional seismic detailing, Single Diagonal Brace, Brace w > 100 PLF",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "Average",
+            "Documentation": "Average",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:48:46.7087274-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Performance data has 1 damage state where as the cost data has 3 damage states.  The performance data listed in DS1 appears to correspond to the cost data currently shown in DS3\u2026  Please confirm if two additional damage state performances should be added or if only one cost damage state should be included.",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Fracture of brace or gusset.  Buckling of gusset.  Substantial loss of lateral resistance.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Brace and gusset are severely damaged with significant loss in stiffness and resistance, and both likely require replacement.  Yielding and local buckling of beams and columns may be repaired by heat straightening, stiffeners or reinforcement, if there is no cracking or tearing.  If cracking or tearing has initiated more substantial repair is needed.",
+                    "TagState": "Red",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0.2",
+                    "RedTagBeta": "0.5",
+                    "EnergyMedian": "255840.93",
+                    "EnergyCurveType": "Normal",
+                    "EnergyDispersion": "0.3821",
+                    "CarbonMedian": "12743.62",
+                    "CarbonCurveType": "Normal",
+                    "CarbonDispersion": "0.3821",
+                    "CostConsequence": {
+                        "LowerQuantity": "3",
+                        "MaxAmount": "64770.7011",
+                        "UpperQuantity": "7",
+                        "MinAmount": "44044.0768",
+                        "Uncertainty": "0.289",
+                        "CurveType": "Normal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "3",
+                        "MaxAmount": "42.863",
+                        "UpperQuantity": "7",
+                        "MinAmount": "29.1468",
+                        "Uncertainty": "0.3821",
+                        "CurveType": "Normal"
+                    }
+                },
+                "Median": "0.0042",
+                "Beta": "0.25"
+            }
+        }
+    }
+}

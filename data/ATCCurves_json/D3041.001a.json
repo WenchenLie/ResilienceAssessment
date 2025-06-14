@@ -1,0 +1,125 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "40e488bc-29bc-49c3-a074-fcae44081fb5",
+        "ID": "D3041.001a",
+        "Description": "Costing per 10 units",
+        "BasicUnit": "Each",
+        "Name": "HVAC Fan In Line Fan, Fan independently supported and vibration isolators, SDC A or B",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Marginal",
+            "DataRelevance": "Superior",
+            "Documentation": "Marginal",
+            "Rationality": "Marginal"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:51:12.9226011-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "One failure is expected per 10 units.",
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Bellows fails at fans.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace failed bellows.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "18649.4",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.424",
+                        "CarbonMedian": "1566.4",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.424",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "7700",
+                            "UpperQuantity": "5",
+                            "MinAmount": "6300",
+                            "Uncertainty": "0.3425",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "9.0585",
+                            "UpperQuantity": "5",
+                            "MinAmount": "7.4115",
+                            "Uncertainty": "0.424",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "1.92",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Fan dislodges from isolators and drops.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace fan, isolators and section of ducting to which fan is connected.",
+                        "TagState": "0",
+                        "UseCasualty": true,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": {
+                            "Area": {
+                                "Unit": "Square Foot",
+                                "Value": "10"
+                            }
+                        },
+                        "AffectedDeathRate": "0.05",
+                        "AffectedInjuryRate": "0.1",
+                        "AffectedDeathRateBeta": "0.5",
+                        "AffectedInjuryRateBeta": "0.5",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "131131.4",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.2666",
+                        "CarbonMedian": "11288.9",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.2666",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "29700",
+                            "UpperQuantity": "5",
+                            "MinAmount": "24300",
+                            "Uncertainty": "0.0925",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "12.7055",
+                            "UpperQuantity": "5",
+                            "MinAmount": "6.3525",
+                            "Uncertainty": "0.2666",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "2.4",
+                    "Beta": "0.5"
+                }
+            ]
+        }
+    }
+}

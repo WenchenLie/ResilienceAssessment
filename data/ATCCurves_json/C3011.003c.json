@@ -1,0 +1,125 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "285965f9-5971-4bd1-a230-2fdab45b2f61",
+        "ID": "C3011.003c",
+        "Description": "Costing based upon 9'x100' Panels",
+        "BasicUnit": "Each",
+        "Name": "Wall Partition, Type: High End Marble or Wood Panel, Full Height, Fixed Below, Slip Track Above w/ returns (friction connection)",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Superior",
+            "Documentation": "Superior",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:21.8071893-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "None\nImport errors:\n Warning: C3011.003c: C3011.003c: DS1 overlaps DS2 at 0.02 - Make sure damage states are minimally overlapping",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "minor cracked joints and minor cracks in marble / wood paneling.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Carefully remove cracked marble/paneling and grout at cracked joints, and install new marble/paneling and re-grout joints for 10% of full 100 foot length of wall.  Existing wall board will remain place.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "119961",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3608",
+                        "CarbonMedian": "5067",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3608",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "36000",
+                            "UpperQuantity": "3",
+                            "MinAmount": "10800",
+                            "Uncertainty": "0.2601",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "33.3265",
+                            "UpperQuantity": "3",
+                            "MinAmount": "9.9794",
+                            "Uncertainty": "0.3608",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.002",
+                    "Beta": "0.7"
+                },
+                {
+                    "Name": null,
+                    "Description": "significant cracks in marble / wood paneling.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Install new marble/paneling for full 100 foot length of wall.  Note: the gypsum wall board will also be removed and replaced which means the removal of the marble/paneling will be part of the gypsum wall board removal.",
+                        "TagState": "Red",
+                        "UseCasualty": true,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": {
+                            "Area": {
+                                "Unit": "Square Foot",
+                                "Value": "100"
+                            }
+                        },
+                        "AffectedDeathRate": "0.05",
+                        "AffectedInjuryRate": "0.1",
+                        "AffectedDeathRateBeta": "0.5",
+                        "AffectedInjuryRateBeta": "0.5",
+                        "RedTagMedian": "0.5",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "451449",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.4022",
+                        "CarbonMedian": "19224",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.4022",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "90000",
+                            "UpperQuantity": "3",
+                            "MinAmount": "27000",
+                            "Uncertainty": "0.3151",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "83.3612",
+                            "UpperQuantity": "3",
+                            "MinAmount": "24.9935",
+                            "Uncertainty": "0.4022",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.005",
+                    "Beta": "0.4"
+                }
+            ]
+        }
+    }
+}

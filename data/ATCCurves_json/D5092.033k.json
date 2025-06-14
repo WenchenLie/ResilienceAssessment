@@ -1,0 +1,210 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "cd0cadba-cf08-467c-8efe-48253e6d1151",
+        "ID": "D5092.033k",
+        "Description": "Costing is per unit and is based upon 1500 kVa.",
+        "BasicUnit": "Each",
+        "Name": "Diesel generator - Capacity: 1200 to 2000 kVa - Equipment that is either hard anchored or is vibration isolated with seismic snubbers/restraints - Equipment fragility only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:52:27.3951531-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Damaged, inoperative but anchorage is OK. Pipes and nozzles damaged.",
+                "DamageImageName": "D5092.031b-DS1-1.JPG",
+                "DamageStates": {
+                    "DSGroupType": "MutuallyExclusive",
+                    "DamageState": [
+                        {
+                            "Name": null,
+                            "Description": "Damaged, inoperative but anchorage is OK. Pipes and nozzles damaged.",
+                            "DamageImageName": "D5092.031b-DS1-1.JPG",
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Repair fracture pipes and damaged nozzles.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "1371.65",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3023",
+                                "CarbonMedian": "62.1",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3023",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "1650",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "1050",
+                                    "Uncertainty": "0.17",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "0.2427",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "0.1544",
+                                    "Uncertainty": "0.3023",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.7"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Damaged, inoperative but anchorage is OK. Drive shaft misalignment.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Overhaul because of drive shaft misalignment.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "9144.35",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3031",
+                                "CarbonMedian": "413.99",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3031",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "11000",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "9000",
+                                    "Uncertainty": "0.1713",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "1.6177",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "1.3235",
+                                    "Uncertainty": "0.3031",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.1"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Damaged, inoperative but anchorage is OK. Minor electrical damage, e.g., failed relay.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Minor electrical repair e.g., replace relay.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "645.35",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3031",
+                                "CarbonMedian": "33.91",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3031",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "1320",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "1080",
+                                    "Uncertainty": "0.1713",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "0.1941",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "0.1589",
+                                    "Uncertainty": "0.3031",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.1"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Damaged, inoperative but anchorage is OK. Exhaust line disconnected at expansion bellows.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Reconnect exhaust line.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "1097.32",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3031",
+                                "CarbonMedian": "49.68",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3031",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "1320",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "1080",
+                                    "Uncertainty": "0.1713",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "0.1941",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "0.1589",
+                                    "Uncertainty": "0.3031",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.1"
+                        }
+                    ]
+                },
+                "Median": "2",
+                "Beta": "0.2"
+            }
+        }
+    }
+}

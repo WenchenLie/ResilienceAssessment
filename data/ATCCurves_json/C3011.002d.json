@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "c4ea7189-75ba-49cd-b055-597a06d3093c",
+        "ID": "C3011.002d",
+        "Description": "Costing based upon 9'x100' Panels",
+        "BasicUnit": "Each",
+        "Name": "Wall Partition, Type: Gypsum + Ceramic Tile, Full Height, Fixed Below, Slip Track Above w/o returns (friction connection)",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Superior",
+            "Documentation": "Superior",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:20.7455079-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Minor cracked joints and tile.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Carefully remove cracked tile and grout at cracked joints, install new ceramic tile and re-grout joints for 10% of  full 100 foot length of wall.  Existing wall board will remain in place.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "17262",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3336",
+                        "CarbonMedian": "729",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3336",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "8640",
+                            "UpperQuantity": "3",
+                            "MinAmount": "5760",
+                            "Uncertainty": "0.2208",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "7.9941",
+                            "UpperQuantity": "3",
+                            "MinAmount": "5.3259",
+                            "Uncertainty": "0.3336",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0035",
+                    "Beta": "0.7"
+                },
+                {
+                    "Name": null,
+                    "Description": "Cracked joints and tile.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Install ceramic tile and grout all joints for full 100 foot length of wall.  Note: gypsum wall board will also be removed and replaced which means the removal of ceramic tile will be part of the gypsum wall board removal.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "350118",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.2674",
+                        "CarbonMedian": "14220",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.2674",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "34992",
+                            "UpperQuantity": "3",
+                            "MinAmount": "23328",
+                            "Uncertainty": "0.0948",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "32.4032",
+                            "UpperQuantity": "3",
+                            "MinAmount": "21.5968",
+                            "Uncertainty": "0.2674",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0093",
+                    "Beta": "0.45"
+                }
+            ]
+        }
+    }
+}

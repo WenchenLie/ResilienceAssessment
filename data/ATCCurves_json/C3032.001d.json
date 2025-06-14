@@ -1,0 +1,167 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "2f803278-10e9-432e-bb3a-ca3cd12a3292",
+        "ID": "C3032.001d",
+        "Description": "Costing for each 2500 SF Unit, Suspended Lay-in Acoustic Tile Ceiling, Support:  Vertical hanging wires only.  Includes lighting fixtures in suspended ceiling.",
+        "BasicUnit": "Each",
+        "Name": "Suspended Ceiling, SDC A,B,C, Area (A): A > 2500, Vert support only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Marginal",
+            "DataRelevance": "Superior",
+            "Documentation": "Marginal",
+            "Rationality": "Average"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:30.8074884-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "5 % of ceiling grid and tile damage.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Reinstall, repair, or replace 5% of the ceiling area.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "21600",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.6049",
+                        "CarbonMedian": "2175",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.6049",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "4350",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2900",
+                            "Uncertainty": "0.5508",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "3.6184",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2.3816",
+                            "Uncertainty": "0.6049",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.56",
+                    "Beta": "0.25"
+                },
+                {
+                    "Name": null,
+                    "Description": "30% of ceiling grid and tile damage.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace 30% of the ceiling area.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.75",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "288700",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.5755",
+                        "CarbonMedian": "21325",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.5755",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "34050",
+                            "UpperQuantity": "10",
+                            "MinAmount": "22700",
+                            "Uncertainty": "0.5183",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "29.0904",
+                            "UpperQuantity": "10",
+                            "MinAmount": "19.4096",
+                            "Uncertainty": "0.5755",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "1.08",
+                    "Beta": "0.25"
+                },
+                {
+                    "Name": null,
+                    "Description": "50% of ceiling grid and tile damage.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace the entire ceiling",
+                        "TagState": "Red",
+                        "UseCasualty": true,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": {
+                            "Area": {
+                                "Unit": "Square Foot",
+                                "Value": "2500"
+                            }
+                        },
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0.1",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0.5",
+                        "RedTagMedian": "0.5",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "807550",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3218",
+                        "CarbonMedian": "81550",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3218",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "70050",
+                            "UpperQuantity": "10",
+                            "MinAmount": "46700",
+                            "Uncertainty": "0.2026",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "59.7081",
+                            "UpperQuantity": "10",
+                            "MinAmount": "39.7919",
+                            "Uncertainty": "0.3218",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "1.31",
+                    "Beta": "0.25"
+                }
+            ]
+        }
+    }
+}

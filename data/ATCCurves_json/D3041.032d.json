@@ -1,0 +1,81 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "ec479039-b3ef-4d55-ac04-10b8de7b1276",
+        "ID": "D3041.032d",
+        "Description": "Costing per 10 units, unit supported by ducting only, no independent safety wires",
+        "BasicUnit": "Each",
+        "Name": "HVAC Drops / Diffusers without ceilings - supported by ducting only - No independent safety wires, SDC D, E, or F (OSHPD or sim)",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Marginal",
+            "DataRelevance": "Superior",
+            "Documentation": "Marginal",
+            "Rationality": "Marginal"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:51:24.9044028-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "One failure is expected per 10 units.",
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "HVAC drops or diffusers dislodges and falls.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Replace diffuser/drop and sections of ceiling and ducting in vicinity to which diffuser/drop is connected.",
+                    "TagState": "0",
+                    "UseCasualty": true,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": {
+                        "Area": {
+                            "Unit": "Square Foot",
+                            "Value": "4"
+                        }
+                    },
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0.1",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0.5",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "7977.8",
+                    "EnergyCurveType": "Normal",
+                    "EnergyDispersion": "0.3243",
+                    "CarbonMedian": "729.3",
+                    "CarbonCurveType": "Normal",
+                    "CarbonDispersion": "0.3243",
+                    "CostConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "3300",
+                        "UpperQuantity": "5",
+                        "MinAmount": "2700",
+                        "Uncertainty": "0.2066",
+                        "CurveType": "Normal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "3.8819",
+                        "UpperQuantity": "5",
+                        "MinAmount": "3.1761",
+                        "Uncertainty": "0.3243",
+                        "CurveType": "Normal"
+                    }
+                },
+                "Median": "1.5",
+                "Beta": "0.4"
+            }
+        }
+    }
+}

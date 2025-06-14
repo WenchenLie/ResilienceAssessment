@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "6a0ee8ae-6ae6-4426-9764-5eee1ac2594d",
+        "ID": "B2023.032",
+        "Description": null,
+        "BasicUnit": "Each",
+        "Name": "Storefront, Config: Monolithic, Lamination: Not laminated, Glass Type: Full tempered, Details: 3/8 in. (10 mm) FT monolithic, Corner Cond. Specimen, in-plane; glass-frame clearance = 0.5 in. (13 mm); aspect ratio = 1.93:1 sealant = wet",
+        "Author": "By User",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:04.84328-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "None\nImport errors:\n Warning: B2023.032: B2023.032: DS1 overlaps DS2 in the range of 0.0105 to 0.025 - Make sure damage states are minimally overlapping",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Glass cracking.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove glass, replace frame, reinstall glass",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "23784",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3005",
+                        "CarbonMedian": "1024.8",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3005",
+                        "CostConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "2055",
+                            "UpperQuantity": "100",
+                            "MinAmount": "1096",
+                            "Uncertainty": "0.1668",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "0.9052",
+                            "UpperQuantity": "100",
+                            "MinAmount": "0.4821",
+                            "Uncertainty": "0.3005",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.042",
+                    "Beta": "0.55"
+                },
+                {
+                    "Name": null,
+                    "Description": "Frame Damage",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove and replace frame and glass.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "23784",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3005",
+                        "CarbonMedian": "1024.8",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3005",
+                        "CostConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "2055",
+                            "UpperQuantity": "100",
+                            "MinAmount": "1096",
+                            "Uncertainty": "0.1668",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "0.9052",
+                            "UpperQuantity": "100",
+                            "MinAmount": "0.4821",
+                            "Uncertainty": "0.3005",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.05",
+                    "Beta": "1"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "cd205e90-9cd9-472a-87f0-650b19d1aea2",
+        "ID": "B1041.122a",
+        "Description": "Non-Conforming MF, column flexure, flexure-shear, or shear failure, column flexural response.  Meets the following requirements:  (1) Column Pu > 0.6f'cAg, (2) Column Vn < Veq  Costing is on a per joint basis.",
+        "BasicUnit": "Each",
+        "Name": "Non-conforming MF, weak columns and strong joints, Conc Col & Bm = 24\" x 36\", Beam one side",
+        "Author": "Laura Lowes",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Marginal",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:15.1751849-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Concrete Cracking: beams, joints or possibly. Residual concrete crack widths exceed 0.06in. (1.5 mm).  Column exhibits residual crack widths that require epoxy injection.",
+                    "DamageImageName": "B1041.071a-DS1-2.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove furnishings, ceilings and mechanical, electrical and plumbing systems (as necessary) 8 feet either side of damaged area.  Clean area adjacent to the damaged concrete.  Prepare spalled concrete and adjacent cracks, as necessary, to be patched and to receive the epoxy injection. Patch concrete with grout.  Replace and repair finishes. Replace furnishings, ceilings and mechanical, electrical and plumbing systems as necessary.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "72535.39",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.464",
+                        "CarbonMedian": "4893.36",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.464",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "26775",
+                            "UpperQuantity": "20",
+                            "MinAmount": "18207",
+                            "Uncertainty": "0.3909",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "23.625",
+                            "UpperQuantity": "20",
+                            "MinAmount": "16.065",
+                            "Uncertainty": "0.464",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0025",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Concrete Crushing: slabs, beams or joints. Spalling of beam, column or joint cover concrete exposes longitudinal reinforcement or strength loss initiates in laboratory testing.\nExhibits concrete spalling that exposes longitudinal steel or crushing of core concrete.",
+                    "DamageImageName": "B1041.071a-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove furnishings, ceilings and mechanical, electrical and plumbing systems (as necessary) 15 feet either side of damaged component.  Shore damaged member(s) a minimum of one level below (more levels may be required).  Remove damaged component.  Place and splice (as necessary) new reinforcing steel to existing, undamaged reinforcing.  Place concrete forms.  Place concrete.  Remove forms.  Remove shores after one week.  Replace and repair finishes.  Replace furnishings, ceilings and mechanical, electrical and plumbing systems (as necessary).",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.1",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "141957",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3747",
+                        "CarbonMedian": "9947.84",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3747",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "51852.5",
+                            "UpperQuantity": "20",
+                            "MinAmount": "35259.7",
+                            "Uncertainty": "0.2791",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "45.7522",
+                            "UpperQuantity": "20",
+                            "MinAmount": "31.1115",
+                            "Uncertainty": "0.3747",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.005",
+                    "Beta": "0.5"
+                }
+            ]
+        }
+    }
+}

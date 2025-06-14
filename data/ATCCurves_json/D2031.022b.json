@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "36a25ecf-1425-4d97-ada3-6a62d8fa028e",
+        "ID": "D2031.022b",
+        "Description": "Costing based upon 1000 ft segments of pipe",
+        "BasicUnit": "Each",
+        "Name": "Sanitary Waste Piping - Cast Iron w/bell and spigot couplings, SDC C, BRACING FRAGILITY",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:53:03.6365286-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "Consequence is for piping only.  Enter floor wetting consequence seperately.  Cost includes allowance for MEP relocation to perform work.\nImport errors:\n Warning, Data missing: D2031.022b:DS1: Could not parse dispersion - using 0.5\nWarning, Data missing: D2031.022b:DS2: Could not parse dispersion - using 0.5",
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Isolated support failure w/o leakage - 0.5 supports fail per 1000 feet of pipe (assuming supports every 20 feet).",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace failed supports - 0.5 per 1000 LF.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "1317.27",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.7485",
+                        "CarbonMedian": "45.61",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.7485",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "800",
+                            "UpperQuantity": "10",
+                            "MinAmount": "240",
+                            "Uncertainty": "0.7056",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "0.847",
+                            "UpperQuantity": "10",
+                            "MinAmount": "0.2541",
+                            "Uncertainty": "0.7485",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "1.2",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Multiple supports failure and    60 feet of pipe fail per 1000 feet of pipe (assuming supports every 20 feet)",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace failed supports and 60 ft pipe per 1000 LF.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "16977.99",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3785",
+                        "CarbonMedian": "657.15",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3785",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "8700",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2610",
+                            "Uncertainty": "0.2843",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "9.2118",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2.7635",
+                            "Uncertainty": "0.3785",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "2.4",
+                    "Beta": "0.5"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "72a4fbbf-9331-4ada-86f0-b8dc7d4a28de",
+        "ID": "D2021.014b",
+        "Description": "Potable water.  Costing based upon 1000 ft segments.",
+        "BasicUnit": "Each",
+        "Name": "Cold or Hot Potable  - Small Diameter Threaded Steel - (2.5 inches in diameter or less), SDC D, E, or F (OSHPD or sim), BRACING FRAGILITY",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:52:48.204072-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Consequence is for piping only.  Enter floor wetting consequence seperately.  Cost includes allowance for MEP relocation to perform work.",
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Lateral Brace Failure - 1 failure per 1000 feet of pipe.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Retighten leaking joints.   One joint per 1000 LF.",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "1021.56",
+                    "EnergyCurveType": "LogNormal",
+                    "EnergyDispersion": "0.6527",
+                    "CarbonMedian": "35.97",
+                    "CarbonCurveType": "LogNormal",
+                    "CarbonDispersion": "0.6527",
+                    "CostConsequence": {
+                        "LowerQuantity": "3",
+                        "MaxAmount": "418",
+                        "UpperQuantity": "10",
+                        "MinAmount": "342",
+                        "Uncertainty": "0.603",
+                        "CurveType": "LogNormal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "3",
+                        "MaxAmount": "0.4426",
+                        "UpperQuantity": "10",
+                        "MinAmount": "0.3622",
+                        "Uncertainty": "0.6527",
+                        "CurveType": "LogNormal"
+                    }
+                },
+                "Median": "1.5",
+                "Beta": "0.4"
+            }
+        }
+    }
+}

@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "51b31273-e0e6-47ec-9957-02974f8307f4",
+        "ID": "B2023.051",
+        "Description": null,
+        "BasicUnit": "Each",
+        "Name": "Storefront, Config: Symmetric insulating glass units (dual-pane, equal-thickness IGU), Lamination: Not laminated, Glass Type: Full tempered, Details: 1 in. (25 mm) FT IGU [1/4 in. (6 mm) inner and outer panes], Planar Specimen; glass-frame clearance = 0.43 in. (11 mm); aspect ratio = 1.89:1 sealant = dry",
+        "Author": "By User",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:06.2218663-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Median demand of 10% is intentional.  Physical testing did not cause frame or glass cracking damage at 10% drift.\nImport errors:\n Warning: B2023.051: B2023.051: DS1 overlaps DS2 in the range of 0.0125 to 0.025 - Make sure damage states are minimally overlapping",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Panel damage (no glass damage).",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove panel, repair frame, replace panel.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "23784",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.2767",
+                        "CarbonMedian": "1024.8",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.2767",
+                        "CostConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "2955",
+                            "UpperQuantity": "100",
+                            "MinAmount": "1576",
+                            "Uncertainty": "0.1185",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "1.3046",
+                            "UpperQuantity": "100",
+                            "MinAmount": "0.6962",
+                            "Uncertainty": "0.2767",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.05",
+                    "Beta": "0.29"
+                },
+                {
+                    "Name": null,
+                    "Description": "Glass cracks.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove panel, replace glass, replace panel.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "23784",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.2767",
+                        "CarbonMedian": "1024.8",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.2767",
+                        "CostConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "2955",
+                            "UpperQuantity": "100",
+                            "MinAmount": "1576",
+                            "Uncertainty": "0.1185",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "1.3046",
+                            "UpperQuantity": "100",
+                            "MinAmount": "0.6962",
+                            "Uncertainty": "0.2767",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.16",
+                    "Beta": "1"
+                }
+            ]
+        }
+    }
+}

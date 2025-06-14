@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "e51fe066-7957-4dbb-aaff-d438cc9a07bc",
+        "ID": "D4011.053a",
+        "Description": "Costing per 100 units, Standard threaded steel drop, 6 ft. long drop maximum",
+        "BasicUnit": "Each",
+        "Name": "Fire Sprinkler Drop Standard Threaded Steel - Dropping into braced lay-in tile SOFT ceiling - 6 ft. long drop maximum, SDC D, E, or F",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Marginal",
+            "DataRelevance": "Marginal",
+            "Documentation": "Marginal",
+            "Rationality": "Marginal"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:51:42.770616-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "One failure is expected per 100 units.  Allowance included for MEP modifications for repair.",
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Spraying & Dripping Leakage at drop joints -  0.01 leaks per drop.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace sprinkler drops and minor water cleanup at broken joints.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "865",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.4437",
+                        "CarbonMedian": "75",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.4437",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "550",
+                            "UpperQuantity": "5",
+                            "MinAmount": "450",
+                            "Uncertainty": "0.3665",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "0.6488",
+                            "UpperQuantity": "5",
+                            "MinAmount": "0.5312",
+                            "Uncertainty": "0.4437",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "1.5",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Drop Joints Break - Major Leakage - 0.01 breaks  per drop.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace sprinkler drops and major water cleanup at broken joints",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "865",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.4437",
+                        "CarbonMedian": "75",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.4437",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "550",
+                            "UpperQuantity": "5",
+                            "MinAmount": "450",
+                            "Uncertainty": "0.3665",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "0.1788",
+                            "UpperQuantity": "5",
+                            "MinAmount": "0.0612",
+                            "Uncertainty": "0.4437",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "2.25",
+                    "Beta": "0.4"
+                }
+            ]
+        }
+    }
+}

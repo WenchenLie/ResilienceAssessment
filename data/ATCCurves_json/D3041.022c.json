@@ -1,0 +1,125 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "8eeff068-8e79-492d-8862-3b6d2bc34083",
+        "ID": "D3041.022c",
+        "Description": "Costing based upon 1000 ft segments of duct",
+        "BasicUnit": "Each",
+        "Name": "HVAC Stainless Steel Ducting -  6 sq. ft cross sectional area or greater, SDC D, E, or F",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Marginal",
+            "DataRelevance": "Superior",
+            "Documentation": "Marginal",
+            "Rationality": "Marginal"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:51:22.0636869-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Individual supports fail and duct sags - 1 failed support per 1000 feet of ducting.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace failed supports and repair ducting in vicinity of failed supports.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "10049.13",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.2806",
+                        "CarbonMedian": "784.43",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.2806",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "2145",
+                            "UpperQuantity": "5",
+                            "MinAmount": "1755",
+                            "Uncertainty": "0.1273",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "2.3658",
+                            "UpperQuantity": "5",
+                            "MinAmount": "1.9356",
+                            "Uncertainty": "0.2806",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "3.75",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Several adjacent supports fail and sections of ducting fall - 60 feet of ducting fail and fall per 1000 foot of ducting.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace sections of failed ducting and supports.",
+                        "TagState": "0",
+                        "UseCasualty": true,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": {
+                            "Area": {
+                                "Unit": "Square Foot",
+                                "Value": "50"
+                            }
+                        },
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0.1",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0.5",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "102704.18",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.2845",
+                        "CarbonMedian": "8474.69",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.2845",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "23595",
+                            "UpperQuantity": "5",
+                            "MinAmount": "19305",
+                            "Uncertainty": "0.1357",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "26.0239",
+                            "UpperQuantity": "5",
+                            "MinAmount": "21.2923",
+                            "Uncertainty": "0.2845",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "4.5",
+                    "Beta": "0.4"
+                }
+            ]
+        }
+    }
+}

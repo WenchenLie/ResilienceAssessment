@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "476eadf5-f741-4c38-947a-305a5a934dc0",
+        "ID": "B1071.041",
+        "Description": "Costing based upon 13'x100' Panels",
+        "BasicUnit": "Each",
+        "Name": "Exterior Wall - Type: Gypsum with wood studs, Full Height, Fixed Below, Fixed Above",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Superior",
+            "Documentation": "Superior",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:48.0893077-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Copy of C1011.011a for use as an exterior wall.",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Screws pop-out, minor cracking of wall board, warping or cracking of tape.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Retape joints, paste and repaint both sides of  full 100 foot length of wall board.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "5603",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.5223",
+                        "CarbonMedian": "234",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.5223",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "4340",
+                            "UpperQuantity": "10",
+                            "MinAmount": "1302",
+                            "Uncertainty": "0.4586",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "3.3813",
+                            "UpperQuantity": "10",
+                            "MinAmount": "1.0135",
+                            "Uncertainty": "0.5223",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0021",
+                    "Beta": "0.6"
+                },
+                {
+                    "Name": null,
+                    "Description": "Moderate cracking or crushing of gypsum wall boards (typically in corners and in corners of openings).",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove full 100 foot length of wall board (both sides), install new wall board (both sides), tape, paste and repaint.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "16562",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.5465",
+                        "CarbonMedian": "663",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.5465",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "11100",
+                            "UpperQuantity": "10",
+                            "MinAmount": "3330",
+                            "Uncertainty": "0.4859",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "8.6157",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2.5597",
+                            "Uncertainty": "0.5465",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0071",
+                    "Beta": "0.45"
+                },
+                {
+                    "Name": null,
+                    "Description": "Significant cracking and/or crushing of gypsum wall boards- buckling of studs and tearing of tracks.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove and replace full 100 foot length of metal stud wall, both sides of the gypsum wall board and any embedded utilities, and tape, paste and repaint.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "341224",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.2681",
+                        "CarbonMedian": "35321",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.2681",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "37600",
+                            "UpperQuantity": "10",
+                            "MinAmount": "11280",
+                            "Uncertainty": "0.0969",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "29.3429",
+                            "UpperQuantity": "10",
+                            "MinAmount": "8.8288",
+                            "Uncertainty": "0.2681",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.012",
+                    "Beta": "0.45"
+                }
+            ]
+        }
+    }
+}

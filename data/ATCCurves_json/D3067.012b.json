@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "328dcbda-8241-42d9-a438-642ee7fb94b7",
+        "ID": "D3067.012b",
+        "Description": "Costing is per unit.",
+        "BasicUnit": "Each",
+        "Name": "Control Panel - Capacity: all - Equipment that is either hard anchored or is vibration isolated with seismic snubbers/restraints - Equipment fragility only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:51:37.401153-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Damaged, inoperative but anchorage is OK.",
+                "DamageImageName": "D3067.011a-DS1-1.JPG",
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Replace some components (relays, circuit boards).",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "16469.83",
+                    "EnergyCurveType": "Normal",
+                    "EnergyDispersion": "0.3096",
+                    "CarbonMedian": "865.45",
+                    "CarbonCurveType": "Normal",
+                    "CarbonDispersion": "0.3096",
+                    "CostConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "4565",
+                        "UpperQuantity": "5",
+                        "MinAmount": "3735",
+                        "Uncertainty": "0.1826",
+                        "CurveType": "Normal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "1.9529",
+                        "UpperQuantity": "5",
+                        "MinAmount": "0.9765",
+                        "Uncertainty": "0.3096",
+                        "CurveType": "Normal"
+                    }
+                },
+                "Median": "3",
+                "Beta": "0.4"
+            }
+        }
+    }
+}

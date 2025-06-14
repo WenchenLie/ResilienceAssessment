@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "adb6c31f-21c9-4ae9-8c59-466dcdf51c42",
+        "ID": "D2051.021b",
+        "Description": "Costing based upon 1000 ft segments of pipe, pipe greater than 2.5 inches in diameter",
+        "BasicUnit": "Each",
+        "Name": "Chilled Water Piping - Large Diameter Welded Steel - (greater than 2.5 inches in diameter), SDC A or B, BRACING FRAGILITY",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:53:11.401752-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "Consequence is for piping only.  Enter floor wetting consequence seperately.  Cost includes allowance for MEP relocation to perform work.\nImport errors:\n Warning, Data missing: D2051.021b:DS1: Could not parse dispersion - using 0.5",
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Vertical Brace Failure - 1 failure per 1000 feet of pipe",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Replace failed supports, one per 1000 LF.",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "864.51",
+                    "EnergyCurveType": "LogNormal",
+                    "EnergyDispersion": "0.6953",
+                    "CarbonMedian": "33.07",
+                    "CarbonCurveType": "LogNormal",
+                    "CarbonDispersion": "0.6953",
+                    "CostConsequence": {
+                        "LowerQuantity": "5",
+                        "MaxAmount": "700",
+                        "UpperQuantity": "10",
+                        "MinAmount": "210",
+                        "Uncertainty": "0.6488",
+                        "CurveType": "LogNormal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "5",
+                        "MaxAmount": "0.7412",
+                        "UpperQuantity": "10",
+                        "MinAmount": "0.2224",
+                        "Uncertainty": "0.6953",
+                        "CurveType": "LogNormal"
+                    }
+                },
+                "Median": "2.25",
+                "Beta": "0.5"
+            }
+        }
+    }
+}

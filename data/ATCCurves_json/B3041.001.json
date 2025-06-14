@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "b27fbae2-b725-401f-bfeb-dca2e6bf8d81",
+        "ID": "B3041.001",
+        "Description": "Unreinforced and unbraced masonry parapet as a component of a masonry building.  Parapet height / width of approximately 3.  Costing based upon repair of 3ft tall x 10ft segment.",
+        "BasicUnit": "Each",
+        "Name": "Masonry Parapet - unreinforced, unbraced",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:12.6199463-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Cracking with offset > 1/16\"",
+                    "DamageImageName": "B2012.001a-DS1-1.jpg",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace and reinforce",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.25",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "5398.36",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.353",
+                        "CarbonMedian": "200.83",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.353",
+                        "CostConsequence": {
+                            "LowerQuantity": "10",
+                            "MaxAmount": "810",
+                            "UpperQuantity": "50",
+                            "MinAmount": "432",
+                            "Uncertainty": "0.2492",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "10",
+                            "MaxAmount": "0.7862",
+                            "UpperQuantity": "50",
+                            "MinAmount": "0.4193",
+                            "Uncertainty": "0.353",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.2",
+                    "Beta": "0.6"
+                },
+                {
+                    "Name": null,
+                    "Description": "Toppling of all or portion of parapet.",
+                    "DamageImageName": "B2012.001a-DS2-1.jpg",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace and reinforce",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.5",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "5398.36",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.353",
+                        "CarbonMedian": "200.83",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.353",
+                        "CostConsequence": {
+                            "LowerQuantity": "10",
+                            "MaxAmount": "810",
+                            "UpperQuantity": "50",
+                            "MinAmount": "432",
+                            "Uncertainty": "0.2492",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "10",
+                            "MaxAmount": "0.7862",
+                            "UpperQuantity": "50",
+                            "MinAmount": "0.4193",
+                            "Uncertainty": "0.353",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.4",
+                    "Beta": "0.6"
+                }
+            ]
+        }
+    }
+}

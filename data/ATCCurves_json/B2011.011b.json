@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "094f3a3f-d436-4a02-a81d-a2ce1ed31aad",
+        "ID": "B2011.011b",
+        "Description": "Costing for each 100 ft^2 Wall Panel.   Assumed framing:  33 mil cold formed steel framing with 4.5 inch x 33 mil flat strap X-bracing on one side.  Straps attached to gussets with No. 8 screws.",
+        "BasicUnit": "Each",
+        "Name": "Exterior Wall - Cold formed steel walls with flat strap X-bracing, exterior - stucco one side",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Superior",
+            "Documentation": "Average",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:49.3659246-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Copy of B1061.011b for use as an exterior wall.",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Local buckling of chord studs.",
+                    "DamageImageName": "B1061.011-DS1-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove damaged wall, ceilings, X bracing as necessary, mechanical, electrical, and office furniture / equipment.  Temporarily protect floor and provide dust curtains.  Modify mechanical and electrical as required for repair work.  Replace gypsum wall board, stucco, metal stud framing as needed, reinstall X bracing as required, tape and sand, repaint.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.2",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "27384",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3195",
+                        "CarbonMedian": "2108",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3195",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "3997.5",
+                            "UpperQuantity": "8",
+                            "MinAmount": "2460",
+                            "Uncertainty": "0.199",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "3.119",
+                            "UpperQuantity": "8",
+                            "MinAmount": "1.9207",
+                            "Uncertainty": "0.3195",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0139",
+                    "Beta": "0.25"
+                },
+                {
+                    "Name": null,
+                    "Description": "Failure of many framing members and collapse.",
+                    "DamageImageName": "B1061.011-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove damaged wall, ceilings, X bracing as necessary, mechanical, electrical, and office furniture / equipment.  Temporarily protect floor and provide dust curtains.  Modify mechanical and electrical as required for repair work.  Replace gypsum wall board, stucco, boundary elements, metal stud framing, install X bracing, tape and sand, repaint.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.1",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "46493",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.2823",
+                        "CarbonMedian": "3296",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.2823",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "5900",
+                            "UpperQuantity": "8",
+                            "MinAmount": "4179.1667",
+                            "Uncertainty": "0.1312",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "4.5964",
+                            "UpperQuantity": "8",
+                            "MinAmount": "3.2552",
+                            "Uncertainty": "0.2823",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0179",
+                    "Beta": "0.25"
+                }
+            ]
+        }
+    }
+}

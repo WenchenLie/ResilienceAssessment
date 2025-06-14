@@ -1,0 +1,128 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "ec936f99-3b78-4efa-948e-8ec62c277827",
+        "ID": "D3032.013k",
+        "Description": "Costing is per unit.",
+        "BasicUnit": "Each",
+        "Name": "Compressor - Capacity: Large medical quality air supply - Equipment that is either hard anchored or is vibration isolated with seismic snubbers/restraints - Equipment fragility only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:51:12.0156918-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Equipment does not function but anchorage is OK. Motor is damaged.",
+                "DamageImageName": "D3032.011a-DS1-1.JPG",
+                "DamageStates": {
+                    "DSGroupType": "MutuallyExclusive",
+                    "DamageState": [
+                        {
+                            "Name": null,
+                            "Description": "Equipment does not function but anchorage is OK. Motor is damaged.",
+                            "DamageImageName": "D3032.011a-DS1-1.JPG",
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Repair motor.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": false,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "20765.91",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3031",
+                                "CarbonMedian": "1794.92",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3031",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "4400",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "3600",
+                                    "Uncertainty": "0.1713",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "5.1765",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "4.2353",
+                                    "Uncertainty": "0.3031",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.5"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Equipment does not function but anchorage is OK. Equipment damaged beyond repair.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Replace equipment.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "161049.7",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3146",
+                                "CarbonMedian": "13762.57",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3146",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "33000",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "27000",
+                                    "Uncertainty": "0.191",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "14.1176",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "7.0588",
+                                    "Uncertainty": "0.3146",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.5"
+                        }
+                    ]
+                },
+                "Median": "1.84",
+                "Beta": "0.6"
+            }
+        }
+    }
+}

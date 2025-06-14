@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "f19c94dc-2121-49a0-99d9-45fdeff67e73",
+        "ID": "B3011.011",
+        "Description": "Costing per roofing square (100 SF)",
+        "BasicUnit": "Each",
+        "Name": "Concrete tile roof, tiles secured and compliant with UBC94",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:09.0240254-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Minor damage; tiles dislodged.",
+                    "DamageImageName": "B3011.011-DS1-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Reinstall dislodged tiles.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "985",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.6281",
+                        "CarbonMedian": "41",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.6281",
+                        "CostConsequence": {
+                            "LowerQuantity": "13",
+                            "MaxAmount": "840",
+                            "UpperQuantity": "130",
+                            "MinAmount": "490",
+                            "Uncertainty": "0.5762",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "13",
+                            "MaxAmount": "0.9544",
+                            "UpperQuantity": "130",
+                            "MinAmount": "0.5684",
+                            "Uncertainty": "0.6281",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "1.1",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Major portion of tile dislodged.",
+                    "DamageImageName": "B3011.011-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Reinstall dislodged tiles.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.5",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "3769",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3963",
+                        "CarbonMedian": "154",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3963",
+                        "CostConsequence": {
+                            "LowerQuantity": "13",
+                            "MaxAmount": "2220",
+                            "UpperQuantity": "130",
+                            "MinAmount": "1184",
+                            "Uncertainty": "0.3074",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "13",
+                            "MaxAmount": "2.4162",
+                            "UpperQuantity": "130",
+                            "MinAmount": "1.2735",
+                            "Uncertainty": "0.3963",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "1.4",
+                    "Beta": "0.4"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "e3fc9391-0774-4a99-b01c-7446cd970c14",
+        "ID": "D5012.023b",
+        "Description": "Costing is per unit and is based upon 225 Amp.",
+        "BasicUnit": "Each",
+        "Name": "Low Voltage Switchgear - Capacity: 100 to <350 Amp - Equipment that is either hard anchored or is vibration isolated with seismic snubbers/restraints - Equipment fragility only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:51:57.8331096-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Damaged, inoperative but anchorage is OK.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Replace fiberglass insulator supporting the vertical bus bars in the rear of the switchgear assembly",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "36200.39",
+                    "EnergyCurveType": "LogNormal",
+                    "EnergyDispersion": "0.2953",
+                    "CarbonMedian": "1992.39",
+                    "CarbonCurveType": "LogNormal",
+                    "CarbonDispersion": "0.2953",
+                    "CostConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "10202.5",
+                        "UpperQuantity": "5",
+                        "MinAmount": "8347.5",
+                        "Uncertainty": "0.1572",
+                        "CurveType": "LogNormal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "3.2736",
+                        "UpperQuantity": "5",
+                        "MinAmount": "1.0912",
+                        "Uncertainty": "0.2953",
+                        "CurveType": "LogNormal"
+                    }
+                },
+                "Median": "2.4",
+                "Beta": "0.4"
+            }
+        }
+    }
+}

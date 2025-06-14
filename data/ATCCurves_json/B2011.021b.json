@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "b27d0418-2f62-452d-835e-1a338ed8eb32",
+        "ID": "B2011.021b",
+        "Description": "Costing for each 100 ft^2 Wall Panel.   Assumed framing:  33 mil cold formed steel framing with 22 or 31 mil steel sheathing attached with No. 8 screws spaced 2\" or 6\" OC at perimeter and 12\" OC EW in the field.",
+        "BasicUnit": "Each",
+        "Name": "Exterior Wall - Cold formed steel walls with 22 or 31 mil steel sheathing, exterior - stucco one side",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Superior",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:49.9987347-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Copy of B1061.021b for use as an exterior wall.",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Pull out of sheathing fasteners from studs.",
+                    "DamageImageName": "B1061.021-DS1-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove damaged wall, ceilings, wall finishes, mechanical, electrical, and office furniture / equipment.  Temporarily protect floor and provide dust curtains.  Modify mechanical and electrical as required for repair work.  Replace 20% of fasteners, replace gypsum wall board, stucco, tape, sand, paint.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.2",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "21121",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3756",
+                        "CarbonMedian": "2002",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3756",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "3000.8333",
+                            "UpperQuantity": "6",
+                            "MinAmount": "1846.6667",
+                            "Uncertainty": "0.2803",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "2.3397",
+                            "UpperQuantity": "6",
+                            "MinAmount": "1.4402",
+                            "Uncertainty": "0.3756",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.019",
+                    "Beta": "0.25"
+                },
+                {
+                    "Name": null,
+                    "Description": "Buckling of steel sheathing.  Buckling of framing members.",
+                    "DamageImageName": "B1061.021-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove damaged wall, ceilings, wall finishes, mechanical, electrical, and office furniture / equipment.  Temporarily protect floor and provide dust curtains.  Modify mechanical and electrical as required for repair work.  Install new sheathing, new metal stud framing as needed, replace gypsum wall board, stucco,, tape, sand, paint.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.1",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "39672",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3022",
+                        "CarbonMedian": "3138",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3022",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "5730",
+                            "UpperQuantity": "6",
+                            "MinAmount": "4058.75",
+                            "Uncertainty": "0.1698",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "4.4643",
+                            "UpperQuantity": "6",
+                            "MinAmount": "3.1617",
+                            "Uncertainty": "0.3022",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0253",
+                    "Beta": "0.25"
+                }
+            ]
+        }
+    }
+}

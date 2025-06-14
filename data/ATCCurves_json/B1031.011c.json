@@ -1,0 +1,214 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "7b0b5fad-ab50-4761-a63c-2ef3c32c9da7",
+        "ID": "B1031.011c",
+        "Description": "Costing is on a per connection basis.  Costing does not include fireproofing removal or reapplication cost.",
+        "BasicUnit": "Each",
+        "Name": "Steel Column Base Plates, Column W > 300 plf",
+        "Author": "Greg Deierlein",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Superior",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:48:27.6104586-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Initiation of crack at the fusion line between the column flange and the base plate weld.  Damage in field is either obscured or deemed to not warrant repair.  No repair conducted.",
+                    "DamageImageName": "B1031.011a-schematic.JPG",
+                    "DamageStates": {
+                        "DSGroupType": "MutuallyExclusive",
+                        "DamageState": [
+                            {
+                                "Name": null,
+                                "Description": "Initiation of crack at the fusion line between the column flange and the base plate weld.  Damage in field is either obscured or deemed to not warrant repair.  No repair conducted.",
+                                "DamageImageName": "B1031.011a-schematic.JPG",
+                                "ConsequenceGroup": {
+                                    "RepairMeasures": "The repair will involve removal of a portion of grade slab, gouging out material surrounding the fracture initiating and re-welding, then repair of slab. Field condition is deemed to not warrant repair by field observation.  This Damage State is Mutually Exclusive with DS2.  See fragility DS1 and DS2 probabilities.",
+                                    "TagState": "0",
+                                    "UseCasualty": false,
+                                    "LongLeadFlag": false,
+                                    "AffectedFloorArea": null,
+                                    "AffectedDeathRate": "0",
+                                    "AffectedInjuryRate": "0",
+                                    "AffectedDeathRateBeta": "0",
+                                    "AffectedInjuryRateBeta": "0",
+                                    "RedTagMedian": "0",
+                                    "RedTagBeta": "0",
+                                    "EnergyMedian": "0",
+                                    "EnergyCurveType": "LogNormal",
+                                    "EnergyDispersion": "0.3536",
+                                    "CarbonMedian": "0",
+                                    "CarbonCurveType": "LogNormal",
+                                    "CarbonDispersion": "0.3536",
+                                    "CostConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "0",
+                                        "UpperQuantity": "20",
+                                        "MinAmount": "0",
+                                        "Uncertainty": "0.25",
+                                        "CurveType": "LogNormal"
+                                    },
+                                    "TimeConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "0",
+                                        "UpperQuantity": "20",
+                                        "MinAmount": "0",
+                                        "Uncertainty": "0.3536",
+                                        "CurveType": "LogNormal"
+                                    }
+                                },
+                                "Percent": "0.95"
+                            },
+                            {
+                                "Name": null,
+                                "Description": "Initiation of crack at the fusion line between the column flange and the base plate weld.",
+                                "DamageImageName": "B1031.011a-schematic.JPG",
+                                "ConsequenceGroup": {
+                                    "RepairMeasures": "The repair will involve removal of a portion of grade slab, gouging out material surrounding the fracture initiating and re-welding, then repair of slab.",
+                                    "TagState": "0",
+                                    "UseCasualty": false,
+                                    "LongLeadFlag": false,
+                                    "AffectedFloorArea": null,
+                                    "AffectedDeathRate": "0",
+                                    "AffectedInjuryRate": "0",
+                                    "AffectedDeathRateBeta": "0",
+                                    "AffectedInjuryRateBeta": "0",
+                                    "RedTagMedian": "0",
+                                    "RedTagBeta": "0",
+                                    "EnergyMedian": "61476.11",
+                                    "EnergyCurveType": "LogNormal",
+                                    "EnergyDispersion": "0.447",
+                                    "CarbonMedian": "4381.66",
+                                    "CarbonCurveType": "LogNormal",
+                                    "CarbonDispersion": "0.447",
+                                    "CostConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "27963",
+                                        "UpperQuantity": "20",
+                                        "MinAmount": "17208",
+                                        "Uncertainty": "0.3705",
+                                        "CurveType": "LogNormal"
+                                    },
+                                    "TimeConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "18.505",
+                                        "UpperQuantity": "20",
+                                        "MinAmount": "11.3877",
+                                        "Uncertainty": "0.447",
+                                        "CurveType": "LogNormal"
+                                    }
+                                },
+                                "Percent": "0.05"
+                            }
+                        ]
+                    },
+                    "Median": "0.04",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Propagation of brittle crack into column and/or base plate.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Depending on the crack trajectory, the repair will range from replacement of a portion of the column or base plate to full replacement of the column base. Replacement will require shoring of column, torch cutting to remove damaged material, and fabrication",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.25",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "14785.28",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3986",
+                        "CarbonMedian": "481.82",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3986",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "37464",
+                            "UpperQuantity": "20",
+                            "MinAmount": "26537",
+                            "Uncertainty": "0.3104",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "24.7924",
+                            "UpperQuantity": "20",
+                            "MinAmount": "17.5613",
+                            "Uncertainty": "0.3986",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.07",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Complete fracture of the column (or column weld) and dislocation of column relative to the base.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Repair would likely involve replacing the entire base plate assembly and most of the column in the story above the base plate.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.1",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "26613.5",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3672",
+                        "CarbonMedian": "867.27",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3672",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "47544",
+                            "UpperQuantity": "20",
+                            "MinAmount": "33677",
+                            "Uncertainty": "0.2689",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "31.4629",
+                            "UpperQuantity": "20",
+                            "MinAmount": "22.2862",
+                            "Uncertainty": "0.3672",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.1",
+                    "Beta": "0.4"
+                }
+            ]
+        }
+    }
+}

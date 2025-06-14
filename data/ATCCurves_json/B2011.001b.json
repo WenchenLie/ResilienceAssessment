@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "bb61c11c-83d0-4275-b78a-e21a833c35f8",
+        "ID": "B2011.001b",
+        "Description": "Costing for each 100 ft^2 Wall Panel.   Assumed framing:  38 mil cold formed steel framing with 7/16 OSB and 3/8 plywood panel sheathing with overturning restraint at each end of the wall per AISI design standard.  No. 8 screws 2\" to 6\" OC at perimeter and 12\" OC EW in field.",
+        "BasicUnit": "Each",
+        "Name": "Exterior Wall - Cold formed steel walls with wood structural panel sheathing, exterior - stucco one side",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Superior",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:48.7291157-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Copy of B1061.001b for use as an exterior wall.\nImport errors:\n Warning: B2011.001b: B2011.001b: DS2 overlaps DS3 in the range of 0.0904 to 0.1068 - Make sure damage states are minimally overlapping",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Sheathing faster pull through or tear out.  (20% of fasteners.)",
+                    "DamageImageName": "B1061.001-DS1-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove damaged wall, ceilings, mechanical, electrical, and office furniture / equipment.  Temporarily protect floor and provide dust curtains.  Modify mechanical and electrical as required for repair work.  Replace 20% of fasteners, replace gypsum wall board, stucco, tape and sand, repaint.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "21166",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3272",
+                        "CarbonMedian": "2004",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3272",
+                        "CostConsequence": {
+                            "LowerQuantity": "6",
+                            "MaxAmount": "2849.1667",
+                            "UpperQuantity": "30",
+                            "MinAmount": "1753.3333",
+                            "Uncertainty": "0.211",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "6",
+                            "MaxAmount": "2.2225",
+                            "UpperQuantity": "30",
+                            "MinAmount": "1.3684",
+                            "Uncertainty": "0.3272",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.004",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Failure of structural panels.",
+                    "DamageImageName": "B1061.001-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove damaged wall, ceilings, mechanical, electrical, and office furniture / equipment.  Temporarily protect floor and provide dust curtains.  Modify mechanical and electrical as required for repair work.  Replace sheathing, replace gypsum wall board, stucco, tape and sand, repaint.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.25",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "30520",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3542",
+                        "CarbonMedian": "2818",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3542",
+                        "CostConsequence": {
+                            "LowerQuantity": "6",
+                            "MaxAmount": "4590",
+                            "UpperQuantity": "30",
+                            "MinAmount": "3251.25",
+                            "Uncertainty": "0.251",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "6",
+                            "MaxAmount": "3.5762",
+                            "UpperQuantity": "30",
+                            "MinAmount": "2.5328",
+                            "Uncertainty": "0.3542",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0226",
+                    "Beta": "0.3"
+                },
+                {
+                    "Name": null,
+                    "Description": "Failure of wall.",
+                    "DamageImageName": "B1061.001-DS3-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove damaged wall, ceilings, mechanical, electrical, and office furniture / equipment.  Temporarily protect floor and provide dust curtains.  Provide shoring.  Modify mechanical and electrical as required for repair work.  Replace metal stud framing, boundary elements, sheathing, replace gypsum wall board, stucco, tape and sand, repaint.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.1",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "48121",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.2694",
+                        "CarbonMedian": "3400",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.2694",
+                        "CostConsequence": {
+                            "LowerQuantity": "6",
+                            "MaxAmount": "6450",
+                            "UpperQuantity": "30",
+                            "MinAmount": "4568.75",
+                            "Uncertainty": "0.1004",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "6",
+                            "MaxAmount": "5.0279",
+                            "UpperQuantity": "30",
+                            "MinAmount": "3.5616",
+                            "Uncertainty": "0.2694",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0267",
+                    "Beta": "0.25"
+                }
+            ]
+        }
+    }
+}

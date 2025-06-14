@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "c9fad270-dbd3-40d1-a157-8312576032b4",
+        "ID": "B1033.053b",
+        "Description": "Costing on a per bay basis, braces may be HSS, WF, or Angle.  Costing does not include fireproofing removal or reapplication cost.",
+        "BasicUnit": "Each",
+        "Name": "Ordinary Concentric Braced Frame w compact braces, X Brace, Brace w, 41 PLF < w < 99 PLF",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "Marginal",
+            "Documentation": "NA",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:48:42.3040492-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "None\nImport errors:\n Warning: B1033.053b: B1033.053b: DS1 overlaps DS2 in the range of 0.04 to 0.0712 - Make sure damage states are minimally overlapping",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Buckling of the brace has begun but does not exceed the depth of the brace.  Initial yielding of the gusset has begun.  Yielding has initiated in framing at gusset plates but no buckling has occurred.  Residual deformation of the brace has occurred but is barely noticeable to the naked eye and does not exceed half the brace depth.  Residual drift is slight.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Brace damage is largely aesthetic.  Heat straightening may be desirable but replacement would be for aesthetic reasons.  Gusset has minor loss of strength and stiffness and straightening or repair may be desirable aesthetic reasons.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "79506.99",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.4117",
+                        "CarbonMedian": "6692.79",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.4117",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "45589.4526",
+                            "UpperQuantity": "7",
+                            "MinAmount": "31000.8278",
+                            "Uncertainty": "0.327",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "30.1695",
+                            "UpperQuantity": "7",
+                            "MinAmount": "20.5153",
+                            "Uncertainty": "0.4117",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0016",
+                    "Beta": "0.7"
+                },
+                {
+                    "Name": null,
+                    "Description": "Brace has buckled but residual displacement does not exceed two times brace depth.  Brace has not fractured.  Gusset plate exhibits extensive yielding.  Yielding extends well into the members.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace brace.  Gusset plate must be replaced 50% of the time.  Heat straightening of deformed beams and columns may be required.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.4",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "294643.45",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3787",
+                        "CarbonMedian": "14075.11",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3787",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "69322.068",
+                            "UpperQuantity": "7",
+                            "MinAmount": "47139.0062",
+                            "Uncertainty": "0.2845",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "45.8749",
+                            "UpperQuantity": "7",
+                            "MinAmount": "31.1949",
+                            "Uncertainty": "0.3787",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.01",
+                    "Beta": "0.3"
+                },
+                {
+                    "Name": null,
+                    "Description": "Brace has fractured.  Gusset plate has torn, possibly completely free of framing.  Local buckling of flanges and web of framing members.  Bolt fractures in beam-column connections.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace brace.  Gusset plate must be replaced 90% of the time.  Replacement of portions (deformed flanges, webs) of permanently deformed beams and columns likely required.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.2",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "294643.45",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3754",
+                        "CarbonMedian": "14075.11",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3754",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "73697.068",
+                            "UpperQuantity": "7",
+                            "MinAmount": "50114.0062",
+                            "Uncertainty": "0.28",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "48.7701",
+                            "UpperQuantity": "7",
+                            "MinAmount": "33.1637",
+                            "Uncertainty": "0.3754",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0178",
+                    "Beta": "0.3"
+                }
+            ]
+        }
+    }
+}

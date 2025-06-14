@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "d3e6dbac-5f82-40fe-8683-1847f2884e74",
+        "ID": "B1035.061a",
+        "Description": "Costing is on a per connection basis.  Costing does not include fireproofing removal or reapplication cost.",
+        "BasicUnit": "Each",
+        "Name": "EBF Shear Link, no floor beams, link w < 100 PLF",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Link Rotation Angle",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Superior",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:48:52.9178641-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Damage to concrete slab above the link beam.",
+                    "DamageImageName": "B1035.061-DS1-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace concrete slab and finishes in 400 SF at EBF link.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "313446.87",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3967",
+                        "CarbonMedian": "26496.05",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3967",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "99120",
+                            "UpperQuantity": "5",
+                            "MinAmount": "66080",
+                            "Uncertainty": "0.308",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "65.5942",
+                            "UpperQuantity": "5",
+                            "MinAmount": "43.7294",
+                            "Uncertainty": "0.3967",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.04",
+                    "Beta": "0.3"
+                },
+                {
+                    "Name": null,
+                    "Description": "Web local buckling, flange local buckling.",
+                    "DamageImageName": "B1035.061-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Heat straightening of buckled elements.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.5",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "316566.36",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3751",
+                        "CarbonMedian": "26754.1",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3751",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "106320",
+                            "UpperQuantity": "5",
+                            "MinAmount": "70880",
+                            "Uncertainty": "0.2796",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "70.3589",
+                            "UpperQuantity": "5",
+                            "MinAmount": "46.9059",
+                            "Uncertainty": "0.3751",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.06",
+                    "Beta": "0.3"
+                },
+                {
+                    "Name": null,
+                    "Description": "Initiation of fracture in the link beam and link flange.",
+                    "DamageImageName": "B1035.061-DS3-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace EBF link.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.25",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "490921.99",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3313",
+                        "CarbonMedian": "32548.81",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3313",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "135960",
+                            "UpperQuantity": "5",
+                            "MinAmount": "90640",
+                            "Uncertainty": "0.2174",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "89.9735",
+                            "UpperQuantity": "5",
+                            "MinAmount": "59.9823",
+                            "Uncertainty": "0.3313",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.08",
+                    "Beta": "0.3"
+                }
+            ]
+        }
+    }
+}

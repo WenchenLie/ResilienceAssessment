@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "19023de7-1eba-41cf-aec5-132cc5bffeac",
+        "ID": "B3031.001c",
+        "Description": "Demand parameter shall be defined as the first floor peak floor acceleration.  Unreinforced masonry chimney as a component of wood frame buildings.  Includes firebox and chimney, excludes exterior veneer or ornamentation.  May include chimneys where the quality of reinforcing is unknown.  For multiple story buildings enter the chimney fragility once at the first floor, do not specify this fragility at subsequent elevated floors.",
+        "BasicUnit": "Each",
+        "Name": "Masonry Chimney - unreinforced, non industrial, above roof 15 ft, replace with masonry",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:11.2043711-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Rebuilding with masonry will restore the chimney to its pre-earthquake condition.  Some jurisdictions prohibit unreinforced reconstruction and require either replacement of the damaged portion of the chimney with a metal flue within wood frame chase or a complete removal of the existing fireplace and chimney with replacement with a code compliant reinforced masonry design.  \nToppled chimney may cause damage to adjacent structure.",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Cracking with offset > 1/16\"",
+                    "DamageImageName": "B3031.001a-DS1-1.jpg",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Rebuild above break or replace entire chimney.\nAddl comments (edit or delete as necessary):  Rebuilding with masonry will restore the chimney to its pre-earthquake condition.  Some jurisdictions prohibit unreinforced reconstruction and require either replacement of the damaged portion of the chimney with a metal flue within wood frame chase or a complete removal of the existing fireplace and chimney with replacement with a code compliant reinforced masonry design.  \nToppled chimney may cause damage to adjacent structure.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.25",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "153413.62",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3115",
+                        "CarbonMedian": "6872.85",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3115",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "19727.5",
+                            "UpperQuantity": "5",
+                            "MinAmount": "12140",
+                            "Uncertainty": "0.1858",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "21.7582",
+                            "UpperQuantity": "5",
+                            "MinAmount": "13.3897",
+                            "Uncertainty": "0.3115",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.35",
+                    "Beta": "0.6"
+                },
+                {
+                    "Name": null,
+                    "Description": "Toppling of all or a portion of the chimney.",
+                    "DamageImageName": "B3031.001a-DS2-1.jpg",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Rebuild above break or replace entire chimney.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.5",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "153413.62",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3115",
+                        "CarbonMedian": "6872.85",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3115",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "22762.5",
+                            "UpperQuantity": "5",
+                            "MinAmount": "12140",
+                            "Uncertainty": "0.1858",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "25.1057",
+                            "UpperQuantity": "5",
+                            "MinAmount": "13.3897",
+                            "Uncertainty": "0.3115",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.5",
+                    "Beta": "0.6"
+                }
+            ]
+        }
+    }
+}

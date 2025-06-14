@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "d9ab6a81-f8f0-4def-a523-fbb5078f0c49",
+        "ID": "C3011.001b",
+        "Description": "Costing based upon 9'x100' Panels",
+        "BasicUnit": "Each",
+        "Name": "Wall Partition, Type: Gypsum + Wallpaper, Partial Height, Fixed Below, Lateral Braced Above",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Superior",
+            "Documentation": "Superior",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:18.6541355-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Wall paper warped and torn.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Remove existing wall paper (or wall) and install new wall paper for full 100 foot length of wall.  Existing wall damage per wall type NISTIR file.",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "17991",
+                    "EnergyCurveType": "LogNormal",
+                    "EnergyDispersion": "0.2938",
+                    "CarbonMedian": "756",
+                    "CarbonCurveType": "LogNormal",
+                    "CarbonDispersion": "0.2938",
+                    "CostConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "3240",
+                        "UpperQuantity": "3",
+                        "MinAmount": "2160",
+                        "Uncertainty": "0.1542",
+                        "CurveType": "LogNormal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "3.0203",
+                        "UpperQuantity": "3",
+                        "MinAmount": "2.0197",
+                        "Uncertainty": "0.2938",
+                        "CurveType": "LogNormal"
+                    }
+                },
+                "Median": "0.0064",
+                "Beta": "0.3"
+            }
+        }
+    }
+}

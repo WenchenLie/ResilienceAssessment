@@ -1,0 +1,81 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "e170a6fd-2f86-4607-bf4c-2b480be25897",
+        "ID": "E2022.020",
+        "Description": "Costing to be furnished by user.  Consequence data assumes 16 SF of damage area.",
+        "BasicUnit": "Each",
+        "Name": "Home entertainment equipment, unknown installation",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:52:31.1697756-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "This component requires user specified cost and time consequence data.  Values within PACT are defaults (equal to zero) and do not represent actual consequence.\nImport errors:\n Warning: E2022.020:DS1: Could not parse Damage state embodied energy median - Assuming 0\nWarning: E2022.020:DS1: Could not parse Damage state embodied energy dispersion - Assuming 0\nWarning: E2022.020:DS1: Could not parse Damage state embodied energy curve type - Assuming Normal\nWarning: E2022.020:DS1: Could not parse Damage state embodied carbon median - Assuming 0\nWarning: E2022.020:DS1: Could not parse Damage state embodied carbon dispersion - Assuming 0\nWarning: E2022.020:DS1: Could not parse Damage state embodied carbon curve type - Assuming Normal\nWarning, Data missing: E2022.020:DS1:Time: Could not parse CurveType - Assuming Normal\nWarning, Data missing: E2022.020:DS1:Time: Could not parse Upper Quantity cost - Assuming 0\nWarning, Data missing: E2022.020:DS1:Time: Could not parse Lower Quantity cost - Assuming 0\nWarning, Data missing: E2022.020:DS1:Time: Could not parse Dispersion - Assuming 0.5\nWarning, Data missing: E2022.020:DS1:Cost: Could not parse CurveType - Assuming Normal\nWarning, Data missing: E2022.020:DS1:Cost: Could not parse Upper Quantity cost - Assuming 0\nWarning, Data missing: E2022.020:DS1:Cost: Could not parse Lower Quantity cost - Assuming 0\nWarning, Data missing: E2022.020:DS1:Cost: Could not parse Dispersion - Assuming 0.5",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Falls, does not function.",
+                "DamageImageName": "E2022.020-DS1-1.JPG",
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Replace equipment.  User must supply replacement cost.",
+                    "TagState": "0",
+                    "UseCasualty": true,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": {
+                        "Area": {
+                            "Unit": "Square Foot",
+                            "Value": "16"
+                        }
+                    },
+                    "AffectedDeathRate": "0.05",
+                    "AffectedInjuryRate": "0.1",
+                    "AffectedDeathRateBeta": "0.5",
+                    "AffectedInjuryRateBeta": "0.5",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "0",
+                    "EnergyCurveType": "Normal",
+                    "EnergyDispersion": "0",
+                    "CarbonMedian": "0",
+                    "CarbonCurveType": "Normal",
+                    "CarbonDispersion": "0",
+                    "CostConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "0",
+                        "UpperQuantity": "1",
+                        "MinAmount": "0",
+                        "Uncertainty": "0.5",
+                        "CurveType": "Normal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "0",
+                        "UpperQuantity": "1",
+                        "MinAmount": "0",
+                        "Uncertainty": "0.5",
+                        "CurveType": "Normal"
+                    }
+                },
+                "Median": "0.8",
+                "Beta": "0.45"
+            }
+        }
+    }
+}

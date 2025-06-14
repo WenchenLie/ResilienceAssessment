@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "45b317a8-4c60-4f6a-b7e2-2be8a46fd6d7",
+        "ID": "C2011.001a",
+        "Description": "Flexible stair with seismic interstory slip joint.  Steel prefab stringers, steel or concrete filled pan treads.",
+        "BasicUnit": "Each",
+        "Name": "Prefabricated steel stair with steel treads and landings with seismic joints that accommodate drift.",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Marginal",
+            "DataRelevance": "Marginal",
+            "Documentation": "Average",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:14.6943238-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "User to provide median demand and dispersion values.  The values listed are default PACT values and do not represent the response of this component.\nImport errors:\n Warning, Data missing: C2011.001a:DS1: Could not parse median - using 500\nWarning, Data missing: C2011.001a:DS1: Could not parse dispersion - using 0.5\nWarning, Data missing: C2011.001a:DS2: Could not parse median - using 500\nWarning, Data missing: C2011.001a:DS2: Could not parse dispersion - using 0.5\nWarning, Data missing: C2011.001a:DS3: Could not parse median - using 500\nWarning, Data missing: C2011.001a:DS3: Could not parse dispersion - using 0.5\nWarning, Data missing: C2011.001a: DS2 Damage State has median of Zero. - Add median value\nWarning, Data missing: C2011.001a: DS3 Damage State has median of Zero. - Add median value",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Non structural damage, local steel yielding.",
+                    "DamageImageName": "C2011.001a-DS1-1.jpg",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Patch, paint.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "940.85",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "1.021",
+                        "CarbonMedian": "39.53",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "1.021",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "4340",
+                            "UpperQuantity": "10",
+                            "MinAmount": "1302",
+                            "Uncertainty": "0.4586",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "3.3813",
+                            "UpperQuantity": "10",
+                            "MinAmount": "1.0135",
+                            "Uncertainty": "0.5223",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "500",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Structural damage but live load capacity remains intact.  Buckling of steel, weld cracking.",
+                    "DamageImageName": "C2011.001a-DS2-1.jpg",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Removal and replacement of damaged components.  Field repair of damage (such as welding).  Repair finsihes.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "8712.46",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.6314",
+                        "CarbonMedian": "339.59",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.6314",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "11100",
+                            "UpperQuantity": "10",
+                            "MinAmount": "3330",
+                            "Uncertainty": "0.4859",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "8.6157",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2.5597",
+                            "Uncertainty": "0.5465",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "500",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Loss of live load capacity.  Connection and or weld fracture.",
+                    "DamageImageName": "C2011.001a-DS2-1.jpg",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace stair and handrail.  Repair and replace affected soffits and floor finishes.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.75",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "301678.87",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.468",
+                        "CarbonMedian": "22330.11",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.468",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "33900",
+                            "UpperQuantity": "10",
+                            "MinAmount": "10170",
+                            "Uncertainty": "0.2351",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "26.471",
+                            "UpperQuantity": "10",
+                            "MinAmount": "7.9756",
+                            "Uncertainty": "0.3432",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "500",
+                    "Beta": "0.5"
+                }
+            ]
+        }
+    }
+}

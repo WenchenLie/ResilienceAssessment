@@ -1,0 +1,125 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "f78d27c0-bd55-4592-840d-d7c5a0db9210",
+        "ID": "B2022.052",
+        "Description": null,
+        "BasicUnit": "Each",
+        "Name": "Midrise stick-built curtain wall, Config: Monolithic, Lamination: Not laminated, Glass Type: Full tempered, Details: 1/4 in. (6 mm) FT monolithic, 2-sided SSG, Outside Panel; glass-frame clearance = 0.43 in. (11 mm); aspect ratio = 6:5 sealant = wet",
+        "Author": "By User",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:58.7511082-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Glass cracking.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace cracked glass panel.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "9437.4",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.2767",
+                        "CarbonMedian": "406.2",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.2767",
+                        "CostConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "2955",
+                            "UpperQuantity": "100",
+                            "MinAmount": "1576",
+                            "Uncertainty": "0.1185",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "1.3046",
+                            "UpperQuantity": "100",
+                            "MinAmount": "0.6962",
+                            "Uncertainty": "0.2767",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.042",
+                    "Beta": "0.3"
+                },
+                {
+                    "Name": null,
+                    "Description": "Glass falls from frame.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace cracked glass panel; cover exposure in meantime.",
+                        "TagState": "Red",
+                        "UseCasualty": true,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": {
+                            "Area": {
+                                "Unit": "Square Foot",
+                                "Value": "36"
+                            }
+                        },
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0.02",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0.5",
+                        "RedTagMedian": "0.9",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "9437.4",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.2767",
+                        "CarbonMedian": "406.2",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.2767",
+                        "CostConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "2955",
+                            "UpperQuantity": "100",
+                            "MinAmount": "1576",
+                            "Uncertainty": "0.1185",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "1.3046",
+                            "UpperQuantity": "100",
+                            "MinAmount": "0.6962",
+                            "Uncertainty": "0.2767",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.052",
+                    "Beta": "0.3"
+                }
+            ]
+        }
+    }
+}

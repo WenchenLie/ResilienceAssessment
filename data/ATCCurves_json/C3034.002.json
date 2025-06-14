@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "32393891-1d37-4ea1-9534-88f67d137062",
+        "ID": "C3034.002",
+        "Description": "Horizontal light fixtures 4 to 16 ft long suspended 12 to 24 inches from ceiling.  Hung from ceiling above by two or more rods or cables.  Fixture and rods or cables are either designed for seismic movements or are laterally braced to prevent sway.",
+        "BasicUnit": "Each",
+        "Name": "Independent Pendant Lighting - seismically rated",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:35.0502152-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Low cost industrial hung lighting in warehouse or gymnasium that is not part of suspended ceiling or hanging from a suspended ceiling space.",
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Disassembly of rod system at connections with horizontal light fixture, low cycle fatigue failure of the threaded rod, pullout of rods from ceiling assembly.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Replace damaged lighting components.",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "1009.88",
+                    "EnergyCurveType": "LogNormal",
+                    "EnergyDispersion": "0.6842",
+                    "CarbonMedian": "51.81",
+                    "CarbonCurveType": "LogNormal",
+                    "CarbonDispersion": "0.6842",
+                    "CostConsequence": {
+                        "LowerQuantity": "5",
+                        "MaxAmount": "990",
+                        "UpperQuantity": "10",
+                        "MinAmount": "297",
+                        "Uncertainty": "0.6369",
+                        "CurveType": "LogNormal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "5",
+                        "MaxAmount": "0.99",
+                        "UpperQuantity": "10",
+                        "MinAmount": "0.297",
+                        "Uncertainty": "0.6842",
+                        "CurveType": "LogNormal"
+                    }
+                },
+                "Median": "1.5",
+                "Beta": "0.4"
+            }
+        }
+    }
+}

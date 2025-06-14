@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "b01cc379-f2f3-4dcb-b31f-cda9e51dc05f",
+        "ID": "D2022.023b",
+        "Description": "Heating water.  Costing based upon 1000 ft segments of pipe, pipe 2.5 inches in diameter or less",
+        "BasicUnit": "Each",
+        "Name": "Heating hot Water Piping - Large Diameter Welded Steel - (greater than 2.5 inches in diameter), SDC D, E, or F, BRACING FRAGILITY",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:52:58.0790844-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "Consequence is for piping only.  Enter floor wetting consequence seperately.  Cost includes allowance for MEP relocation to perform work.\nImport errors:\n Warning, Data missing: D2022.023b:DS1: Could not parse dispersion - using 0.5\nWarning, Data missing: D2022.023b:DS2: Could not parse dispersion - using 0.5",
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Lateral Brace Failure - 1 failure per 1000 foot of pipe.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace failed supports.  One repair per 1000 LF.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "1021.56",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.6953",
+                        "CarbonMedian": "35.97",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.6953",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "700",
+                            "UpperQuantity": "10",
+                            "MinAmount": "210",
+                            "Uncertainty": "0.6488",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "0.7412",
+                            "UpperQuantity": "10",
+                            "MinAmount": "0.2224",
+                            "Uncertainty": "0.6953",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "1.5",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Vertical Brace Failure - 1 failure per 1000 feet of pipe.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": null,
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "1021.56",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.6953",
+                        "CarbonMedian": "35.97",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.6953",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "700",
+                            "UpperQuantity": "10",
+                            "MinAmount": "210",
+                            "Uncertainty": "0.6488",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "0.7412",
+                            "UpperQuantity": "10",
+                            "MinAmount": "0.2224",
+                            "Uncertainty": "0.6953",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "2.25",
+                    "Beta": "0.5"
+                }
+            ]
+        }
+    }
+}

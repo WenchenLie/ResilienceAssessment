@@ -1,0 +1,172 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "05fb1643-e625-46ee-bcd6-d75420bc7c46",
+        "ID": "B1031.021a",
+        "Description": "Costing is on a per connection basis.  Costing does not include fireproofing removal or reapplication cost.",
+        "BasicUnit": "Each",
+        "Name": "Welded column splices, Column W < 150 plf",
+        "Author": "Greg Deierlein",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Superior",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:48:27.8393899-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Fracture is not expected where weld has adequate toughness and the maximum weld root stress is below 1.5Fu from column P/A+M/S under story drift using A and S from weld root area.",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Ductile fracture of the groove weld flange splice.   Damage in field is either obscured or deemed to not warrant repair.  No repair conducted.",
+                    "DamageImageName": "B1031.021a-DS1-1.JPG",
+                    "DamageStates": {
+                        "DSGroupType": "MutuallyExclusive",
+                        "DamageState": [
+                            {
+                                "Name": null,
+                                "Description": "Ductile fracture of the groove weld flange splice.   Damage in field is either obscured or deemed to not warrant repair.  No repair conducted.",
+                                "DamageImageName": "B1031.021a-DS1-1.JPG",
+                                "ConsequenceGroup": {
+                                    "RepairMeasures": "Repair would involve gouging out the material adjacent to the fracture and repairing with a new groove weld.  Field condition is deemed to not warrant repair by field observation.  This Damage State is Mutually Exclusive with DS2.  See fragility DS1 and DS2 probabilities.",
+                                    "TagState": "0",
+                                    "UseCasualty": false,
+                                    "LongLeadFlag": false,
+                                    "AffectedFloorArea": null,
+                                    "AffectedDeathRate": "0",
+                                    "AffectedInjuryRate": "0",
+                                    "AffectedDeathRateBeta": "0",
+                                    "AffectedInjuryRateBeta": "0",
+                                    "RedTagMedian": "0",
+                                    "RedTagBeta": "0",
+                                    "EnergyMedian": "0",
+                                    "EnergyCurveType": "LogNormal",
+                                    "EnergyDispersion": "0.3536",
+                                    "CarbonMedian": "0",
+                                    "CarbonCurveType": "LogNormal",
+                                    "CarbonDispersion": "0.3536",
+                                    "CostConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "0",
+                                        "UpperQuantity": "20",
+                                        "MinAmount": "0",
+                                        "Uncertainty": "0.25",
+                                        "CurveType": "LogNormal"
+                                    },
+                                    "TimeConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "0",
+                                        "UpperQuantity": "20",
+                                        "MinAmount": "0",
+                                        "Uncertainty": "0.3536",
+                                        "CurveType": "LogNormal"
+                                    }
+                                },
+                                "Percent": "0.95"
+                            },
+                            {
+                                "Name": null,
+                                "Description": "Ductile fracture of the groove weld flange splice.",
+                                "DamageImageName": "B1031.021a-DS1-1.JPG",
+                                "ConsequenceGroup": {
+                                    "RepairMeasures": "Repair would involve gouging out the material adjacent to the fracture and repairing with a new groove weld.",
+                                    "TagState": "0",
+                                    "UseCasualty": false,
+                                    "LongLeadFlag": false,
+                                    "AffectedFloorArea": null,
+                                    "AffectedDeathRate": "0",
+                                    "AffectedInjuryRate": "0",
+                                    "AffectedDeathRateBeta": "0",
+                                    "AffectedInjuryRateBeta": "0",
+                                    "RedTagMedian": "0",
+                                    "RedTagBeta": "0",
+                                    "EnergyMedian": "16516.66",
+                                    "EnergyCurveType": "Normal",
+                                    "EnergyDispersion": "0.4098",
+                                    "CarbonMedian": "1018.18",
+                                    "CarbonCurveType": "Normal",
+                                    "CarbonDispersion": "0.4098",
+                                    "CostConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "12142",
+                                        "UpperQuantity": "20",
+                                        "MinAmount": "7472",
+                                        "Uncertainty": "0.3248",
+                                        "CurveType": "Normal"
+                                    },
+                                    "TimeConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "11.7849",
+                                        "UpperQuantity": "20",
+                                        "MinAmount": "7.2522",
+                                        "Uncertainty": "0.4098",
+                                        "CurveType": "Normal"
+                                    }
+                                },
+                                "Percent": "0.05"
+                            }
+                        ]
+                    },
+                    "Median": "0.02",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "DS1 followed by complete failure of the web splice plate and dislocation of the two column segments on either side of the splice.",
+                    "DamageImageName": "B1031.021a-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Repair may not be practically feasible, but would require either realignment or replacement of adjacent column segments and rewelding of splice.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.02",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "16516.66",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3921",
+                        "CarbonMedian": "1018.18",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3921",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "13608",
+                            "UpperQuantity": "20",
+                            "MinAmount": "9639",
+                            "Uncertainty": "0.302",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "13.2078",
+                            "UpperQuantity": "20",
+                            "MinAmount": "9.3555",
+                            "Uncertainty": "0.3921",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.05",
+                    "Beta": "0.4"
+                }
+            ]
+        }
+    }
+}

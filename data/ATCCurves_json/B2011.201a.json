@@ -1,0 +1,128 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "d73b7820-9f62-4cbc-902e-f8b9b4aedaeb",
+        "ID": "B2011.201a",
+        "Description": "Costing is based upon 30'x13' panels.",
+        "BasicUnit": "Each",
+        "Name": "Precast Concrete Panels 4.5 inches thick - in plane deformation",
+        "Author": "By User",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:51.9901371-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "Determine fragility story drift median demand in accordance with Chapter 7 of Volume 2.\nImport errors:\n Warning, Data missing: B2011.201a:DS1: Could not parse median - using 500\nWarning, Data missing: B2011.201a:DS1: Could not parse dispersion - using 0.5",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Cladding units damaged by impact at corners at  column covers.  Damage in field is either attributed to natural edge chipping / damage,  or is deemed to not warrant full repair.  Repair assumes cosmetic chip patching.",
+                "DamageImageName": null,
+                "DamageStates": {
+                    "DSGroupType": "MutuallyExclusive",
+                    "DamageState": [
+                        {
+                            "Name": null,
+                            "Description": "Cladding units damaged by impact at corners at  column covers.  Damage in field is either attributed to natural edge chipping / damage,  or is deemed to not warrant full repair.  Repair assumes cosmetic chip patching.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "By User, Repair cost assumed to equal 20% of DS2.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": false,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "163991.1",
+                                "EnergyCurveType": "Normal",
+                                "EnergyDispersion": "0.3168",
+                                "CarbonMedian": "11544",
+                                "CarbonCurveType": "Normal",
+                                "CarbonDispersion": "0.3168",
+                                "CostConsequence": {
+                                    "LowerQuantity": "2",
+                                    "MaxAmount": "16472.3",
+                                    "UpperQuantity": "8",
+                                    "MinAmount": "10136.8",
+                                    "Uncertainty": "0.1946",
+                                    "CurveType": "Normal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "2",
+                                    "MaxAmount": "2.4232",
+                                    "UpperQuantity": "8",
+                                    "MinAmount": "1.4915",
+                                    "Uncertainty": "0.3168",
+                                    "CurveType": "Normal"
+                                }
+                            },
+                            "Percent": "0.5"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Cladding units damaged by impact at corners at  column covers.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "By User, Cost listed assumed the replacement of the panel",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": false,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "819951.6",
+                                "EnergyCurveType": "Normal",
+                                "EnergyDispersion": "0.3168",
+                                "CarbonMedian": "57712.2",
+                                "CarbonCurveType": "Normal",
+                                "CarbonDispersion": "0.3168",
+                                "CostConsequence": {
+                                    "LowerQuantity": "2",
+                                    "MaxAmount": "82361.5",
+                                    "UpperQuantity": "8",
+                                    "MinAmount": "50684",
+                                    "Uncertainty": "0.1946",
+                                    "CurveType": "Normal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "2",
+                                    "MaxAmount": "12.1161",
+                                    "UpperQuantity": "8",
+                                    "MinAmount": "7.4576",
+                                    "Uncertainty": "0.3168",
+                                    "CurveType": "Normal"
+                                }
+                            },
+                            "Percent": "0.5"
+                        }
+                    ]
+                },
+                "Median": "500",
+                "Beta": "0.5"
+            }
+        }
+    }
+}

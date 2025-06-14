@@ -1,0 +1,125 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "98d63128-4e8b-4b27-ba3f-0bb7d2a287ce",
+        "ID": "B2022.022",
+        "Description": null,
+        "BasicUnit": "Each",
+        "Name": "Midrise stick-built curtain wall, Config: Monolithic, Lamination: Laminated, Glass Type: Annealed, Details: 1/4 in. (6 mm) AN laminated, 2-sided SSG, Center Panel; glass-frame clearance = 0.43 in. (11 mm); aspect ratio = 6:5 sealant = wet",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:54.0375227-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "User to provide median demand and dispersion values.  The values listed are default PACT values and do not represent the response of this component.  This component requires user specified cost and time consequence data.  Values within PACT are defaults (equal to zero) and do not represent actual consequence.\nImport errors:\n Warning: B2022.022: B2022.022: DS1 overlaps DS2 in the range of 0.0868 to 0.1736 - Make sure damage states are minimally overlapping",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Glass cracking.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace cracked glass panel.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "9437.4",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3005",
+                        "CarbonMedian": "406.2",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3005",
+                        "CostConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "2055",
+                            "UpperQuantity": "100",
+                            "MinAmount": "1096",
+                            "Uncertainty": "0.1668",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "0.9052",
+                            "UpperQuantity": "100",
+                            "MinAmount": "0.4821",
+                            "Uncertainty": "0.3005",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0392",
+                    "Beta": "0.29"
+                },
+                {
+                    "Name": null,
+                    "Description": "Glass falls from frame.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": null,
+                        "TagState": "Red",
+                        "UseCasualty": true,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": {
+                            "Area": {
+                                "Unit": "Square Foot",
+                                "Value": "36"
+                            }
+                        },
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0.02",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0.5",
+                        "RedTagMedian": "0.9",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "9437.4",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3005",
+                        "CarbonMedian": "406.2",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3005",
+                        "CostConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "2055",
+                            "UpperQuantity": "100",
+                            "MinAmount": "1096",
+                            "Uncertainty": "0.1668",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "20",
+                            "MaxAmount": "0.9052",
+                            "UpperQuantity": "100",
+                            "MinAmount": "0.4821",
+                            "Uncertainty": "0.3005",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0434",
+                    "Beta": "0.25"
+                }
+            ]
+        }
+    }
+}

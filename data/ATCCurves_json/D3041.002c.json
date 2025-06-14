@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "7d6e0e35-75fe-4e87-84b6-b040ebbdc465",
+        "ID": "D3041.002c",
+        "Description": "Costing per 10 units",
+        "BasicUnit": "Each",
+        "Name": "HVAC Fan In Line Fan, Fan independently supported but not on vibration isolators, SDC D, E, F",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Marginal",
+            "DataRelevance": "Superior",
+            "Documentation": "Marginal",
+            "Rationality": "Marginal"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:51:15.4173516-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "One failure is expected per 10 units.",
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Bellows fails at fans.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Replace failed bellows.",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "18649.4",
+                    "EnergyCurveType": "LogNormal",
+                    "EnergyDispersion": "0.424",
+                    "CarbonMedian": "1566.4",
+                    "CarbonCurveType": "LogNormal",
+                    "CarbonDispersion": "0.424",
+                    "CostConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "7700",
+                        "UpperQuantity": "5",
+                        "MinAmount": "6300",
+                        "Uncertainty": "0.3425",
+                        "CurveType": "LogNormal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "9.0585",
+                        "UpperQuantity": "5",
+                        "MinAmount": "7.4115",
+                        "Uncertainty": "0.424",
+                        "CurveType": "LogNormal"
+                    }
+                },
+                "Median": "2.25",
+                "Beta": "0.4"
+            }
+        }
+    }
+}

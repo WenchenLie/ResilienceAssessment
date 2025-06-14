@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "881b3b78-9be5-4354-8ac6-7eb8a6c86f7a",
+        "ID": "C2011.031a",
+        "Description": "Stair consists of steel stringers with precast treads rigidly linked to stringer",
+        "BasicUnit": "Each",
+        "Name": "Hybrid stair assembly with steel stringers and concrete treads and landings with seismic joints that accommodate drift.",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Marginal",
+            "DataRelevance": "Marginal",
+            "Documentation": "Average",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:17.5824571-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "User to provide median demand and dispersion values.  The values listed are default PACT values and do not represent the response of this component.\nImport errors:\n Warning, Data missing: C2011.031a:DS1: Could not parse median - using 500\nWarning, Data missing: C2011.031a:DS1: Could not parse dispersion - using 0.5\nWarning, Data missing: C2011.031a:DS2: Could not parse median - using 500\nWarning, Data missing: C2011.031a:DS2: Could not parse dispersion - using 0.5\nWarning, Data missing: C2011.031a:DS3: Could not parse median - using 500\nWarning, Data missing: C2011.031a:DS3: Could not parse dispersion - using 0.5\nWarning, Data missing: C2011.031a: DS2 Damage State has median of Zero. - Add median value\nWarning, Data missing: C2011.031a: DS3 Damage State has median of Zero. - Add median value",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Localized steel yielding.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Protect surrounding space.  Minor repair of finishes.  Modify or relocate mechanical and electrical as required for repair work.  Repair finishes.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "940.85",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "1.021",
+                        "CarbonMedian": "39.53",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "1.021",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "480",
+                            "UpperQuantity": "10",
+                            "MinAmount": "320",
+                            "Uncertainty": "0.9899",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "0.5294",
+                            "UpperQuantity": "10",
+                            "MinAmount": "0.353",
+                            "Uncertainty": "1.021",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "500",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Buckling of steel, weld cracking.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Protect floor, cut out damaged areas, reweld.  Repair finishes.  Modify or relocate mechanical and electrical as required for repair work.  Repair finishes.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "8712.46",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.6314",
+                        "CarbonMedian": "339.59",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.6314",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "3240",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2160",
+                            "Uncertainty": "0.5798",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "3.5735",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2.3823",
+                            "Uncertainty": "0.6314",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "500",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Loss of live load capacity.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Protect area, remove damaged stair including landings and handrails.  Remove and reinstall damaged soffit and mechanical systems.  Replace stair, landings, and handrail.  Modify or relocate mechanical and electrical as required for repair work.  Repair finishes.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.75",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "318609.66",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.4574",
+                        "CarbonMedian": "23560",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.4574",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "25140",
+                            "UpperQuantity": "10",
+                            "MinAmount": "16760",
+                            "Uncertainty": "0.3831",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "27.7279",
+                            "UpperQuantity": "10",
+                            "MinAmount": "18.4853",
+                            "Uncertainty": "0.4574",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "500",
+                    "Beta": "0.5"
+                }
+            ]
+        }
+    }
+}

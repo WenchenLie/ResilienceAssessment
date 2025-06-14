@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "4fc51046-2636-47fc-ae30-2b865310b006",
+        "ID": "B1071.001",
+        "Description": "Costing for each 100 ft^2 Wall Panel.   Assumed framing:  1 SIDE: 3/8\" OSB or 15/32 ply with 8d box nails at 4 to 6 inches along panel edges and 12 inches field nailing. DF #2, 2x4@16 studs. 1 SIDE: 1/2 gypsum board. Panel 8 feet tall, 8 or 16 feet long with or without door and window openings, double top plate, single bottom plate, no hold-downs.",
+        "BasicUnit": "Each",
+        "Name": "Light framed wood walls with structural panel sheathing, gypsum wallboard no hold-downs",
+        "Author": "Andre Filiatrault",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "Marginal",
+            "Documentation": "Average",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:46.4847892-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Slight separation of sheathing or nails which come loose.",
+                    "DamageImageName": "B1071.001-DS1-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove exterior pliable siding, replace loose nails, reinstall siding.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "18910",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3583",
+                        "CarbonMedian": "1764",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3583",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "2134.1667",
+                            "UpperQuantity": "8",
+                            "MinAmount": "1313.3333",
+                            "Uncertainty": "0.1887",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "2.068",
+                            "UpperQuantity": "8",
+                            "MinAmount": "1.2713",
+                            "Uncertainty": "0.3132",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.01",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Permanent rotation of sheathing, tear out of nails or sheathing.",
+                    "DamageImageName": "B1071.001-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove exterior pliable siding, remove wood sheathing, install new sheathing, reinstall siding.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.5",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "21750",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.4458",
+                        "CarbonMedian": "1904",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.4458",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "2570",
+                            "UpperQuantity": "8",
+                            "MinAmount": "1820.4167",
+                            "Uncertainty": "0.2158",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "2.4957",
+                            "UpperQuantity": "8",
+                            "MinAmount": "1.7682",
+                            "Uncertainty": "0.3303",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0175",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Fracture of studs, major sill plate cracking.",
+                    "DamageImageName": "B1071.001-DS3-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove and replace siding, sheathing, studs and plates. Provide shoring as required.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.25",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "30904",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.273",
+                        "CarbonMedian": "2210",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.273",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "6450",
+                            "UpperQuantity": "8",
+                            "MinAmount": "4568.75",
+                            "Uncertainty": "0.0792",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "6.2634",
+                            "UpperQuantity": "8",
+                            "MinAmount": "4.4375",
+                            "Uncertainty": "0.2623",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.025",
+                    "Beta": "0.4"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "0dcd0f5f-229f-4215-bb2f-04e029d6b195",
+        "ID": "D3031.023k",
+        "Description": "Costing is per unit and is based upon 850 Ton.",
+        "BasicUnit": "Each",
+        "Name": "Cooling Tower - Capacity: 750 to <1000 Ton - Equipment that is either hard anchored or is vibration isolated with seismic snubbers/restraints - Equipment fragility only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:59.9109024-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Damaged equipment and attached piping but anchorage is OK.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Repair damaged equipment and attached piping.  Cooling tower removed, repaired offsite, and reinstalled.",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": true,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "1412601.85",
+                    "EnergyCurveType": "LogNormal",
+                    "EnergyDispersion": "0.304",
+                    "CarbonMedian": "121861.82",
+                    "CarbonCurveType": "LogNormal",
+                    "CarbonDispersion": "0.304",
+                    "CostConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "240350",
+                        "UpperQuantity": "5",
+                        "MinAmount": "196650",
+                        "Uncertainty": "0.173",
+                        "CurveType": "LogNormal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "43.7",
+                        "UpperQuantity": "5",
+                        "MinAmount": "8.997",
+                        "Uncertainty": "0.304",
+                        "CurveType": "LogNormal"
+                    }
+                },
+                "Median": "1.52",
+                "Beta": "0.4"
+            }
+        }
+    }
+}

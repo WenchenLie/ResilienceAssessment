@@ -1,0 +1,167 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "0a20ed0d-aadb-445d-b15c-3712ab50eab1",
+        "ID": "B2023.011",
+        "Description": null,
+        "BasicUnit": "Each",
+        "Name": "Storefront, Config: Monolithic, Lamination: Laminated, Glass Type: Annealed, Details: 1/4 in. (6 mm) AN LAM (0.030 PVB); glass-frame clearance = 0.41 in. (10 mm); aspect ratio = 6:5 sealant = dry",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:03.8315836-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "None\nImport errors:\n Warning: B2023.011: B2023.011: DS1 overlaps DS2 in the range of 0.16 to 0.32 - Make sure damage states are minimally overlapping",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Gasket seal failure.",
+                    "DamageImageName": "B2022.003-DS1-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove glass panel and replace damaged gaskets.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "9437.4",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3769",
+                        "CarbonMedian": "406.2",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3769",
+                        "CostConsequence": {
+                            "LowerQuantity": "44",
+                            "MaxAmount": "924",
+                            "UpperQuantity": "434",
+                            "MinAmount": "539",
+                            "Uncertainty": "0.2821",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "44",
+                            "MaxAmount": "0.6832",
+                            "UpperQuantity": "434",
+                            "MinAmount": "0.4001",
+                            "Uncertainty": "0.3769",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.029",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Glass cracking.",
+                    "DamageImageName": "B2022.001a-DS1-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace cracked glass panel.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "23784",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3005",
+                        "CarbonMedian": "1024.8",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3005",
+                        "CostConsequence": {
+                            "LowerQuantity": "44",
+                            "MaxAmount": "0",
+                            "UpperQuantity": "434",
+                            "MinAmount": "0",
+                            "Uncertainty": "0.1668",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "44",
+                            "MaxAmount": "1.02",
+                            "UpperQuantity": "434",
+                            "MinAmount": "1.02",
+                            "Uncertainty": "0.3005",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0567",
+                    "Beta": "0.3"
+                },
+                {
+                    "Name": null,
+                    "Description": "Glass falls out.",
+                    "DamageImageName": "B2022.001a-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace cracked glass panel; cover exposure in meantime.",
+                        "TagState": "Red",
+                        "UseCasualty": true,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": {
+                            "Area": {
+                                "Unit": "Square Foot",
+                                "Value": "36"
+                            }
+                        },
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0.25",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0.5",
+                        "RedTagMedian": "0.5",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "23784",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3005",
+                        "CarbonMedian": "1024.8",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3005",
+                        "CostConsequence": {
+                            "LowerQuantity": "44",
+                            "MaxAmount": "0",
+                            "UpperQuantity": "434",
+                            "MinAmount": "0",
+                            "Uncertainty": "0.1668",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "44",
+                            "MaxAmount": "1.02",
+                            "UpperQuantity": "434",
+                            "MinAmount": "1.02",
+                            "Uncertainty": "0.3005",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.08",
+                    "Beta": "0.3"
+                }
+            ]
+        }
+    }
+}

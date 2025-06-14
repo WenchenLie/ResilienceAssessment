@@ -1,0 +1,169 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "90be9cd3-4f18-4667-ba94-f18f3b285f88",
+        "ID": "D3031.023c",
+        "Description": "Costing is per unit and is based upon 75 Ton.",
+        "BasicUnit": "Each",
+        "Name": "Cooling Tower - Capacity: < 100 Ton - Equipment that is either hard anchored or is vibration isolated with seismic snubbers/restraints - Combined anchorage/isolator & equipment fragility",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:56.6957196-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "User to provide median demand and dispersion values.  The values listed are default PACT values and do not represent the response of this component.\nImport errors:\n Warning, Data missing: D3031.023c:DS1: Could not parse median - using 500\nWarning, Data missing: D3031.023c:DS1: Could not parse dispersion - using 0.5",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Anchorage failure.",
+                "DamageImageName": null,
+                "DamageStates": {
+                    "DSGroupType": "MutuallyExclusive",
+                    "DamageState": [
+                        {
+                            "Name": null,
+                            "Description": "Anchorage failure.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Repair anchorage and concrete pad and remount equipment.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": false,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "3225.95",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.5168",
+                                "CarbonMedian": "110.49",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.5168",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "1100",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "900",
+                                    "Uncertainty": "0.4523",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "1.2941",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "1.0589",
+                                    "Uncertainty": "0.5168",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.35"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Anchorage failure & Equipment damaged beyond repair.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Replace equipment including attached utilities in addition to repairing anchorage and concrete pad.  Cooling tower removed, repaired offsite, and reinstalled.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "153673.4",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3101",
+                                "CarbonMedian": "13054.34",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3101",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "27170",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "22230",
+                                    "Uncertainty": "0.1834",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "8.7177",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "2.9059",
+                                    "Uncertainty": "0.3101",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.15"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Damaged equipment and attached piping but anchorage OK.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Repair damaged equipment and attached piping.  Cooling tower removed, repaired offsite, and reinstalled.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": false,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "150447.45",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3034",
+                                "CarbonMedian": "12943.84",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3034",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "26070",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "21330",
+                                    "Uncertainty": "0.172",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "8.3647",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "2.7883",
+                                    "Uncertainty": "0.3034",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.5"
+                        }
+                    ]
+                },
+                "Median": "500",
+                "Beta": "0.5"
+            }
+        }
+    }
+}

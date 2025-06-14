@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "ac6780ef-a0dc-494f-ba4b-1623d56ea7d3",
+        "ID": "D5012.013c",
+        "Description": "Costing is per unit.",
+        "BasicUnit": "Each",
+        "Name": "Motor Control Center - Capacity: all - Equipment that is either hard anchored or is vibration isolated with seismic snubbers/restraints - Equipment fragility only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:51:54.5744355-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Damaged, inoperative but anchorage is OK.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Replace equipment.",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "16469.83",
+                    "EnergyCurveType": "Normal",
+                    "EnergyDispersion": "0.3096",
+                    "CarbonMedian": "865.45",
+                    "CarbonCurveType": "Normal",
+                    "CarbonDispersion": "0.3096",
+                    "CostConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "4565",
+                        "UpperQuantity": "5",
+                        "MinAmount": "3735",
+                        "Uncertainty": "0.1826",
+                        "CurveType": "Normal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "5.3706",
+                        "UpperQuantity": "5",
+                        "MinAmount": "4.3942",
+                        "Uncertainty": "0.3096",
+                        "CurveType": "Normal"
+                    }
+                },
+                "Median": "2.5",
+                "Beta": "0.4"
+            }
+        }
+    }
+}

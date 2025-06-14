@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "10421b09-5d62-4905-acbe-73853ec667c8",
+        "ID": "C3027.001",
+        "Description": "Access floor unanchored or anchored with adhesive.  Costing is based upon a xxx SF floor area.",
+        "BasicUnit": "Each",
+        "Name": "Raised Access Floor, non seismically rated.",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:28.6551343-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Consequence Note:  Some downtime for repair of floor and equipment.",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Minor damage to the flooring system.  Damage to the equipment of the flooring system.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Repair the flooring system, assume cost equal to 5% of the replacement cost.  Repair the flooring equipment, assume a cost equal to 10% of the replacement cost.",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "155",
+                    "EnergyCurveType": "LogNormal",
+                    "EnergyDispersion": "1.3082",
+                    "CarbonMedian": "6",
+                    "CarbonCurveType": "LogNormal",
+                    "CarbonDispersion": "1.3082",
+                    "CostConsequence": {
+                        "LowerQuantity": "5",
+                        "MaxAmount": "138",
+                        "UpperQuantity": "20",
+                        "MinAmount": "92",
+                        "Uncertainty": "1.2841",
+                        "CurveType": "LogNormal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "5",
+                        "MaxAmount": "0.1323",
+                        "UpperQuantity": "20",
+                        "MinAmount": "0.0877",
+                        "Uncertainty": "1.3082",
+                        "CurveType": "LogNormal"
+                    }
+                },
+                "Median": "0.5",
+                "Beta": "0.5"
+            }
+        }
+    }
+}

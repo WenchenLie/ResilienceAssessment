@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "9210b18a-494d-4f2e-8ddd-39964bc2f973",
+        "ID": "B1033.111b",
+        "Description": null,
+        "BasicUnit": "Each",
+        "Name": "Steel Buckling Restrained Brace (BRB), Single Diagonal brace, Weight of brace > 41 plf and < 99 plf.",
+        "Author": "John Wallace",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:48:48.9810455-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Fracture of brace or gusset.  Buckling of gusset.  Severe yielding of beams and columns adjacent to the gusset with possibility of local buckling and cracking in the yielded areas.  Severe loss of lateral resistance.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Brace and gusset are severely damaged with significant loss in stiffness and resistance, and both likely require replacement. Yielding and local buckling of beams and columns may be repaired by heat straightening, stiffeners or reinforcement, if there is no cracking or tearing. If cracking or tearing has initiated more substantial repair is needed.",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "238789.99",
+                    "EnergyCurveType": "Normal",
+                    "EnergyDispersion": "0.3838",
+                    "CarbonMedian": "12158.52",
+                    "CarbonCurveType": "Normal",
+                    "CarbonDispersion": "0.3838",
+                    "CostConsequence": {
+                        "LowerQuantity": "5",
+                        "MaxAmount": "65931.5292",
+                        "UpperQuantity": "20",
+                        "MinAmount": "40573.2487",
+                        "Uncertainty": "0.2913",
+                        "CurveType": "Normal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "5",
+                        "MaxAmount": "43.6311",
+                        "UpperQuantity": "20",
+                        "MinAmount": "26.8499",
+                        "Uncertainty": "0.3838",
+                        "CurveType": "Normal"
+                    }
+                },
+                "Median": "0.02",
+                "Beta": "0.4"
+            }
+        }
+    }
+}

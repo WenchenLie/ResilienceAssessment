@@ -1,0 +1,266 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "ac8f908c-6173-41ec-b2e9-819405656b4d",
+        "ID": "B1035.042",
+        "Description": "Costing is on a per bay basis.  Costing does not include fireproofing removal or reapplication cost.",
+        "BasicUnit": "Each",
+        "Name": "Pre-Northridge WUF-B beam-column joint, beam one side of column, beam depth >= W30",
+        "Author": "Greg Deierlein",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:48:52.0721179-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Fracture of lower beam flange weld and failure of web bolts (shear tab connection), with fractures confined to the weld region.",
+                    "DamageImageName": "B1035.041-DS1-1.JPG",
+                    "DamageStates": {
+                        "DSGroupType": "MutuallyExclusive",
+                        "DamageState": [
+                            {
+                                "Name": null,
+                                "Description": "Fracture of lower beam flange weld and failure of web bolts (shear tab connection), with fractures confined to the weld region.",
+                                "DamageImageName": "B1035.041-DS1-1.JPG",
+                                "ConsequenceGroup": {
+                                    "RepairMeasures": "Repair will typically require gouging out and re-welding of the beam flange weld, repair of shear tab, and replacing shear bolts.  Repair and replace partitions at connection.",
+                                    "TagState": "Red",
+                                    "UseCasualty": false,
+                                    "LongLeadFlag": false,
+                                    "AffectedFloorArea": null,
+                                    "AffectedDeathRate": "0",
+                                    "AffectedInjuryRate": "0",
+                                    "AffectedDeathRateBeta": "0",
+                                    "AffectedInjuryRateBeta": "0",
+                                    "RedTagMedian": "0.5",
+                                    "RedTagBeta": "0.5",
+                                    "EnergyMedian": "21466.75",
+                                    "EnergyCurveType": "Normal",
+                                    "EnergyDispersion": "0.4367",
+                                    "CarbonMedian": "1464.61",
+                                    "CarbonCurveType": "Normal",
+                                    "CarbonDispersion": "0.4367",
+                                    "CostConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "15072",
+                                        "UpperQuantity": "30",
+                                        "MinAmount": "10048",
+                                        "Uncertainty": "0.358",
+                                        "CurveType": "Normal"
+                                    },
+                                    "TimeConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "8.8658",
+                                        "UpperQuantity": "30",
+                                        "MinAmount": "5.9106",
+                                        "Uncertainty": "0.4367",
+                                        "CurveType": "Normal"
+                                    }
+                                },
+                                "Percent": "0.75"
+                            },
+                            {
+                                "Name": null,
+                                "Description": "Similar to DS1, except that fracture propagates into column flanges.",
+                                "DamageImageName": "B1035.041-DS2-1.JPG",
+                                "ConsequenceGroup": {
+                                    "RepairMeasures": "In addition to column measures for DS1, repairs to column will be necessary.  Cover plate, patch, or replace damaged column flange at connection.",
+                                    "TagState": "Red",
+                                    "UseCasualty": false,
+                                    "LongLeadFlag": false,
+                                    "AffectedFloorArea": null,
+                                    "AffectedDeathRate": "0",
+                                    "AffectedInjuryRate": "0",
+                                    "AffectedDeathRateBeta": "0",
+                                    "AffectedInjuryRateBeta": "0",
+                                    "RedTagMedian": "0.5",
+                                    "RedTagBeta": "0.5",
+                                    "EnergyMedian": "42953.46",
+                                    "EnergyCurveType": "Normal",
+                                    "EnergyDispersion": "0.4404",
+                                    "CarbonMedian": "3173.39",
+                                    "CarbonCurveType": "Normal",
+                                    "CarbonDispersion": "0.4404",
+                                    "CostConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "17472",
+                                        "UpperQuantity": "30",
+                                        "MinAmount": "11648",
+                                        "Uncertainty": "0.3625",
+                                        "CurveType": "Normal"
+                                    },
+                                    "TimeConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "10.2776",
+                                        "UpperQuantity": "30",
+                                        "MinAmount": "6.8518",
+                                        "Uncertainty": "0.4404",
+                                        "CurveType": "Normal"
+                                    }
+                                },
+                                "Percent": "0.25"
+                            }
+                        ]
+                    },
+                    "Median": "0.017",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Fracture of upper beam flange weld, without DS1 type damage.  Fracture is confined to beam flange region.",
+                    "DamageImageName": null,
+                    "DamageStates": {
+                        "DSGroupType": "MutuallyExclusive",
+                        "DamageState": [
+                            {
+                                "Name": null,
+                                "Description": "Fracture of upper beam flange weld, without DS1 type damage.  Fracture is confined to beam flange region.",
+                                "DamageImageName": null,
+                                "ConsequenceGroup": {
+                                    "RepairMeasures": "Repairs will be similar to those required for DS1, except that access to weld will likely require removal and replacement of a portion of the floor slab above the weld.",
+                                    "TagState": "Red",
+                                    "UseCasualty": false,
+                                    "LongLeadFlag": false,
+                                    "AffectedFloorArea": null,
+                                    "AffectedDeathRate": "0",
+                                    "AffectedInjuryRate": "0",
+                                    "AffectedDeathRateBeta": "0",
+                                    "AffectedInjuryRateBeta": "0",
+                                    "RedTagMedian": "0.5",
+                                    "RedTagBeta": "0.5",
+                                    "EnergyMedian": "60449.59",
+                                    "EnergyCurveType": "Normal",
+                                    "EnergyDispersion": "0.4477",
+                                    "CarbonMedian": "4241.6",
+                                    "CarbonCurveType": "Normal",
+                                    "CarbonDispersion": "0.4477",
+                                    "CostConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "17472",
+                                        "UpperQuantity": "30",
+                                        "MinAmount": "11648",
+                                        "Uncertainty": "0.3714",
+                                        "CurveType": "Normal"
+                                    },
+                                    "TimeConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "11.7482",
+                                        "UpperQuantity": "30",
+                                        "MinAmount": "8.3224",
+                                        "Uncertainty": "0.4477",
+                                        "CurveType": "Normal"
+                                    }
+                                },
+                                "Percent": "0.75"
+                            },
+                            {
+                                "Name": null,
+                                "Description": "Similar to DS3, except that fracture propagates into column flanges.",
+                                "DamageImageName": null,
+                                "ConsequenceGroup": {
+                                    "RepairMeasures": "In addition to column measures for DS3, repairs to column will be necessary that will involve replacing a portion of the column flange.",
+                                    "TagState": "Red",
+                                    "UseCasualty": false,
+                                    "LongLeadFlag": false,
+                                    "AffectedFloorArea": null,
+                                    "AffectedDeathRate": "0",
+                                    "AffectedInjuryRate": "0",
+                                    "AffectedDeathRateBeta": "0",
+                                    "AffectedInjuryRateBeta": "0",
+                                    "RedTagMedian": "0.5",
+                                    "RedTagBeta": "0.5",
+                                    "EnergyMedian": "75095.19",
+                                    "EnergyCurveType": "LogNormal",
+                                    "EnergyDispersion": "0.4455",
+                                    "CarbonMedian": "5478.66",
+                                    "CarbonCurveType": "LogNormal",
+                                    "CarbonDispersion": "0.4455",
+                                    "CostConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "21120",
+                                        "UpperQuantity": "30",
+                                        "MinAmount": "14080",
+                                        "Uncertainty": "0.3688",
+                                        "CurveType": "LogNormal"
+                                    },
+                                    "TimeConsequence": {
+                                        "LowerQuantity": "5",
+                                        "MaxAmount": "12.4235",
+                                        "UpperQuantity": "30",
+                                        "MinAmount": "8.2823",
+                                        "Uncertainty": "0.4455",
+                                        "CurveType": "LogNormal"
+                                    }
+                                },
+                                "Percent": "0.25"
+                            }
+                        ]
+                    },
+                    "Median": "0.025",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Fracture initiating at weld access hole and propagating through beam flange, possibly accompanied by local buckling deformations of web and flange.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Repair is similar to that for DS1 except that a portion of the beam web and flange may need to be heat straightened or replaced.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.5",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "19988.22",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.4189",
+                        "CarbonMedian": "1416.43",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.4189",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "17472",
+                            "UpperQuantity": "30",
+                            "MinAmount": "11648",
+                            "Uncertainty": "0.3361",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "10.2776",
+                            "UpperQuantity": "30",
+                            "MinAmount": "6.8518",
+                            "Uncertainty": "0.4189",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.03",
+                    "Beta": "0.4"
+                }
+            ]
+        }
+    }
+}

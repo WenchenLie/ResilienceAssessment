@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "708ec028-2393-475d-ac2d-80bf69c7df90",
+        "ID": "B1051.003",
+        "Description": "Costing for each 100 ft^2 Wall Panel",
+        "BasicUnit": "Each",
+        "Name": "Ordinary reinforced masonry walls with partially grouted cells, 4\" to 6\" thick, flexure dominated up to 12' tall",
+        "Author": "Benson Shing",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "Marginal",
+            "Documentation": "Average",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:38.8580779-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "A few flexural and shear cracks with hardly noticeable residual crack widths.  Slight yielding of extreme vertical reinforcement.  No spalling.  No fracture or buckling of vertical reinforcement.  No structurally significant damage.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Cosmetic repair.  Patch cracks and paint each side.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "2794",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.437",
+                        "CarbonMedian": "118",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.437",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "720",
+                            "UpperQuantity": "30",
+                            "MinAmount": "480",
+                            "Uncertainty": "0.3584",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "0.5635",
+                            "UpperQuantity": "30",
+                            "MinAmount": "0.3765",
+                            "Uncertainty": "0.437",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0018",
+                    "Beta": "0.73"
+                },
+                {
+                    "Name": null,
+                    "Description": "Numerous flexural and diagonal cracks with residual crack widths less than 1/64 in.  Mild toe crushing with vertical cracks or light spalling at wall toes.  No fracture or buckling of reinforcement.  Small residual deformation.",
+                    "DamageImageName": "B1051.003-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove loose masonry.  Patch spalls with non-shrink grout.  Grout wall.  Epoxy injection.  Paint each side.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "11754",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.2712",
+                        "CarbonMedian": "501",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.2712",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "5040",
+                            "UpperQuantity": "30",
+                            "MinAmount": "3360",
+                            "Uncertainty": "0.105",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "3.9247",
+                            "UpperQuantity": "30",
+                            "MinAmount": "2.6153",
+                            "Uncertainty": "0.2712",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0051",
+                    "Beta": "0.65"
+                },
+                {
+                    "Name": null,
+                    "Description": "Severe flexural cracks with residual crack widths greater than 1/32 in.  Severe toe crushing and spalling.  Fracture or buckling of vertical reinforcement.  Significant residual deformation.",
+                    "DamageImageName": "B1051.003-DS3-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Shore. - Demolish existing wall. - Construct new wall.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.25",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "26406",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.2871",
+                        "CarbonMedian": "1289",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.2871",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "7200",
+                            "UpperQuantity": "30",
+                            "MinAmount": "4800",
+                            "Uncertainty": "0.1413",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "5.6153",
+                            "UpperQuantity": "30",
+                            "MinAmount": "3.7447",
+                            "Uncertainty": "0.2871",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0086",
+                    "Beta": "0.56"
+                }
+            ]
+        }
+    }
+}

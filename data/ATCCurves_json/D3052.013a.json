@@ -1,0 +1,128 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "07fe77e9-9a37-487f-b201-550aa521cce6",
+        "ID": "D3052.013a",
+        "Description": "Costing is per unit and is based upon 4000 CFM.",
+        "BasicUnit": "Each",
+        "Name": "Air Handling Unit - Capacity: <5000 CFM - Equipment that is either hard anchored or is vibration isolated with seismic snubbers/restraints - Anchorage fragility only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:51:30.9567975-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "User to provide median demand and dispersion values.  The values listed are default PACT values and do not represent the response of this component.\nImport errors:\n Warning, Data missing: D3052.013a:DS1: Could not parse median - using 500\nWarning, Data missing: D3052.013a:DS1: Could not parse dispersion - using 0.5",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Anchorage failure.",
+                "DamageImageName": "D3052.011c-DS1-1.JPG",
+                "DamageStates": {
+                    "DSGroupType": "MutuallyExclusive",
+                    "DamageState": [
+                        {
+                            "Name": null,
+                            "Description": "Anchorage failure.",
+                            "DamageImageName": "D3052.011c-DS1-1.JPG",
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Repair anchorage and concrete pad and remount equipment.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": false,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "3225.95",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.5168",
+                                "CarbonMedian": "110.49",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.5168",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "1100",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "900",
+                                    "Uncertainty": "0.4523",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "1.2941",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "1.0589",
+                                    "Uncertainty": "0.5168",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.7"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Anchorage failure & Equipment damaged beyond repair.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Replace equipment including attached utilities in addition to repairing anchorage and concrete pad.  Remove, repair offsite, and reinstall air handler.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "189364.81",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3052",
+                                "CarbonMedian": "16139.35",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3052",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "33220",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "27180",
+                                    "Uncertainty": "0.1751",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "10.6588",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "3.553",
+                                    "Uncertainty": "0.3052",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.3"
+                        }
+                    ]
+                },
+                "Median": "500",
+                "Beta": "0.5"
+            }
+        }
+    }
+}

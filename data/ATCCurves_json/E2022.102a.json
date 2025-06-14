@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "4fc480e2-7009-45d6-b3aa-bc78b7a12990",
+        "ID": "E2022.102a",
+        "Description": "Standard bookcase, unanchored laterally.  Bookcase is 12-5/8\" deep x 29\" tall",
+        "BasicUnit": "Each",
+        "Name": "Bookcase, 2 shelves, unanchored laterally",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Peak Floor Velocity",
+            "DefaultUnits": "Inch Per Second",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:52:33.4075518-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "Peak floor velocity limit is calculated as a function of the aspect ratio of the filing cabinet and the building period, T.  At the ground floor the fragility will be based upon the ground motion only.  This component requires user specified cost and time consequence data.  Values within PACT are defaults (equal to zero) and do not represent actual consequence.\nImport errors:\n Warning: E2022.102a:DS1: Could not parse Damage state embodied energy median - Assuming 0\nWarning: E2022.102a:DS1: Could not parse Damage state embodied energy dispersion - Assuming 0\nWarning: E2022.102a:DS1: Could not parse Damage state embodied energy curve type - Assuming Normal\nWarning: E2022.102a:DS1: Could not parse Damage state embodied carbon median - Assuming 0\nWarning: E2022.102a:DS1: Could not parse Damage state embodied carbon dispersion - Assuming 0\nWarning: E2022.102a:DS1: Could not parse Damage state embodied carbon curve type - Assuming Normal\nWarning, Data missing: E2022.102a:DS1:Time: Could not parse CurveType - Assuming Normal\nWarning, Data missing: E2022.102a:DS1:Time: Could not parse Upper Quantity cost - Assuming 0\nWarning, Data missing: E2022.102a:DS1:Time: Could not parse Lower Quantity cost - Assuming 0\nWarning, Data missing: E2022.102a:DS1:Time: Could not parse Dispersion - Assuming 0.5\nWarning, Data missing: E2022.102a:DS1:Cost: Could not parse CurveType - Assuming Normal\nWarning, Data missing: E2022.102a:DS1:Cost: Could not parse Upper Quantity cost - Assuming 0\nWarning, Data missing: E2022.102a:DS1:Cost: Could not parse Lower Quantity cost - Assuming 0\nWarning, Data missing: E2022.102a:DS1:Cost: Could not parse Dispersion - Assuming 0.5",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Book case falls over and contents are scattered.  Likely damage to bookcase.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Replace bookcase and restack / replace contents.",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "0",
+                    "EnergyCurveType": "Normal",
+                    "EnergyDispersion": "0",
+                    "CarbonMedian": "0",
+                    "CarbonCurveType": "Normal",
+                    "CarbonDispersion": "0",
+                    "CostConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "0",
+                        "UpperQuantity": "1",
+                        "MinAmount": "0",
+                        "Uncertainty": "0.5",
+                        "CurveType": "Normal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "0",
+                        "UpperQuantity": "1",
+                        "MinAmount": "0",
+                        "Uncertainty": "0.5",
+                        "CurveType": "Normal"
+                    }
+                },
+                "Median": "0.724",
+                "Beta": "0.5"
+            }
+        }
+    }
+}

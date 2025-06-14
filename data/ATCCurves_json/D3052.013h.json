@@ -1,0 +1,128 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "8f597303-6d5e-4154-811e-fe8082829383",
+        "ID": "D3052.013h",
+        "Description": "Costing is per unit and is based upon 20000 CFM.",
+        "BasicUnit": "Each",
+        "Name": "Air Handling Unit - Capacity: 10000 to <25000 CFM - Equipment that is either hard anchored or is vibration isolated with seismic snubbers/restraints - Equipment fragility only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:51:34.2154716-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Equipment does not function but anchorage is OK. Damage to attached ducting or piping.",
+                "DamageImageName": "D3052.011b-DS1-1.JPG",
+                "DamageStates": {
+                    "DSGroupType": "MutuallyExclusive",
+                    "DamageState": [
+                        {
+                            "Name": null,
+                            "Description": "Equipment does not function but anchorage is OK. Damage to attached ducting or piping.",
+                            "DamageImageName": "D3052.011b-DS1-1.JPG",
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Repair attached ducting or piping.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": false,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "2688.95",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3031",
+                                "CarbonMedian": "141.3",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3031",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "2200",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "1800",
+                                    "Uncertainty": "0.1713",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "2.5882",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "2.1176",
+                                    "Uncertainty": "0.3031",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.67"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Equipment does not function but anchorage is OK. Equipment damaged beyond repair.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Replace equipment.  Remove, repair offsite, and reinstall air handler.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "806151.91",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3048",
+                                "CarbonMedian": "69472.1",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3048",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "137720",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "112680",
+                                    "Uncertainty": "0.1744",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "29.4588",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "7.3647",
+                                    "Uncertainty": "0.3048",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.33"
+                        }
+                    ]
+                },
+                "Median": "1.54",
+                "Beta": "0.6"
+            }
+        }
+    }
+}

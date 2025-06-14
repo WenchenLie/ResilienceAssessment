@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "e7aea929-5ec3-4352-b55e-745d92464fdb",
+        "ID": "B1041.091a",
+        "Description": "Non-Conforming MF, joint shear failure, column flexural response.  Meets the following requirements:  (1) Sum Mcol / Sum Mbeam < 0.8, (2) [...TBD\u2026], (3) Non-compliant column transverse reinforcement and or joint V/Vn > 1.2  Costing is on a per joint basis.",
+        "BasicUnit": "Each",
+        "Name": "Non-conforming MF with weak joints and column flexural response, Conc Col & Bm = 24\" x 24\", Beam one side",
+        "Author": "Laura Lowes",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Marginal",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:09.3979186-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "This fragility is same as B1041.061. Closest match available.",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Columns exhibit residual crack widths > 0.06 in.  No significant spalling.  No fracture or buckling of reinf.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove furnishings, ceilings and mechanical, electrical and plumbing systems (as necessary) 8 feet either side of damaged area.  Clean area adjacent to the damaged concrete.  Prepare spalled concrete and adjacent cracks, as necessary, to be patched and to receive the epoxy injection. Patch concrete with grout.  Replace and repair finishes. Replace furnishings, ceilings and mechanical, electrical and plumbing systems as necessary.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "72535.39",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.464",
+                        "CarbonMedian": "4893.36",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.464",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "25704",
+                            "UpperQuantity": "20",
+                            "MinAmount": "17136",
+                            "Uncertainty": "0.3909",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "22.68",
+                            "UpperQuantity": "20",
+                            "MinAmount": "15.12",
+                            "Uncertainty": "0.464",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.015",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Columns exhibit residual crack widths > 0.06 in.  Spalling of cover concrete exposes column transverse reinforcement but not longitudinal reinforcement.  No fracture or buckling of reinforcing.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove furnishings, ceilings and mechanical, electrical and plumbing systems (as necessary) 15 feet either side of damaged area.  Shore damaged member(s) a minimum of one level below (more levels may be required).  Remove damaged concrete at least 1 inch beyond the exposed reinforcing steel.  Place concrete forms.  Place concrete.  Remove forms.  Remove shores after one week.  Replace and repair finishes.  Replace furnishings, ceilings and mechanical, electrical and plumbing systems (as necessary).",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "111157.79",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.4048",
+                        "CarbonMedian": "7789.54",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.4048",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "38978.4",
+                            "UpperQuantity": "20",
+                            "MinAmount": "25985.6",
+                            "Uncertainty": "0.3183",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "34.3927",
+                            "UpperQuantity": "20",
+                            "MinAmount": "22.9285",
+                            "Uncertainty": "0.4048",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0175",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Columns exhibit residual crack widths > 0.06 in. Spalling of column cover concrete exposes a significant length of column longitudinal reinforcement.  Crushing of column core concrete may occur.  Fracture or buckling of reinforcing requiring replacement may occur.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove furnishings, ceilings and mechanical, electrical and plumbing systems (as necessary) 15 feet either side of damaged component. Shore damaged member(s) a minimum of one level below (more levels may be required).  Remove damaged component.  Place and splice (as necessary) new reinforcing steel to existing, undamaged reinforcing.  Place concrete forms.  Place concrete.  Remove forms.  Remove shores after one week.  Replace and repair finishes.  Replace furnishings, ceilings and mechanical, electrical and plumbing systems (as necessary).",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.15",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "161198.78",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3924",
+                        "CarbonMedian": "9379.2",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3924",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "47978.4",
+                            "UpperQuantity": "20",
+                            "MinAmount": "31985.6",
+                            "Uncertainty": "0.3024",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "42.3338",
+                            "UpperQuantity": "20",
+                            "MinAmount": "28.2226",
+                            "Uncertainty": "0.3924",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.02",
+                    "Beta": "0.4"
+                }
+            ]
+        }
+    }
+}

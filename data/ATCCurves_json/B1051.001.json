@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "ac979aa8-329d-4619-a72b-72604662aacb",
+        "ID": "B1051.001",
+        "Description": "Costing for each 100 ft^2 Wall Panel",
+        "BasicUnit": "Each",
+        "Name": "Ordinary reinforced masonry walls with partially grouted cells, shear dominated, 4\" to 6\"' thick, up to 12 foot tall",
+        "Author": "Benson Shing",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Marginal",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:38.2402633-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "First occurrence of major diagonal cracks.  Cracks remain closed with hardly noticeable residual crack widths after load removal.",
+                    "DamageImageName": "B1051.001-DS1-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Grout wall.  Epoxy injection.  Paint each side.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "11754",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.2712",
+                        "CarbonMedian": "501",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.2712",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "5040",
+                            "UpperQuantity": "30",
+                            "MinAmount": "3360",
+                            "Uncertainty": "0.105",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "3.9247",
+                            "UpperQuantity": "30",
+                            "MinAmount": "2.6153",
+                            "Uncertainty": "0.2712",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.002",
+                    "Beta": "0.86"
+                },
+                {
+                    "Name": null,
+                    "Description": "Wide diagonal cracks with typically one or more cracks in each direction.  Crushing or spalling at wall toes.",
+                    "DamageImageName": "B1051.001-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Shore.  Demolish existing wall.  Construct new wall.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.25",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "26406",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.2871",
+                        "CarbonMedian": "1289",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.2871",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "7200",
+                            "UpperQuantity": "30",
+                            "MinAmount": "4800",
+                            "Uncertainty": "0.1413",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "5.6153",
+                            "UpperQuantity": "30",
+                            "MinAmount": "3.7447",
+                            "Uncertainty": "0.2871",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0033",
+                    "Beta": "0.77"
+                }
+            ]
+        }
+    }
+}

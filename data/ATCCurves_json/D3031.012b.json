@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "bd73782b-a451-4f7e-a0f9-aa9c92242911",
+        "ID": "D3031.012b",
+        "Description": "Costing is per unit and is based upon 75 Ton.",
+        "BasicUnit": "Each",
+        "Name": "Chiller - Capacity: < 100 Ton - Vibration isolated equipment that is not snubbed or restrained - Equipment fragility only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:40.3776165-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Damaged, inoperative but anchorage is OK.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Repair chiller and attached piping.  Chiller removed, repaired offsite, and reinstalled.",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "296457.76",
+                    "EnergyCurveType": "LogNormal",
+                    "EnergyDispersion": "0.3072",
+                    "CarbonMedian": "25564.37",
+                    "CarbonCurveType": "LogNormal",
+                    "CarbonDispersion": "0.3072",
+                    "CostConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "50820",
+                        "UpperQuantity": "5",
+                        "MinAmount": "41580",
+                        "Uncertainty": "0.1785",
+                        "CurveType": "LogNormal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "14.2677",
+                        "UpperQuantity": "5",
+                        "MinAmount": "4.7559",
+                        "Uncertainty": "0.3072",
+                        "CurveType": "LogNormal"
+                    }
+                },
+                "Median": "0.43",
+                "Beta": "0.6"
+            }
+        }
+    }
+}

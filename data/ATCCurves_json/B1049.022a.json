@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "521d1621-3b97-46fc-aec2-341d09f63ac0",
+        "ID": "B1049.022a",
+        "Description": "Costing is on a per joint basis.",
+        "BasicUnit": "Each",
+        "Name": "Post-tensioned concrete flat slabs- columns without shear reinforcing  0.4<Vg/Vo<.0.6, no continuity reinf",
+        "Author": "John Wallace",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Average",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:31.7891992-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Yield strain of the slab flexural reinforcement has been exceeded, spalling of concrete may/may not occur, slab exhibits large enough crack widths to allow epoxy injection.",
+                    "DamageImageName": "B1049.001a-DS1-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove furnishings, ceilings and mechanical, electrical and plumping systems (as necessary) 5 feet either side of damaged area.  Replace and repair finishes.  Replace furnishings, ceilings and mechanical, electrical and plumping systems (as necessary).",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "96009.03",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.4281",
+                        "CarbonMedian": "4450.67",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.4281",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "45287.5",
+                            "UpperQuantity": "7",
+                            "MinAmount": "30795.5",
+                            "Uncertainty": "0.3475",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "38.6276",
+                            "UpperQuantity": "7",
+                            "MinAmount": "26.2668",
+                            "Uncertainty": "0.4281",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.013",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Punching occurs, causing significant spalling of concrete. Epoxy injection is no longer expected to be sufficient to restore the required strength and stiffness to the slab and the slab-column connection.",
+                    "DamageImageName": "B1049.001a-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Shore damaged area in the two stories below. Remove 100 square feet of concrete slab per column, preserving the slab reinforcement; lap splice 30 new 10 foot long rebar with existing rebar; place formwork; recast concrete slab; remove forms, replace and repair finishes; replace furnishings, ceilings, mechanical, electrical, and plumbing systems. . Cracks wide enough to be grouted are included in the portion of slab to be demolished and recast.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.1",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "96114.98",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.4071",
+                        "CarbonMedian": "6292.68",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.4071",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "61925",
+                            "UpperQuantity": "7",
+                            "MinAmount": "42109",
+                            "Uncertainty": "0.3213",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "52.8184",
+                            "UpperQuantity": "7",
+                            "MinAmount": "35.9165",
+                            "Uncertainty": "0.4071",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.019",
+                    "Beta": "0.55"
+                }
+            ]
+        }
+    }
+}

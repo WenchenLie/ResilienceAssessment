@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "f7134312-b0ab-4993-bba6-fa6948be65cc",
+        "ID": "B1049.031",
+        "Description": "Costing is on a per joint basis.",
+        "BasicUnit": "Each",
+        "Name": "Post-tensioned concrete flat slabs- columns with shear reinforcing  0<Vg/Vo<.0.4",
+        "Author": "John Wallace",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:32.4699949-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Fragilities were based on judgment due to lack of test data.",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Yield strain of the slab flexural reinforcement has been exceeded, spalling of concrete may/may not occur, slab exhibits large enough crack widths to allow epoxy injection.",
+                    "DamageImageName": "B1049.001a-DS1-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove furnishings, ceilings and mechanical, electrical and plumping systems (as necessary) 5 feet either side of damaged area.  Replace and repair finishes.  Replace furnishings, ceilings and mechanical, electrical and plumping systems (as necessary).",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "97926.73",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.4265",
+                        "CarbonMedian": "4531.6",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.4265",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "43716",
+                            "UpperQuantity": "7",
+                            "MinAmount": "29144",
+                            "Uncertainty": "0.3456",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "37.2871",
+                            "UpperQuantity": "7",
+                            "MinAmount": "24.8581",
+                            "Uncertainty": "0.4265",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.028",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Punching occurs, causing significant spalling of concrete. Epoxy injection is no longer expected to be sufficient to restore the required strength and stiffness to the slab and the slab-column connection.",
+                    "DamageImageName": "B1049.001a-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Prepare work area for epoxy injection, inject epoxy into 45 feet of crack (35 feet top, 10 feet bottom of slab) per 100 square feet of floor panel.  Fabricate new structural steel shear head (column capital) that attaches to the column beneath the slab.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.2",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "180724.3",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.41",
+                        "CarbonMedian": "7229.78",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.41",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "48516",
+                            "UpperQuantity": "7",
+                            "MinAmount": "32344",
+                            "Uncertainty": "0.3249",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "41.3813",
+                            "UpperQuantity": "7",
+                            "MinAmount": "27.5875",
+                            "Uncertainty": "0.41",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.04",
+                    "Beta": "0.5"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "ed07eed8-8937-445e-9688-83e352933fa6",
+        "ID": "B1044.031",
+        "Description": "Costing for each 144 ft^2 Wall Panel, Orthogonal web reinforcement, f'c > 2500 psi, P/(A*f'c) <= 0.2",
+        "BasicUnit": "Each",
+        "Name": "Low-rise reinforced concrete walls with return flanges, less than 8\" thick up to 15' high",
+        "Author": "Andrew Whittaker",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:20.7215205-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Full repair description does not fully fit on sheet - consider shortening.  Description will fit in PACT.",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Crushed core concrete; localized concrete cracking with widths greater than 0.12 in; buckling of vertical rebar.",
+                    "DamageImageName": "B1044.031-DS1-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove furnishings, ceilings and mechanical, electrical and plumping systems (as necessary) 5 feet either side of damaged area.  Replace and repair finishes.  Replace furnishings, ceilings and mechanical, electrical and plumping systems (as necessary).",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.5",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "92547.36",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.2847",
+                        "CarbonMedian": "4502.88",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.2847",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "16825.92",
+                            "UpperQuantity": "7",
+                            "MinAmount": "11441.6256",
+                            "Uncertainty": "0.1362",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "13.1205",
+                            "UpperQuantity": "7",
+                            "MinAmount": "8.9239",
+                            "Uncertainty": "0.2847",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0076",
+                    "Beta": "0.35"
+                },
+                {
+                    "Name": null,
+                    "Description": "Sliding of the wall resulting in large residual displacement; distributed concrete cracking with widths greater than 0.12 in; fracture of rebar.",
+                    "DamageImageName": "B1044.031-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "(1) Relocate eqpt.& furniture within 10 ft. of wall, both sides.  Install protection on floor & adjacent walls.  (2) Remove wall finishes, both sides.  (3) Relocate MEP within 10 ft. of wall.  (4) Remove damaged wall in 5-ft.lengths.  (5) Install bars: a. 12#9 A706 bars in bz ea. end; mech splices to (E) ; b. #4 A706 dbl sets of seismic ties at 4 in. oc ea bz; c. #4 A706 bar at 6 in. oc, ewef; lap new vert. bars to (E) at top of wall; drill & epoxy bars into wall/fdn at 6 in. oc to match new rebar above.  Anchor horiz.  Bars in bz with seismic hks or lap 24 in. with (E) horiz. bars.  (6) Form wall.  Cast 5ksi concrete in 3-ft. lifts; with 1-in. top gap for grout day after casting.  (7) Remove forms, clean-up & reinstall/return eqpt, finishes, furniture & MEP.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.25",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "112569.12",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3067",
+                        "CarbonMedian": "5734.08",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3067",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "28644",
+                            "UpperQuantity": "7",
+                            "MinAmount": "19477.92",
+                            "Uncertainty": "0.1776",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "22.3211",
+                            "UpperQuantity": "7",
+                            "MinAmount": "15.1769",
+                            "Uncertainty": "0.3067",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0134",
+                    "Beta": "0.45"
+                }
+            ]
+        }
+    }
+}

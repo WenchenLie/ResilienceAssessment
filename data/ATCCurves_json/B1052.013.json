@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "ae9870c6-45e5-4f12-8f74-88b31e287ab4",
+        "ID": "B1052.013",
+        "Description": "Costing for each 100 ft^2 Wall Panel",
+        "BasicUnit": "Each",
+        "Name": "Special reinforced masonry walls with fully grouted cells, 16\" thick, flexure dominated up to 12' tall",
+        "Author": "Benson Shing",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "Marginal",
+            "Documentation": "Average",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:43.9525491-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "A few flexural and shear cracks with hardly noticeable residual crack widths.  Slight yielding of extreme vertical reinforcement.  No spalling.  No fracture or buckling of vertical reinforcement.  No structurally significant damage.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Cosmetic repair.  Patch cracks and paint each side.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "2794",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.437",
+                        "CarbonMedian": "118",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.437",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "900",
+                            "UpperQuantity": "30",
+                            "MinAmount": "480",
+                            "Uncertainty": "0.3584",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "0.7038",
+                            "UpperQuantity": "30",
+                            "MinAmount": "0.3765",
+                            "Uncertainty": "0.437",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0031",
+                    "Beta": "0.47"
+                },
+                {
+                    "Name": null,
+                    "Description": "Numerous flexural and diagonal cracks with residual crack widths less than 1/64 in.  Mild toe crushing with vertical cracks or light spalling at wall toes.  No fracture or buckling of reinforcement.  Small residual deformation.",
+                    "DamageImageName": "B1051.003-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Epoxy injection to repair cracks.  Remove loose masonry.  Patch spalls with non-shrink grout.  Paint each side.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "12234",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.2722",
+                        "CarbonMedian": "521",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.2722",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "6150",
+                            "UpperQuantity": "30",
+                            "MinAmount": "3485",
+                            "Uncertainty": "0.1076",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "4.7978",
+                            "UpperQuantity": "30",
+                            "MinAmount": "2.7207",
+                            "Uncertainty": "0.2722",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.009",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Severe flexural cracks with residual crack widths greater than 1/32 in.  Severe toe crushing and spalling.  Fracture or buckling of vertical reinforcement.  Significant residual deformation.",
+                    "DamageImageName": "B1051.003-DS3-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Shore. - Demolish existing wall. - Construct new wall.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.25",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "62518",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.2747",
+                        "CarbonMedian": "4289",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.2747",
+                        "CostConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "13150",
+                            "UpperQuantity": "30",
+                            "MinAmount": "7451.6667",
+                            "Uncertainty": "0.1138",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "2",
+                            "MaxAmount": "10.2464",
+                            "UpperQuantity": "30",
+                            "MinAmount": "5.8051",
+                            "Uncertainty": "0.2747",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0151",
+                    "Beta": "0.32"
+                }
+            ]
+        }
+    }
+}

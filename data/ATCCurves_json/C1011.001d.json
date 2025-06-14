@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "2b3634d4-2028-4b4e-a08c-37fd8d337029",
+        "ID": "C1011.001d",
+        "Description": "Quantity is based upon 13'x100' Panels.  Quantity of wall damaged varies by damage state.",
+        "BasicUnit": "Each",
+        "Name": "Wall Partition, Type: Gypsum with metal studs, Full Height, Fixed Below, Slip Track Above w/o returns (friction connections)",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Superior",
+            "Documentation": "Superior",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:14.0055305-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Screw pop-out, cracking of wall board, warping or cracking of tape, slight crushing of wall panel at corners.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Retape joints, paste and repaint.  May require cutting and replacing corner sections of board.  Repair 5% wallboard, 10% retape, 25% repaint.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "2496",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.5424",
+                        "CarbonMedian": "104",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.5424",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "1785",
+                            "UpperQuantity": "10",
+                            "MinAmount": "535.5",
+                            "Uncertainty": "0.4814",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "1.3456",
+                            "UpperQuantity": "10",
+                            "MinAmount": "0.3718",
+                            "Uncertainty": "0.5424",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0035",
+                    "Beta": "0.6"
+                },
+                {
+                    "Name": null,
+                    "Description": "Moderate cracking or crushing of gypsum wall boards (typically in corners).  Moderate corner gap openings, bending of boundary studs.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove and replace 10% of wall board (both sides), retape and paste 25% of wall, paint 50% of wall.  Replace boundary studs of approximately 5 intersections per 100 ft of wall length.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "7488",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.6095",
+                        "CarbonMedian": "299",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.6095",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "4550",
+                            "UpperQuantity": "10",
+                            "MinAmount": "1365",
+                            "Uncertainty": "0.5559",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "3.5932",
+                            "UpperQuantity": "10",
+                            "MinAmount": "1.1107",
+                            "Uncertainty": "0.6095",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0095",
+                    "Beta": "0.45"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "773ed919-ec91-4d66-93de-47014b96c602",
+        "ID": "C2011.011a",
+        "Description": "Rigid stair with seismic interstory drift joint.  Precast concrete stair.",
+        "BasicUnit": "Each",
+        "Name": "Non-monolithic precast concrete stair assembly with concrete stringers and treads with seismic joints that accommodate drift.",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Marginal",
+            "DataRelevance": "Marginal",
+            "Documentation": "Average",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:15.4021114-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "User to provide median demand and dispersion values.  The values listed are default PACT values and do not represent the response of this component.\nImport errors:\n Warning, Data missing: C2011.011a:DS1: Could not parse median - using 500\nWarning, Data missing: C2011.011a:DS1: Could not parse dispersion - using 0.5\nWarning, Data missing: C2011.011a:DS2: Could not parse median - using 500\nWarning, Data missing: C2011.011a:DS2: Could not parse dispersion - using 0.5\nWarning, Data missing: C2011.011a:DS3: Could not parse median - using 500\nWarning, Data missing: C2011.011a:DS3: Could not parse dispersion - using 0.5\nWarning, Data missing: C2011.011a: DS2 Damage State has median of Zero. - Add median value\nWarning, Data missing: C2011.011a: DS3 Damage State has median of Zero. - Add median value",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Non structural damage, local concrete cracking, localized concrete spalling, localized rebar yielding.",
+                    "DamageImageName": "C2011.011a-DS1-1.jpg",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Patch, paint, epoxy injection.  Repair finishes.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "3233.83",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.8396",
+                        "CarbonMedian": "136.72",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.8396",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "1400",
+                            "UpperQuantity": "10",
+                            "MinAmount": "420",
+                            "Uncertainty": "0.8015",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "1.5442",
+                            "UpperQuantity": "10",
+                            "MinAmount": "0.4633",
+                            "Uncertainty": "0.8396",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "500",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Structural damage but live load capacity remains intact.  Extensive concrete cracking, concrete crushing, buckling of rebar.",
+                    "DamageImageName": "C2011.011a-DS2-1.jpg",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove damaged components, install replacement components.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "20540.69",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.6218",
+                        "CarbonMedian": "725.04",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.6218",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "7400",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2220",
+                            "Uncertainty": "0.5694",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "8.1618",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2.4485",
+                            "Uncertainty": "0.6218",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "500",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Loss of live load capacity.  Extensive concrete crushing, connection failure.",
+                    "DamageImageName": "C2011.011a-DS2-1.jpg",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace stair and handrail.  Repair and replace affected soffits and floor finishes.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.75",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "352471.24",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.4394",
+                        "CarbonMedian": "26019.78",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.4394",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "45900",
+                            "UpperQuantity": "10",
+                            "MinAmount": "13770",
+                            "Uncertainty": "0.3613",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "50.625",
+                            "UpperQuantity": "10",
+                            "MinAmount": "15.1875",
+                            "Uncertainty": "0.4394",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "500",
+                    "Beta": "0.5"
+                }
+            ]
+        }
+    }
+}

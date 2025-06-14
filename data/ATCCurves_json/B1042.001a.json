@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "bbeaf7ac-87e4-4437-a33d-db55b4703f86",
+        "ID": "B1042.001a",
+        "Description": null,
+        "BasicUnit": "Each",
+        "Name": "Concrete link beam, diagonally reinforced, aspect ratio between 1.0 and 2.0, beam < 16\" wide and depth < 30\"",
+        "Author": "John Wallace",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Link Beam Chord Rotation",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:34.3104426-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "None\nImport errors:\n Warning: B1042.001a: B1042.001a: DS2 overlaps DS3 in the range of 0.004475 to 0.0179 - Make sure damage states are minimally overlapping",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Residual cracks no greater than 1/16 inch.  Cracks are mainly at the beam to wall interface, some limited flexural cracking.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Epoxy inject cracks (200 to 240 inches in length).",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "31773.75",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.5047",
+                        "CarbonMedian": "1338.55",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.5047",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "15487.2",
+                            "UpperQuantity": "20",
+                            "MinAmount": "10324.8",
+                            "Uncertainty": "0.4384",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "13.2097",
+                            "UpperQuantity": "20",
+                            "MinAmount": "8.8065",
+                            "Uncertainty": "0.5047",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0179",
+                    "Beta": "0.38"
+                },
+                {
+                    "Name": null,
+                    "Description": "Residual cracks greater than 1/8 inch and minor spalling of concrete.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Epoxy inject cracks (600 to 720 inches) and slab (300 inches), replace spalled concrete.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "72425.13",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.4421",
+                        "CarbonMedian": "5260.54",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.4421",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "34128",
+                            "UpperQuantity": "20",
+                            "MinAmount": "22752",
+                            "Uncertainty": "0.3646",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "29.1091",
+                            "UpperQuantity": "20",
+                            "MinAmount": "19.4061",
+                            "Uncertainty": "0.4421",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0352",
+                    "Beta": "0.44"
+                },
+                {
+                    "Name": null,
+                    "Description": "Significant strength degradation (<0.8Vn), buckling or fracture of diagonal reinforcing, crushing of concrete.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Chip away damaged concrete, attached mechanical couplers to the diagonal bars still embedded in the wall, replace damaged or fractured reinforcing.  Replace damaged concrete.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.25",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "173751.93",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.4272",
+                        "CarbonMedian": "9761.67",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.4272",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "53268",
+                            "UpperQuantity": "20",
+                            "MinAmount": "35512",
+                            "Uncertainty": "0.3463",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "45.4345",
+                            "UpperQuantity": "20",
+                            "MinAmount": "30.2897",
+                            "Uncertainty": "0.4272",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0543",
+                    "Beta": "0.95"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "cb966be3-2028-48e4-ab55-f691a3576996",
+        "ID": "B1035.032",
+        "Description": "Costing is on a per bay basis.  Costing does not include fireproofing removal or reapplication cost.",
+        "BasicUnit": "Each",
+        "Name": "Post-Northridge welded steel moment connection other than RBS, beams both sides, beam depth >= W30",
+        "Author": "Greg Deierlein",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:48:51.5212832-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Local beam flange and web buckling.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "The likely repair state is heat straightening of the buckled flanges and web.  Repair and replace partitions at connection.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "60737.7",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.4252",
+                        "CarbonMedian": "5718.52",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.4252",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "42000",
+                            "UpperQuantity": "7",
+                            "MinAmount": "28000",
+                            "Uncertainty": "0.3439",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "24.7058",
+                            "UpperQuantity": "7",
+                            "MinAmount": "16.4706",
+                            "Uncertainty": "0.4252",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.03",
+                    "Beta": "0.3"
+                },
+                {
+                    "Name": null,
+                    "Description": "DS1 plus lateral-torsional distortion of beam in hinge region.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Repair will necessitate removal and replacement of distorted and or fractured portion of beam.   Repair and replace partitions at connection.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.5",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "302475.45",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3521",
+                        "CarbonMedian": "17537.31",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3521",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "70200",
+                            "UpperQuantity": "7",
+                            "MinAmount": "46800",
+                            "Uncertainty": "0.2479",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "41.2942",
+                            "UpperQuantity": "7",
+                            "MinAmount": "27.5294",
+                            "Uncertainty": "0.3521",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.04",
+                    "Beta": "0.3"
+                },
+                {
+                    "Name": null,
+                    "Description": "Low-cycle fatigue fracture in buckled region of RBS.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Repair will necessitate removal and replacement of distorted and/or fractured portion of beam.  Repair and replace partitions at connection.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.5",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "302475.45",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3521",
+                        "CarbonMedian": "17537.31",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3521",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "70200",
+                            "UpperQuantity": "7",
+                            "MinAmount": "46800",
+                            "Uncertainty": "0.2479",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "41.2942",
+                            "UpperQuantity": "7",
+                            "MinAmount": "27.5294",
+                            "Uncertainty": "0.3521",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.05",
+                    "Beta": "0.3"
+                }
+            ]
+        }
+    }
+}

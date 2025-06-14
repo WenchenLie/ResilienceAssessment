@@ -1,0 +1,169 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "2bd7da9e-0b59-4f64-8974-b7a8cb5b1131",
+        "ID": "D3031.012l",
+        "Description": "Costing is per unit and is based upon 850 Ton.",
+        "BasicUnit": "Each",
+        "Name": "Chiller - Capacity: 750 to <1000 Ton - Vibration isolated equipment that is not snubbed or restrained - Combined anchorage/isolator & equipment fragility",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:44.1854738-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "User to provide median demand and dispersion values.  The values listed are default PACT values and do not represent the response of this component.\nImport errors:\n Warning, Data missing: D3031.012l:DS1: Could not parse median - using 500\nWarning, Data missing: D3031.012l:DS1: Could not parse dispersion - using 0.5",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Anchorage failure.",
+                "DamageImageName": null,
+                "DamageStates": {
+                    "DSGroupType": "MutuallyExclusive",
+                    "DamageState": [
+                        {
+                            "Name": null,
+                            "Description": "Anchorage failure.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Repair anchorage and concrete pad and remount equipment.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "7365.83",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3818",
+                                "CarbonMedian": "245.4",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3818",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "2640",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "2160",
+                                    "Uncertainty": "0.2885",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "2.7177",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "2.2235",
+                                    "Uncertainty": "0.3818",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.35"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Anchorage failure & Equipment damaged beyond repair.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Replace equipment including attached utilities in addition to repairing anchorage and concrete pad.  Chiller removed, repaired offsite, and reinstalled.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "2798953.93",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3046",
+                                "CarbonMedian": "241301.09",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3046",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "476740",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "390060",
+                                    "Uncertainty": "0.174",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "75.845",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "15.6152",
+                                    "Uncertainty": "0.3046",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.15"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Damaged, Inoperative but anchorage is OK.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Repair chiller and attached piping.  Chiller removed, repaired offsite, and reinstalled.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "2798953.93",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3046",
+                                "CarbonMedian": "241301.09",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3046",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "476740",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "390060",
+                                    "Uncertainty": "0.174",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "75.845",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "15.6152",
+                                    "Uncertainty": "0.3046",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.5"
+                        }
+                    ]
+                },
+                "Median": "500",
+                "Beta": "0.5"
+            }
+        }
+    }
+}

@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "6fd0909d-09d3-45bd-8540-c0af54b46d66",
+        "ID": "D2021.024b",
+        "Description": "Potable water.  Costing based upon 1000 ft segments.",
+        "BasicUnit": "Each",
+        "Name": "Cold or Hot Potable Water Piping (dia > 2.5 inches), SDC D,E,F (OSPHD or sim), BRACING FRAGILITY",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:52:51.4707453-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "Consequence is for piping only.  Enter floor wetting consequence seperately.  Cost includes allowance for MEP relocation to perform work.",
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Lateral Brace Failure - 1 failure per 1000 feet of pipe.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Retighten flange bolts at leaking joints.  One joint per 1000 LF.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "1104.76",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.6953",
+                        "CarbonMedian": "40.01",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.6953",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "700",
+                            "UpperQuantity": "10",
+                            "MinAmount": "210",
+                            "Uncertainty": "0.6488",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "0.7412",
+                            "UpperQuantity": "10",
+                            "MinAmount": "0.2224",
+                            "Uncertainty": "0.6953",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "1.5",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Vertical Brace Failure - 1 failure per 1000 feet of pipe.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace 20 foot sections of pipe where breaks occur.  One repair per 1000 LF.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "0",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.6953",
+                        "CarbonMedian": "0",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.6953",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "700",
+                            "UpperQuantity": "10",
+                            "MinAmount": "210",
+                            "Uncertainty": "0.6488",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "0.7412",
+                            "UpperQuantity": "10",
+                            "MinAmount": "0.2224",
+                            "Uncertainty": "0.6953",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "2.25",
+                    "Beta": "0.4"
+                }
+            ]
+        }
+    }
+}

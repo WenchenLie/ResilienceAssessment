@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "a9c15274-2051-4cba-845a-2170aaded6f3",
+        "ID": "B1041.042b",
+        "Description": "ACI318 OMF, joint shear failure, beam flexural response.  Meets the following requirements: (1) Sum Mcol / Sum Mbeam > 1.2, (2) Beam Vn > Veq, (3) Column Vn > Veq.  Costing is on a per joint basis.",
+        "BasicUnit": "Each",
+        "Name": "ACI 318 OMF with weak joints and column flexural response, Conc Col & Bm = 24\" x 36\", Beam both sides",
+        "Author": "Laura Lowes",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:01.6932307-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Concrete Cracking: beams, joints or possibly Residual concrete crack widths exceed 0.06 in. (1.5 mm).  Column exhibit residual crack widths that require epoxy injection.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove furnishings, ceilings and mechanical, electrical and plumbing systems (as necessary) 8 feet either side of damaged area.  Clean area adjacent to the damaged concrete.  Prepare spalled concrete and adjacent cracks, as necessary, to be patched and to receive the epoxy injection.  Patch concrete with grout. Replace and repair finishes.  Replace furnishings, ceilings and mechanical, electrical and plumbing systems as necessary.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "72535.39",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.464",
+                        "CarbonMedian": "4893.36",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.464",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "25704",
+                            "UpperQuantity": "20",
+                            "MinAmount": "17136",
+                            "Uncertainty": "0.3909",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "22.68",
+                            "UpperQuantity": "20",
+                            "MinAmount": "15.12",
+                            "Uncertainty": "0.464",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.015",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Concrete Spalling: slabs, beams, joints or possibly columns exhibit spalling of cover concrete that exposes transverse but not longitudinal reinforcing steel. Spalling of cover concrete possibly exposing transverse reinforcement.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove furnishings, ceilings and mechanical, electrical and\nplumbing systems (as necessary) 15 feet either side of\ndamaged area. Shore damaged member(s) a minimum of\none level below (more levels may be required). Remove damaged concrete at least 1 inch beyond the exposed\nreinforcing steel. Place concrete forms. Place concrete. Remove forms. Remove shores after one week. Replace and\nrepair finishes. Replace furnishings, ceilings and mechanical, electrical and plumbing systems (as necessary).",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "118002.06",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3948",
+                        "CarbonMedian": "8269.16",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3948",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "41378.4",
+                            "UpperQuantity": "20",
+                            "MinAmount": "27585.6",
+                            "Uncertainty": "0.3055",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "36.5104",
+                            "UpperQuantity": "20",
+                            "MinAmount": "24.3402",
+                            "Uncertainty": "0.3948",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0175",
+                    "Beta": "0.4"
+                },
+                {
+                    "Name": null,
+                    "Description": "Concrete Crushing: slabs, beams or joints. Spalling of beam, column or joint cover concrete exposes longitudinal reinforcement OR strength loss initiates in laboratory testing. exhibit concrete spalling that exposes longitudinal steel or crushing of core concrete.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove furnishings, ceilings and mechanical, electrical and plumbing systems (as necessary) 15 feet either side of damaged component. Shore damaged member(s) a minimum of one level below (more levels may be required).  Remove damaged component.  Place and splice (as necessary) new reinforcing steel to existing, undamaged reinforcing.  Place concrete forms.  Place concrete.  Remove forms.  Remove shores after one week.  Replace and repair finishes.  Replace furnishings, ceilings and mechanical, electrical and plumbing systems (as necessary).",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.2",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "165230.57",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3865",
+                        "CarbonMedian": "9613.79",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3865",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "49178.4",
+                            "UpperQuantity": "20",
+                            "MinAmount": "32785.6",
+                            "Uncertainty": "0.2948",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "43.3927",
+                            "UpperQuantity": "20",
+                            "MinAmount": "28.9285",
+                            "Uncertainty": "0.3865",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.02",
+                    "Beta": "0.4"
+                }
+            ]
+        }
+    }
+}

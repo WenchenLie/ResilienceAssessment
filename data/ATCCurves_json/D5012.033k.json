@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "a00e357f-7312-4ab1-a46b-55e44a1cd1d2",
+        "ID": "D5012.033k",
+        "Description": "Costing is per unit and is based upon 1600 Amp.",
+        "BasicUnit": "Each",
+        "Name": "Distribution Panel - Capacity: 1200 to 2000 Amp - Equipment that is either hard anchored or is vibration isolated with seismic snubbers/restraints - Equipment fragility only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:52:09.7409187-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Damaged, inoperative but anchorage is OK.",
+                "DamageImageName": "D5012.031b-DS1-1.JPG",
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Replace equipment",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": true,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "214313.18",
+                    "EnergyCurveType": "Normal",
+                    "EnergyDispersion": "0.2592",
+                    "CarbonMedian": "12163.17",
+                    "CarbonCurveType": "Normal",
+                    "CarbonDispersion": "0.2592",
+                    "CostConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "61680",
+                        "UpperQuantity": "5",
+                        "MinAmount": "41120",
+                        "Uncertainty": "0.0683",
+                        "CurveType": "Normal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "18.368",
+                        "UpperQuantity": "5",
+                        "MinAmount": "2.381",
+                        "Uncertainty": "0.2592",
+                        "CurveType": "Normal"
+                    }
+                },
+                "Median": "3.05",
+                "Beta": "0.4"
+            }
+        }
+    }
+}

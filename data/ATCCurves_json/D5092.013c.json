@@ -1,0 +1,251 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "afc81030-3496-4dab-b62d-4670880423e4",
+        "ID": "D5092.013c",
+        "Description": "Costing is per unit.",
+        "BasicUnit": "Each",
+        "Name": "Battery Rack - Capacity: all - Equipment that is either hard anchored or is vibration isolated with seismic snubbers/restraints - Combined anchorage/isolator & equipment fragility",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:52:12.1546773-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "User to provide median demand and dispersion values.  The values listed are default PACT values and do not represent the response of this component.\nImport errors:\n Warning, Data missing: D5092.013c:DS1: Could not parse median - using 500\nWarning, Data missing: D5092.013c:DS1: Could not parse dispersion - using 0.5",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Anchorage failure.",
+                "DamageImageName": null,
+                "DamageStates": {
+                    "DSGroupType": "MutuallyExclusive",
+                    "DamageState": [
+                        {
+                            "Name": null,
+                            "Description": "Anchorage failure.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Repair anchorage and concrete pad and remount equipment.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "4865.74",
+                                "EnergyCurveType": "Normal",
+                                "EnergyDispersion": "0.286",
+                                "CarbonMedian": "161.25",
+                                "CarbonCurveType": "Normal",
+                                "CarbonDispersion": "0.286",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "1200",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "800",
+                                    "Uncertainty": "0.1389",
+                                    "CurveType": "Normal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "1.5882",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "1.0588",
+                                    "Uncertainty": "0.286",
+                                    "CurveType": "Normal"
+                                }
+                            },
+                            "Percent": "0.35"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Anchorage failure & Equipment damaged beyond repair.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Replace equipment including attached utilities in addition to repairing anchorage and concrete pad.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "66136.55",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.2803",
+                                "CarbonMedian": "3158.12",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.2803",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "19380",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "12920",
+                                    "Uncertainty": "0.1267",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "25.65",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "17.1",
+                                    "Uncertainty": "0.2803",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.15"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Equipment is damaged and inoperative.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Replace batteries.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "32267.43",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.2679",
+                                "CarbonMedian": "1695.57",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.2679",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "14400",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "9600",
+                                    "Uncertainty": "0.0962",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "19.0589",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "12.7059",
+                                    "Uncertainty": "0.2679",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.15"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Equipment is damaged and inoperative.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Replace batteries and clean up acid.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "33851.66",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.2715",
+                                "CarbonMedian": "1759.07",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.2715",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "15300",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "10200",
+                                    "Uncertainty": "0.106",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "20.25",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "13.5",
+                                    "Uncertainty": "0.2715",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.25"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Equipment is damaged and inoperative.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Replace rack including batteries and clean up acid.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "67720.79",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.2831",
+                                "CarbonMedian": "3221.61",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.2831",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "20280",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "13520",
+                                    "Uncertainty": "0.1329",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "26.8411",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "17.8941",
+                                    "Uncertainty": "0.2831",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.1"
+                        }
+                    ]
+                },
+                "Median": "500",
+                "Beta": "0.5"
+            }
+        }
+    }
+}

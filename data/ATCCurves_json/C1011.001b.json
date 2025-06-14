@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "e482dd74-dd0b-4686-8a8e-aeba420cdd99",
+        "ID": "C1011.001b",
+        "Description": "Quantity is based upon 13'x100' Panels.  Quantity of wall damaged varies by damage state.",
+        "BasicUnit": "Each",
+        "Name": "Wall Partition, Type: Gypsum with metal studs, Partial Height, Fixed Below, Lateral Braced Above",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Superior",
+            "Documentation": "Superior",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:13.320736-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Screw pop-out, cracking of wall board, warping or cracking of tape, slight crushing of wall panel at corners.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Retape joints, paste and repaint.  May require cutting and replacing corner sections of board.  Repair 5% wallboard, 10% retape, 25% repaint.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "4979",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.5424",
+                        "CarbonMedian": "208",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.5424",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "3570",
+                            "UpperQuantity": "10",
+                            "MinAmount": "1071",
+                            "Uncertainty": "0.4814",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "2.8212",
+                            "UpperQuantity": "10",
+                            "MinAmount": "0.8735",
+                            "Uncertainty": "0.5424",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.01",
+                    "Beta": "0.3"
+                },
+                {
+                    "Name": null,
+                    "Description": "Moderate cracking or crushing of gypsum wall boards (typically in corners).  Moderate corner gap openings, bending of boundary studs.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove and replace 10% of wall board (both sides), retape and paste 25% of wall, paint 50% of wall.  Replace boundary studs of approximately 5 intersections per 100 ft of wall length.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "14963",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.6095",
+                        "CarbonMedian": "585",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.6095",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "9100",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2730",
+                            "Uncertainty": "0.5559",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "7.0563",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2.0915",
+                            "Uncertainty": "0.6095",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.013",
+                    "Beta": "0.3"
+                },
+                {
+                    "Name": null,
+                    "Description": "Buckling of studs and tearing of tracks.  Tearing or bending of top track, tearing at corners with transverse walls, large gap openings, walls displaced.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Remove and replace 50% of length of metal stud wall, 50% of both sides of the gypsum, and any embedded utilities.  Retape and paste as required.  Repaint 100%.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "151970",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3176",
+                        "CarbonMedian": "13026",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3176",
+                        "CostConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "17500",
+                            "UpperQuantity": "10",
+                            "MinAmount": "5250",
+                            "Uncertainty": "0.1959",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "1",
+                            "MaxAmount": "13.5799",
+                            "UpperQuantity": "10",
+                            "MinAmount": "4.0321",
+                            "Uncertainty": "0.3176",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.018",
+                    "Beta": "0.3"
+                }
+            ]
+        }
+    }
+}

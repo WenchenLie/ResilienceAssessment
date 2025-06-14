@@ -1,0 +1,128 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "17aeb306-0d99-451c-bc1b-83f813755769",
+        "ID": "D5092.021a",
+        "Description": "Costing is per unit.",
+        "BasicUnit": "Each",
+        "Name": "Battery Charger - Capacity: all - Unanchored equipment that is not vibration isolated - Equipment fragility only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:52:12.647628-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Damaged, inoperative but anchorage is OK.",
+                "DamageImageName": null,
+                "DamageStates": {
+                    "DSGroupType": "MutuallyExclusive",
+                    "DamageState": [
+                        {
+                            "Name": null,
+                            "Description": "Damaged, inoperative but anchorage is OK.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Service for intermittent voltage output or for blown surge suppressor.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": false,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "3872.09",
+                                "EnergyCurveType": "Normal",
+                                "EnergyDispersion": "0.2929",
+                                "CarbonMedian": "203.47",
+                                "CarbonCurveType": "Normal",
+                                "CarbonDispersion": "0.2929",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "960",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "640",
+                                    "Uncertainty": "0.1527",
+                                    "CurveType": "Normal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "1.2706",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "0.847",
+                                    "Uncertainty": "0.2929",
+                                    "CurveType": "Normal"
+                                }
+                            },
+                            "Percent": "0.5"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Damaged, inoperative but anchorage is OK. Equipment damaged beyond repair.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Replace equipment.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": false,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "48737.26",
+                                "EnergyCurveType": "Normal",
+                                "EnergyDispersion": "0.2803",
+                                "CarbonMedian": "2561.02",
+                                "CarbonCurveType": "Normal",
+                                "CarbonDispersion": "0.2803",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "14580",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "9720",
+                                    "Uncertainty": "0.1267",
+                                    "CurveType": "Normal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "19.2971",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "12.8647",
+                                    "Uncertainty": "0.2803",
+                                    "CurveType": "Normal"
+                                }
+                            },
+                            "Percent": "0.5"
+                        }
+                    ]
+                },
+                "Median": "1.07",
+                "Beta": "0.4"
+            }
+        }
+    }
+}

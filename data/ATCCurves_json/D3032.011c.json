@@ -1,0 +1,128 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "dacea61e-ab56-4b85-aa05-4c55741c701d",
+        "ID": "D3032.011c",
+        "Description": "Costing is per unit.",
+        "BasicUnit": "Each",
+        "Name": "Compressor - Capacity: Small medical quality air supply - Unanchored equipment that is not vibration isolated - Equipment fragility only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Average",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:51:01.4877447-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Equipment does not function. Motor is damaged.",
+                "DamageImageName": "D3032.011a-DS1-1.JPG",
+                "DamageStates": {
+                    "DSGroupType": "MutuallyExclusive",
+                    "DamageState": [
+                        {
+                            "Name": null,
+                            "Description": "Equipment does not function. Motor is damaged.",
+                            "DamageImageName": "D3032.011a-DS1-1.JPG",
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Repair motor.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": false,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "4672.33",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.3018",
+                                "CarbonMedian": "403.86",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.3018",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "990",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "810",
+                                    "Uncertainty": "0.1691",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "1.1647",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "0.9529",
+                                    "Uncertainty": "0.3018",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.5"
+                        },
+                        {
+                            "Name": null,
+                            "Description": "Equipment does not function. Equipment damaged beyond repair.",
+                            "DamageImageName": null,
+                            "ConsequenceGroup": {
+                                "RepairMeasures": "Replace equipment.",
+                                "TagState": "0",
+                                "UseCasualty": false,
+                                "LongLeadFlag": true,
+                                "AffectedFloorArea": null,
+                                "AffectedDeathRate": "0",
+                                "AffectedInjuryRate": "0",
+                                "AffectedDeathRateBeta": "0",
+                                "AffectedInjuryRateBeta": "0",
+                                "RedTagMedian": "0",
+                                "RedTagBeta": "0",
+                                "EnergyMedian": "45843.34",
+                                "EnergyCurveType": "LogNormal",
+                                "EnergyDispersion": "0.333",
+                                "CarbonMedian": "3833.91",
+                                "CarbonCurveType": "LogNormal",
+                                "CarbonDispersion": "0.333",
+                                "CostConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "9020",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "7380",
+                                    "Uncertainty": "0.22",
+                                    "CurveType": "LogNormal"
+                                },
+                                "TimeConsequence": {
+                                    "LowerQuantity": "1",
+                                    "MaxAmount": "1.9294",
+                                    "UpperQuantity": "5",
+                                    "MinAmount": "0.4824",
+                                    "Uncertainty": "0.333",
+                                    "CurveType": "LogNormal"
+                                }
+                            },
+                            "Percent": "0.5"
+                        }
+                    ]
+                },
+                "Median": "0.25",
+                "Beta": "0.45"
+            }
+        }
+    }
+}

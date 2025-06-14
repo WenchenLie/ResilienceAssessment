@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "bf7ede71-8007-499f-adfe-eb57cd524d9e",
+        "ID": "D5011.011a",
+        "Description": "Costing is per unit and is based upon 75 kVa.",
+        "BasicUnit": "Each",
+        "Name": "Transformer/primary service - Capacity: <100 kVA - Unanchored equipment that is not vibration isolated - Equipment fragility only",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Average",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:51:46.4132517-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": null,
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Damaged, inoperative.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Service and repair existing transformer.    Transformer tower removed, repaired offsite, and reinstalled.",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "30150.25",
+                    "EnergyCurveType": "LogNormal",
+                    "EnergyDispersion": "0.3125",
+                    "CarbonMedian": "1674.47",
+                    "CarbonCurveType": "LogNormal",
+                    "CarbonDispersion": "0.3125",
+                    "CostConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "8332.5",
+                        "UpperQuantity": "5",
+                        "MinAmount": "6817.5",
+                        "Uncertainty": "0.1875",
+                        "CurveType": "LogNormal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "1",
+                        "MaxAmount": "2.6736",
+                        "UpperQuantity": "5",
+                        "MinAmount": "0.8912",
+                        "Uncertainty": "0.3125",
+                        "CurveType": "LogNormal"
+                    }
+                },
+                "Median": "1.01",
+                "Beta": "0.6"
+            }
+        }
+    }
+}

@@ -1,0 +1,76 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "a90af5f7-a6f6-4a96-be82-cff72ffd3cf4",
+        "ID": "C3021.001i",
+        "Description": "The user needs to review the fragilities of all piping modeled in the ceiling of the floor and input the peak floor acceleration value for the pipe with the lowest median peak floor acceleration value, along with the associated total dispersion (beta).  Flooring type assumed to be carpet. Available costs are per one square foot of floor area.",
+        "BasicUnit": "Each",
+        "Name": "Generic Floor Covering - Flooding of floor caused by failure of pipe - Apartments - Dry",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:50:25.4910838-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "None\nImport errors:\n Warning, Data missing: C3021.001i:DS1: Could not parse median - using 500\nWarning, Data missing: C3021.001i:DS1: Could not parse dispersion - using 0.5",
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": {
+                "Name": null,
+                "Description": "Flooding of all or a portion of the total floor associated with a major leakage of a pipe.",
+                "DamageImageName": null,
+                "ConsequenceGroup": {
+                    "RepairMeasures": "Replace or dry out of the affected flooring materials, equipment and contents.  Remove areas that could be affected by mold.  Potentially considerable downtime.  Cleanup and replacement of all water damaged items on floor.  User must establish area of floor with flooding.  Default recommendation is flooding of total floor area.  Damage to unit floor area shall be entered to consequence which is multiplied by PACT \"Fragility Unit of Measure\".",
+                    "TagState": "0",
+                    "UseCasualty": false,
+                    "LongLeadFlag": false,
+                    "AffectedFloorArea": null,
+                    "AffectedDeathRate": "0",
+                    "AffectedInjuryRate": "0",
+                    "AffectedDeathRateBeta": "0",
+                    "AffectedInjuryRateBeta": "0",
+                    "RedTagMedian": "0",
+                    "RedTagBeta": "0",
+                    "EnergyMedian": "169.95",
+                    "EnergyCurveType": "Normal",
+                    "EnergyDispersion": "0.3716",
+                    "CarbonMedian": "11.81",
+                    "CarbonCurveType": "Normal",
+                    "CarbonDispersion": "0.3716",
+                    "CostConsequence": {
+                        "LowerQuantity": "500",
+                        "MaxAmount": "53",
+                        "UpperQuantity": "2000",
+                        "MinAmount": "15.9",
+                        "Uncertainty": "0.2749",
+                        "CurveType": "Normal"
+                    },
+                    "TimeConsequence": {
+                        "LowerQuantity": "500",
+                        "MaxAmount": "0.0492",
+                        "UpperQuantity": "2000",
+                        "MinAmount": "0.0148",
+                        "Uncertainty": "0.3716",
+                        "CurveType": "Normal"
+                    }
+                },
+                "Median": "500",
+                "Beta": "0.5"
+            }
+        }
+    }
+}

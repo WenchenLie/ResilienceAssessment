@@ -1,0 +1,120 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "1baa290c-a08c-4364-89fb-a16491394b98",
+        "ID": "D2051.014a",
+        "Description": "Costing based upon 1000 ft segments of pipe, pipe 2.5 inches in diameter or less",
+        "BasicUnit": "Each",
+        "Name": "Chilled Water Piping - Small Diameter Threaded Steel - (2.5 inches in diameter or less), SDC D, E, or F (OSHPD or sim), PIPING FRAGILITY",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": false,
+        "EDPType": {
+            "Dimension": "NumLevelsPlusOne",
+            "TypeName": "Acceleration",
+            "DefaultUnits": "g",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "NA",
+            "DataRelevance": "NA",
+            "Documentation": "NA",
+            "Rationality": "NA"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:53:09.72192-08:00",
+        "Approved": true,
+        "Incomplete": true,
+        "Notes": "Consequence is for piping only.  Enter floor wetting consequence seperately.  Cost includes allowance for MEP relocation to perform work.\nImport errors:\n Warning, Data missing: D2051.014a:DS1: Could not parse dispersion - using 0.5\nWarning, Data missing: D2051.014a:DS2: Could not parse dispersion - using 0.5",
+        "UseEDPValueOfFloorAbove": true,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Small Leakage at joints - 1 leak per 1000 feet of pipe.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Retighten leaking joints, one per 1000 LF.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "572.49",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.8036",
+                        "CarbonMedian": "22.67",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.8036",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "319",
+                            "UpperQuantity": "10",
+                            "MinAmount": "261",
+                            "Uncertainty": "0.7637",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "0.3378",
+                            "UpperQuantity": "10",
+                            "MinAmount": "0.2764",
+                            "Uncertainty": "0.8036",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.55",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Large Leakage w/ major repair - 1 leak per 1000 feet of pipe.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace 20 ft section of pipe at leaking joints, one per 1000 LF.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "9221.31",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.4763",
+                        "CarbonMedian": "363.7",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.4763",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "2915",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2385",
+                            "Uncertainty": "0.4054",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "3.0865",
+                            "UpperQuantity": "10",
+                            "MinAmount": "2.5253",
+                            "Uncertainty": "0.4763",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "1.1",
+                    "Beta": "0.5"
+                }
+            ]
+        }
+    }
+}

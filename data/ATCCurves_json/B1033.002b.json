@@ -1,0 +1,204 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "63faef05-301c-406b-817f-b4c0e3862814",
+        "ID": "B1033.002b",
+        "Description": "Costing is on a per bay basis.  Costing does not include fireproofing removal or reapplication cost.",
+        "BasicUnit": "Each",
+        "Name": "Special Concentric Braced Frame w WF braces, balanced design criteria, Single Diagonal Brace, 41 PLF < w < 99 PLF",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Story Drift Ratio",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Superior",
+            "Documentation": "Average",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:48:29.5098886-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "None\nImport errors:\n Warning: B1033.002b:DS4: Could not parse Damage state embodied energy median - Assuming 0\nWarning: B1033.002b:DS4: Could not parse Damage state embodied energy dispersion - Assuming 0\nWarning: B1033.002b:DS4: Could not parse Damage state embodied energy curve type - Assuming Normal\nWarning: B1033.002b:DS4: Could not parse Damage state embodied carbon median - Assuming 0\nWarning: B1033.002b:DS4: Could not parse Damage state embodied carbon dispersion - Assuming 0\nWarning: B1033.002b:DS4: Could not parse Damage state embodied carbon curve type - Assuming Normal\nWarning: B1033.002b: B1033.002b: DS1 overlaps DS2 at 0.000875 - Make sure damage states are minimally overlapping\nWarning: B1033.002b: B1033.002b: DS3 overlaps DS4 in the range of 0.0566 to 0.1132 - Make sure damage states are minimally overlapping",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Buckling of the brace has begun but does not exceed the depth of the brace.  Initial yielding of the gusset has begun.  Yielding has initiated in framing at gusset plates but no buckling has occurred.  Residual buckling of the brace has occurred but is barely noticeable to the naked eye and does not exceed half the brace depth.  Residual drift is slight.",
+                    "DamageImageName": null,
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Brace damage is largely aesthetic.  Heat straightening may be desirable but replacement would be for aesthetic reasons.  Gusset has minor loss of strength and stiffness and straightening or repair may be desirable aesthetic reasons.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "87499.61",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.4144",
+                        "CarbonMedian": "6967.05",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.4144",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "46307.0154",
+                            "UpperQuantity": "20",
+                            "MinAmount": "28496.6248",
+                            "Uncertainty": "0.3305",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "30.6444",
+                            "UpperQuantity": "20",
+                            "MinAmount": "18.8581",
+                            "Uncertainty": "0.4144",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0035",
+                    "Beta": "0.45"
+                },
+                {
+                    "Name": null,
+                    "Description": "Buckling of brace in excess of the brace depth.  Initiation of yielding and out-of-plane deformation of the gusset.  Initiation of cracking of welds of gusset.  Initiation of yielding in beams and columns adjacent to gusset.",
+                    "DamageImageName": "B1033.001a-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Brace has lost significant axial capacity, and replacement of braces is likely required.  The gusset plate may have significant deformation and replacement may also be needed. Local beam and column yielding has occurred and straightening may be desirable for aesthetic reasons.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.6",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "155199.63",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3962",
+                        "CarbonMedian": "9290.15",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3962",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "51447.2804",
+                            "UpperQuantity": "20",
+                            "MinAmount": "36441.8237",
+                            "Uncertainty": "0.3074",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "34.046",
+                            "UpperQuantity": "20",
+                            "MinAmount": "24.116",
+                            "Uncertainty": "0.3962",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0058",
+                    "Beta": "0.65"
+                },
+                {
+                    "Name": null,
+                    "Description": "Buckling of brace in excess of 2 times brace depth.  Yielding and out-of-plane deformation of gusset.  Cracking and tearing of welds and gussets adjacent to welds but crack length is less than critical for fracture.  Significant yielding and local buckling in beams and columns adjacent to gusset.",
+                    "DamageImageName": "B1033.001a-DS3-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Brace and gusset are severely damaged with significant loss in stiffness and resistance, and both likely require replacement. Yielding and local buckling of beams and columns may be repaired by heat straightening, stiffeners or reinforcement, if there is no cracking or tearing. If cracking or tearing has initiated more substantial repair is needed",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.4",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "155199.63",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0.3909",
+                        "CarbonMedian": "9290.15",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0.3909",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "55047.2804",
+                            "UpperQuantity": "20",
+                            "MinAmount": "38991.8237",
+                            "Uncertainty": "0.3005",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "36.4284",
+                            "UpperQuantity": "20",
+                            "MinAmount": "25.8035",
+                            "Uncertainty": "0.3909",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0142",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Fracture of brace or gusset.  Buckling of gusset.  Severe yielding of beams and columns adjacent to the gusset with possibility of local buckling and cracking in the yielded areas.",
+                    "DamageImageName": "B1033.001a-DS4-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Brace and or gusset have fractured and require replacement. Yielding and local buckling of beams and columns may be repaired by heat straightening, stiffeners or reinforcement, if there is no cracking or tearing. If cracking or tearing has initiated more substantial repair is needed",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.2",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "0",
+                        "EnergyCurveType": "Normal",
+                        "EnergyDispersion": "0",
+                        "CarbonMedian": "0",
+                        "CarbonCurveType": "Normal",
+                        "CarbonDispersion": "0",
+                        "CostConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "55047.2804",
+                            "UpperQuantity": "20",
+                            "MinAmount": "38991.8237",
+                            "Uncertainty": "0.3005",
+                            "CurveType": "Normal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "5",
+                            "MaxAmount": "36.4284",
+                            "UpperQuantity": "20",
+                            "MinAmount": "25.8035",
+                            "Uncertainty": "0.3909",
+                            "CurveType": "Normal"
+                        }
+                    },
+                    "Median": "0.0283",
+                    "Beta": "0.25"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,162 @@
+{
+    "FragilityCurve": {
+        "@FileVersion": "2.0",
+        "UniqueID": "be0f8518-8e27-4130-8e44-d97ae981c14e",
+        "ID": "B1044.093",
+        "Description": "Slender concrete shear wall with aspect ratio greater than or equal to 2.0.  Costing assumes a 144 ft^2 wall panel.",
+        "BasicUnit": "Each",
+        "Name": "Slender Concrete Wall, 12\" thick, 12' high, 30' long",
+        "Author": "Not Given",
+        "Correlation": "0",
+        "Directional": true,
+        "EDPType": {
+            "Dimension": "NumLevels",
+            "TypeName": "Effective Drift",
+            "DefaultUnits": "Radian",
+            "UserDefined": false
+        },
+        "Ratings": {
+            "DataQuality": "Superior",
+            "DataRelevance": "Superior",
+            "Documentation": "Superior",
+            "Rationality": "Superior"
+        },
+        "Official": true,
+        "DateCreated": "2019-02-19T17:49:26.6377451-08:00",
+        "Approved": true,
+        "Incomplete": false,
+        "Notes": "None\nImport errors:\n Warning: B1044.093: B1044.093: DS1 overlaps DS2 in the range of 0.0372 to 0.0744 - Make sure damage states are minimally overlapping\nWarning: B1044.093: B1044.093: DS2 overlaps DS3 in the range of 0.002325 to 0.0032 - Make sure damage states are minimally overlapping",
+        "UseEDPValueOfFloorAbove": false,
+        "DamageStates": {
+            "DSGroupType": "Sequential",
+            "DamageState": [
+                {
+                    "Name": null,
+                    "Description": "Spalling of cover, vertical cracks greater than 1/16 inch.",
+                    "DamageImageName": "B1044.091-DS1-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Epoxy inject cracks and patch spalled concrete.",
+                        "TagState": "0",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0",
+                        "RedTagBeta": "0",
+                        "EnergyMedian": "34421.76",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3691",
+                        "CarbonMedian": "1455.84",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3691",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "6070",
+                            "UpperQuantity": "7",
+                            "MinAmount": "4127.6",
+                            "Uncertainty": "0.2715",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "4.7334",
+                            "UpperQuantity": "7",
+                            "MinAmount": "3.2195",
+                            "Uncertainty": "0.3691",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0093",
+                    "Beta": "0.5"
+                },
+                {
+                    "Name": null,
+                    "Description": "Exposed longitudinal reinforcing.",
+                    "DamageImageName": "B1044.091-DS2-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Shore wall, remove all concrete in damaged regions, replace concrete.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.25",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "92577.6",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.3436",
+                        "CarbonMedian": "4625.28",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.3436",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "14602",
+                            "UpperQuantity": "7",
+                            "MinAmount": "9929.36",
+                            "Uncertainty": "0.2357",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "11.377",
+                            "UpperQuantity": "7",
+                            "MinAmount": "7.7351",
+                            "Uncertainty": "0.3436",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0128",
+                    "Beta": "0.35"
+                },
+                {
+                    "Name": null,
+                    "Description": "Core concrete damage, buckled reinforcing, fractured reinforcing, shear failure, web failure, bond slip",
+                    "DamageImageName": "B1044.091-DS3-1.JPG",
+                    "ConsequenceGroup": {
+                        "RepairMeasures": "Replace wall or reinforce with R/C jacket if possible.  Shore floor and wall, remove damaged concrete and steel within one development length of damaged region, replace removed concrete and steel.",
+                        "TagState": "Red",
+                        "UseCasualty": false,
+                        "LongLeadFlag": false,
+                        "AffectedFloorArea": null,
+                        "AffectedDeathRate": "0",
+                        "AffectedInjuryRate": "0",
+                        "AffectedDeathRateBeta": "0",
+                        "AffectedInjuryRateBeta": "0",
+                        "RedTagMedian": "0.1",
+                        "RedTagBeta": "0.5",
+                        "EnergyMedian": "166469.76",
+                        "EnergyCurveType": "LogNormal",
+                        "EnergyDispersion": "0.2823",
+                        "CarbonMedian": "8153.28",
+                        "CarbonCurveType": "LogNormal",
+                        "CarbonDispersion": "0.2823",
+                        "CostConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "47295",
+                            "UpperQuantity": "7",
+                            "MinAmount": "32160.6",
+                            "Uncertainty": "0.1311",
+                            "CurveType": "LogNormal"
+                        },
+                        "TimeConsequence": {
+                            "LowerQuantity": "3",
+                            "MaxAmount": "36.8637",
+                            "UpperQuantity": "7",
+                            "MinAmount": "25.0677",
+                            "Uncertainty": "0.2823",
+                            "CurveType": "LogNormal"
+                        }
+                    },
+                    "Median": "0.0186",
+                    "Beta": "0.45"
+                }
+            ]
+        }
+    }
+}

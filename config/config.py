@@ -1,5 +1,5 @@
 import sys
-from typing import Literal, TypeVar
+from typing import Literal, TypeVar, List, Tuple
 from loguru import logger as LOGGER
 
 
@@ -18,6 +18,7 @@ EDP_TYPES = {
     'Link Beam Chord Rotation': 'Radian',
     'Peak Floor Velocity': 'Inch Per Second'
 }
+VECTOR = List[float]
 EDP_TYPING = TypeVar(list(EDP_TYPES.keys()))
 DISTR_TYPING = Literal['Normal', 'LogNormal']
 UNITS_TYPING = Literal['m', 'mm', 'in', 'ft']

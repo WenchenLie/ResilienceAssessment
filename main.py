@@ -55,10 +55,31 @@ if __name__ == "__main__":
     building.add_component(column_base, 35, 1)
     building.add_component(column_splices, 6, 3)
 
-    building.add_IDAdata(44,
-        'data/IDAdata/template_IDR.xlsx',
-        'data/IDAdata/template_RIDR.xlsx',
-        'data/IDAdata/template_PFA.xlsx',
+    building.set_seismic_response(
+        IDR_PSDM=[
+            [-3.024, 1.046, 0.4],
+            [-3.024, 1.046, 0.4],
+            [-3.024, 1.046, 0.4],
+            [-3.024, 1.046, 0.4]
+        ],
+        RIDR_PSDM=[
+            [-4.291, 2.178, 0.4],
+            [-4.291, 2.178, 0.4],
+            [-4.291, 2.178, 0.4],
+            [-4.291, 2.178, 0.4]
+        ],
+        PFA_PSDM=[
+            [0.384, 0.731, 0.4],
+            [0.384, 0.731, 0.4],
+            [0.384, 0.731, 0.4],
+            [0.384, 0.731, 0.4]
+        ],
+        clps_frag=[2.0, 0.4]
+    )
+    building.set_demolishment_prob(
+        median_RIDR=0.01,
+        logstd=0.3
     )
 
+    
 

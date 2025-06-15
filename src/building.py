@@ -3,10 +3,13 @@ from typing import Literal
 import numpy as np
 import matplotlib.pyplot as plt
 import openpyxl as px
+from scipy.stats import norm
 from openpyxl.worksheet.worksheet import Worksheet
 from .compenent import Component
 from .unit_convertor import to_foot
-from config.config import UNITS_TYPING, LOGGER
+from config.config import UNITS_TYPING, LOGGER,\
+    VECTOR
+
 
 class Building:
     def __init__(self,
@@ -36,6 +39,7 @@ class Building:
         self.heights = to_foot(heights, unit)
         self.replacement_cost = replacement_cost
         self.components: list[tuple[Component, float, int, int]] = []
+        self.median_RIDR = None  # 不为None则考虑残余变形过大导致的拆除概率
         LOGGER.success(f'Building "{self.name}" is created successfully.')
 
     def add_component(self,
@@ -107,6 +111,134 @@ class Building:
         self.PFV_range = PFV_range
         LOGGER.success(f'IDA data is imported successfully.')
 
+    def set_seismic_response(self,
+        IDR_PSDM: list[VECTOR],
+        RIDR_PSDM: VECTOR,
+        PFA_PSDM: list[VECTOR],
+        PFV_PSDM: list[VECTOR] = None,
+        IDR_factor: float = 1.0,
+        RIDR_factor: float = 1.0,
+        PFA_factor: float = 1.0,
+        PFV_factor: float = 1.0,
+        clps_frag: VECTOR = None,
+    ):
+        """导入概率地震需求模型和倒塌易损性
+
+        Args:
+            IDR_PSDM (list[VECTOR]): 各层位移角的PSDM (rad)
+            RIDR_PSDM (VECTOR): 最大残余位移角的PSDM (rad)
+            PFA_PSDM (list[VECTOR]): 各层绝对加速度的PSDM (g)
+            PFV_PSDM (list[VECTOR], optional): 各层绝对速度的PSDM (in/s)
+            IDR_factor (float, optional): 位移角需求的缩放系数
+            RIDR_factor (float, optional): 残余位移角的缩放系数
+            PFA_factor (float, optional): 楼层加速度的缩放系数
+            PFV_factor (float, optional): 楼层速度的缩放系数
+            clps_frag (VECTOR, optional): 倒塌易损性曲线参数，每层的倒塌概率
+        
+        Note:
+        -----
+        * FEMA P58采用实际计算得到的需求矩阵来预测地震需求，但是实际IDA计算中，
+          每条地震动的强度和计算次数都会动态调整，IDA结果无法与FEMA P58的方法
+          适配，因此此处采用概率地震需求模型(PSDM)来预测给定地震强度下的结构地
+          震需求，但是仍根据倒塌易损性曲线来计算倒塌概率，因为倒塌级别的地震动
+          强度下PSDM会失真。
+        * 每种类型EDP的PSDM需传入分别导入`A`、`B`、`sgm`三个参数，并认为
+          `ln(DM) = A + B * ln(IM)`，标准差为`sgm`
+        * `clps_frag`参数分别为倒塌强度中值`θ`和对数标准差`β`，倒塌概率为：
+          `Pc = norm(ln(Sa / exp(θ)) / β, 0, 1)`
+        * 位移角、残余位移角、楼层加速度、楼层速度的单位应分别为(rad)、(rad)、
+          (g)、(in/s)，如果导入的数据不是采用这些单位，则需要调整`IDR_factor`、
+          `PFA_factor`和`PFV_factor`
+        """
+        self.IDR_PSDM = IDR_PSDM
+        self.RIDR_PSDM = RIDR_PSDM
+        self.PFA_PSDM = PFA_PSDM
+        self.PFV_PSDM = PFV_PSDM
+        self.IDR_factor = IDR_factor
+        self.RIDR_factor = RIDR_factor
+        self.PFA_factor = PFA_factor
+        self.PFV_factor = PFV_factor
+        self.clps_frag = clps_frag
+        LOGGER.success(f'Seismic_response has been defined.')
+    
+    def set_demolishment_prob(self,
+            median_RIDR: float,
+            logstd: float
+        ):
+        """定义拆除概率"""
+        self.median_RIDR = median_RIDR
+        self.logstd = logstd
+        LOGGER.success(f'Probability of demolishment has been defined.')
+    
+    def _simu_IDR(self,
+        Sa: float
+    ) -> np.ndarray:
+        # ln(IDR) = A + B * ln(Sa)
+        IDR = np.zeros(self.Nstory)
+        for i in range(self.Nstory):
+            A, B, logstd = self.IDR_PSDM[i]
+            ln_median = A[i] + B[i] * np.log(Sa)
+            IDR[i] = np.exp(np.random.normal(ln_median, logstd[i]))
+        IDR = np.where(IDR < 0, 0, IDR)
+        return IDR * self.IDR_factor
+    
+    def _simu_RIDR(self,
+        Sa: float
+    ) -> float:
+        # ln(RIDR) = A + B * ln(Sa)
+        if self.PFV_PSDM is None:
+            return None
+        A, B, logstd = self.RIDR_PSDM
+        ln_median = A + B * np.log(Sa)
+        RIDR = np.exp(np.random.normal(ln_median, logstd))
+        RIDR = np.where(RIDR < 0, 0, RIDR)
+        return RIDR * self.RIDR_factor
+
+    def _simu_PFA(self,
+        Sa: float
+    ) -> np.ndarray:
+        # ln(PFA) = A + B * ln(Sa)
+        PFA = np.zeros(self.Nstory)
+        for i in range(self.Nstory):
+            A, B, logstd = self.PFA_PSDM[i]
+            ln_median = A[i] + B[i] * np.log(Sa)
+            PFA[i] = np.exp(np.random.normal(ln_median, logstd[i]))
+        PFA = np.where(PFA < 0, 0, PFA)
+        return PFA * self.PFA_factor
+
+    def _simu_PFV(self,
+        Sa: float
+    ) -> np.ndarray:
+        # ln(PFV) = A + B * ln(Sa)
+        PFV = np.zeros(self.Nstory)
+        for i in range(self.Nstory):
+            A, B, logstd = self.PFV_PSDM[i]
+            ln_median = A[i] + B[i] * np.log(Sa)
+            PFV[i] = np.exp(np.random.normal(ln_median, logstd[i]))
+        PFV = np.where(PFV < 0, 0, PFV)
+        return PFV * self.PFV_factor
+
+    def _simu_clps(self,
+            Sa: float
+        ) -> bool:
+        # 模拟倒塌
+        if self.clps_frag is None:
+            return False  # 没有定义倒塌易损性，不考虑倒塌
+        clps_median, beta = self.clps_frag  # 倒塌强度中值和对数标准差
+        Pc = norm.cdf(np.log(Sa / clps_median) / beta, 0, 1)
+        clps = np.random.uniform() < Pc
+        return bool(clps)
+
+    def _simu_demolishment(self,
+            RIDR: float
+        ) -> bool:
+        # 模拟拆除
+        if self.median_RIDR is None:
+            return False  # 没有定义拆除概率，不考虑拆除
+        Pc = norm.cdf(np.log(RIDR / self.median_RIDR) / self.logstd, 0, 1)
+        dm = np.random.uniform() < Pc
+        return bool(dm)
+
 
 def _read_IDA_file(
         file_path: str | Path,
@@ -144,14 +276,3 @@ def _read_column(ws: Worksheet, row: int, col: int) -> np.ndarray:
             break
     return np.array(data)
 
-
-def _plot_IDA_data(IDA_data: list[np.ndarray], edp_name: str):
-    label = 'Individual'
-    for i, data in enumerate(IDA_data):
-        plt.plot(data[:, 0], data[:, 1], color='grey', label=label)
-        label = None
-    plt.xlabel(edp_name)
-    plt.ylabel("IM (g)")
-    plt.legend()
-    plt.tight_layout()
-    plt.show()

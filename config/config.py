@@ -1,7 +1,26 @@
-from typing import Literal
+import sys
+from typing import Literal, TypeVar
+from loguru import logger as LOGGER
 
-EDP_TYPING = Literal['Story Drift Ratio']
+
+LOGGER.remove()
+LOGGER.add(
+    sink=sys.stdout,
+    format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> <red>|</red> <level>{level}</level> <red>|</red> <level>{message}</level>",
+    level="DEBUG"
+)
+
+EDP_TYPES = {
+    'Story Drift Ratio': 'Radian',
+    'Effective Drift': 'Radian',
+    'Acceleration': 'g',
+    'Link Rotation Angle': 'Radian',
+    'Link Beam Chord Rotation': 'Radian',
+    'Peak Floor Velocity': 'Inch Per Second'
+}
+EDP_TYPING = TypeVar(list(EDP_TYPES.keys()))
 DISTR_TYPING = Literal['Normal', 'LogNormal']
+UNITS_TYPING = Literal['m', 'mm', 'in', 'ft']
 
 AVAILABLE_COMP = [
     'B1031.001',

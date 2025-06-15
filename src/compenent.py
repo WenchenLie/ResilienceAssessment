@@ -1,6 +1,8 @@
 import json
+from pprint import pprint
+from math import isclose
 from pathlib import Path
-from typing import Literal
+from typing import Literal, Self
 import numpy as np
 from scipy.stats import truncnorm
 from config.config import AVAILABLE_COMP, DISTR_TYPING
@@ -10,12 +12,41 @@ class Component:
     comp_data_path = Path('data/ATCCurves_json')
 
     def __init__(self,
-                 ID: str):
-        if not ID in AVAILABLE_COMP:
-            raise ValueError(f'Component "{ID}" is not available')
-        self.ID = ID
-        self.comp_data = self._get_comp_data()
+            ID: str,
+            show_info: bool = False,
+            __user_defined: bool = False,
+            __json_file: str | Path = None
+        ):
+        """定义一个构件，基于FEMA P58数据库
+
+        Args:
+            ID (str): 构件ID
+            show_info (bool, optional): 是否打印主要信息
+        """
+        if not __user_defined:
+            if not ID in AVAILABLE_COMP:
+                raise ValueError(f'Component "{ID}" is not available')
+            self.ID = ID
+            self.comp_data = self._get_comp_data()
+        else:
+            self.comp_data: dict = json.load(open(__json_file, "r"))
+            self.ID = self.comp_data['FragilityCurve']['ID']
         self.damage_states = self._get_DSs()
+        if show_info:
+            self.show_info()
+    
+    @classmethod
+    def user_component(cls,
+            json_file: str | Path,
+            show_info: bool = False
+        ) -> Self:
+        """用户自定义一个构件
+
+        Args:
+            json_file (str | Path): 包含易损性信息的json文件，可参考`template.json`
+            show_info (bool, optional): 是否打印主要信息
+        """
+        return cls(None, show_info, True, json_file)
     
     def _get_comp_data(self):
         with open(self.comp_data_path / f'{self.ID}.json', "r") as f:
@@ -31,6 +62,8 @@ class Component:
         edp_type: str = self.comp_data['FragilityCurve']['EDPType']['TypeName']
         damage_states['edp_type'] = edp_type
         DSs: list[dict] = self.comp_data['FragilityCurve']['DamageStates']['DamageState']
+        if isinstance(DSs, dict):
+            DSs = [DSs]  # 只有一个损伤状态的情况
         for _, DS in enumerate(DSs):
             median = float(DS['Median'])
             beta = float(DS['Beta'])
@@ -46,32 +79,64 @@ class Component:
         """计算在给定损伤状态的情况下的构件修复成本
 
         Args:
-            quantity (float): 数量(以考虑修复成本的规模效应)
+            quantity (float): 数量
             ds (int): 损伤状态序号，从1开始
             is_random (bool, optional): 是否考虑随机分布，默认False，即使用中值
+        
+        Returns:
+            float: 修复成本
         """
-        DS_num = len(self.comp_data['FragilityCurve']['DamageStates']['DamageState'])
-        if ds > DS_num:
-            raise ValueError(f'Component {self.ID} has only {DS_num} damage states, but {ds} is given.')
+        DS_data = self.comp_data['FragilityCurve']['DamageStates']['DamageState']
+        if ds > len(DS_data):
+            raise ValueError(f'Component {self.ID} has only {len(DS_data)} damage states, but {ds} is given.')
         elif ds < 1:
             raise ValueError(f'Damage state should be a positive integer, but {ds} is given.')
-        DS: dict = self.comp_data['FragilityCurve']['DamageStates']['DamageState'][ds-1]
+        DSs: dict = self.comp_data['FragilityCurve']['DamageStates']['DamageState']
+        if isinstance(DSs, dict):
+            DS = DSs
+        else:
+            DS = DSs[ds-1]
         if 'DamageStates' in DS:
             # 存在相同等级的互斥损伤状态
             subDSs: list[dict] = DS['DamageStates']['DamageState']
-            percents = []
-            for subDS in subDSs:
-                percents.append(float(subDS['Percent']))
-            if is_random:
-                # 根据percents随机选择一个子损伤状态
-                subDS = np.random.choice(subDSs, p=percents)
-            else:
-                # 使用percents中较大概率数对应的子损伤状态
-                subDS = subDSs[np.argmax(percents)]
-            cost_cons: dict[str, str | float] = _extract_cost(subDS)
+            DSGroupType: str = DS['DamageStates']['DSGroupType']
+            if DSGroupType == 'MutuallyExclusive':
+                # 互斥的子损伤状态
+                percents = []
+                for subDS in subDSs:
+                    percents.append(float(subDS['Percent']))
+                if is_random:
+                    # 根据percents随机选择一个子损伤状态
+                    subDS = np.random.choice(subDSs, p=percents)
+                else:
+                    # 使用percents中较大概率数对应的子损伤状态
+                    subDS = subDSs[np.argmax(percents)]
+                cost_cons: dict[str, str | float] = _extract_cost(subDS)
+            elif DSGroupType == 'Simultaneous':
+                # 并行的子损伤状态
+                cost = 0
+                for subDS in subDSs:
+                    percent = float(subDS['Percent'])
+                    cost_cons = _extract_cost(subDS)
+                    cost_i = _get_prob_cons(
+                        cost_cons['LowerQuantity'],
+                        cost_cons['MaxAmount'],
+                        cost_cons['UpperQuantity'],
+                        cost_cons['MinAmount'],
+                        cost_cons['Uncertainty'],
+                        cost_cons['CurveType'],
+                        quantity,
+                        is_random
+                    )
+                    if is_random:
+                        cost_i = np.random.choice([cost_i, 0], p=[percent, 1-percent])
+                    else:
+                        cost_i = percent * cost_i
+                    cost += cost_i
+                return cost
         else:
             cost_cons: dict[str, str | float] = _extract_cost(DS)
-        cost = _get_prob_cost(
+        cost = _get_prob_cons(
             cost_cons['LowerQuantity'],
             cost_cons['MaxAmount'],
             cost_cons['UpperQuantity'],
@@ -83,108 +148,297 @@ class Component:
         )
         return cost
     
-    
-#     def _get_DSs(self):
-#         """获取损伤状态，将FEMA P58数据库扁平化"""
-#         damage_states = {
-#             'edp_type': None,  # EDP类型
-#             'median': [],  # 中值EDP
-#             'beta': [],  # 离差
-#             'use_casualty': [],  # 是否用于计算伤亡
-#             'energy_type': [],  # 能量曲线分布类型
-#             'energy_median': [],  # 能量中值
-#             'energy_dispersion': [],  # 能量离差
-#             'carbon_type': [],  # 碳排曲线分布类型
-#             'carbon_median': [],  # 碳排中值
-#             'carbon_dispersion': [],  # 碳排离差
-#             'cost_lower_quantity': [],  # 损失量下限
-#             'cost_max_amount': [],  # 损失金额上限
-#             'cost_upper_quantity': [],  # 损失量上限
-#             'cost_min_amount': [],  # 损失金额下限
-#             'cost_uncertainty': [],  # 损失金额不确定性
-#             'cost_type': [],  # 损失金额曲线分布类型
-#             'time_lower_quantity': [],  # 时间下限
-#             'time_max_amount': [],  # 时间上限
-#             'time_upper_quantity': [],  # 时间上限
-#             'time_min_amount': [],  # 时间下限
-#             'time_uncertainty': [],  # 时间不确定性
-#             'time_type': [],  # 时间曲线分布类型
-#         }  # 如果有互斥损伤状态，则列表内再嵌套列表
-#         edp_type: str = self.comp_data['FragilityCurve']['EDPType']['TypeName']
-#         damage_states['edp_type'] = edp_type
-#         DSs: list[dict] = self.comp_data['FragilityCurve']['DamageStates']['DamageState']
-#         for i, DS in enumerate(DSs):
-#             if 'DamageStates' in DS:
-#                 # 存在相同等级的互斥损伤状态
-#                 subDS: list[dict] = DS['DamageStates']['DamageState']
+    def _get_time(self,
+            quantity: float,
+            ds: int,
+            is_random: bool = False
+        ) -> float:
+        """计算在给定损伤状态的情况下的构件修复时间
 
-#             else:
+        Args:
+            quantity (float): 数量
+            ds (int): 损伤状态序号，从1开始
+            is_random (bool, optional): 是否考虑随机分布，默认False，即使用中值
+        
+        Returns:
+            float: 修复时间
+        """
+        DS_data = self.comp_data['FragilityCurve']['DamageStates']['DamageState']
+        if ds > len(DS_data):
+            raise ValueError(f'Component {self.ID} has only {len(DS_data)} damage states, but {ds} is given.')
+        elif ds < 1:
+            raise ValueError(f'Damage state should be a positive integer, but {ds} is given.')
+        DSs: dict = self.comp_data['FragilityCurve']['DamageStates']['DamageState']
+        if isinstance(DSs, dict):
+            DS = DSs
+        else:
+            DS = DSs[ds-1]
+        if 'DamageStates' in DS:
+            # 存在相同等级的互斥损伤状态
+            subDSs: list[dict] = DS['DamageStates']['DamageState']
+            DSGroupType: str = DS['DamageStates']['DSGroupType']
+            if DSGroupType == 'MutuallyExclusive':
+                # 互斥的子损伤状态
+                percents = []
+                for subDS in subDSs:
+                    percents.append(float(subDS['Percent']))
+                if is_random:
+                    # 根据percents随机选择一个子损伤状态
+                    subDS = np.random.choice(subDSs, p=percents)
+                else:
+                    # 使用percents中较大概率数对应的子损伤状态
+                    subDS = subDSs[np.argmax(percents)]
+                time_cons: dict[str, str | float] = _extract_time(subDS)
+            elif DSGroupType == 'Simultaneous':
+                # 并行的子损伤状态
+                time = 0
+                for subDS in subDSs:
+                    percent = float(subDS['Percent'])
+                    time_cons = _extract_time(subDS)
+                    time_i = _get_prob_cons(
+                        time_cons['LowerQuantity'],
+                        time_cons['MaxAmount'],
+                        time_cons['UpperQuantity'],
+                        time_cons['MinAmount'],
+                        time_cons['Uncertainty'],
+                        time_cons['CurveType'],
+                        quantity,
+                        is_random
+                    )
+                    if is_random:
+                        time_i = np.random.choice([time_i, 0], p=[percent, 1-percent])
+                    else:
+                        time_i = percent * time_i
+                    time += time_i
+                return time
+        else:
+            time_cons: dict[str, str | float] = _extract_time(DS)
+        time = _get_prob_cons(
+            time_cons['LowerQuantity'],
+            time_cons['MaxAmount'],
+            time_cons['UpperQuantity'],
+            time_cons['MinAmount'],
+            time_cons['Uncertainty'],
+            time_cons['CurveType'],
+            quantity,
+            is_random
+        )
+        return time
 
-#                 damage_states['median'].append(median)
-#                 damage_states['beta'].append(beta)
-#                 damage_states['use_casualty'].append(use_casualty)
-#                 damage_states['energy_type'].append(energy_type)
-#                 damage_states['energy_median'].append(energy_median)
-#                 damage_states['energy_dispersion'].append(energy_dispersion)
-#                 damage_states['carbon_type'].append(carbon_type)
-#                 damage_states['carbon_median'].append(carbon_median)
-#                 damage_states['carbon_dispersion'].append(carbon_dispersion)
-#                 damage_states['cost_lower_quantity'].append(cost_lower_quantity)
-#                 damage_states['cost_max_amount'].append(cost_max_amount)
-#                 damage_states['cost_upper_quantity'].append(cost_upper_quantity)
-#                 damage_states['cost_min_amount'].append(cost_min_amount)
-#                 damage_states['cost_uncertainty'].append(cost_uncertainty)
-#                 damage_states['cost_type'].append(cost_type)
-#                 damage_states['time_lower_quantity'].append(time_lower_quantity)
-#                 damage_states['time_max_amount'].append(time_max_amount)
-#                 damage_states['time_upper_quantity'].append(time_upper_quantity)
-#                 damage_states['time_min_amount'].append(time_min_amount)
-#                 damage_states['time_uncertainty'].append(time_uncertainty)
-#                 damage_states['time_type'].append(time_type)
+    def _get_energy(self,
+            quantity: float,
+            ds: int,
+            is_random: bool = False
+        ) -> float:
+        """计算在给定损伤状态的情况下的构件修复的能量消耗
+
+        Args:
+            quantity (float): 数量
+            ds (int): 损伤状态序号，从1开始
+            is_random (bool, optional): 是否考虑随机分布，默认False，即使用中值
+
+        Returns:
+            float: 修复的能量消耗
+        """
+        DS_data = self.comp_data['FragilityCurve']['DamageStates']['DamageState']
+        if ds > len(DS_data):
+            raise ValueError(f'Component {self.ID} has only {len(DS_data)} damage states, but {ds} is given.')
+        elif ds < 1:
+            raise ValueError(f'Damage state should be a positive integer, but {ds} is given.')
+        DSs: dict = self.comp_data['FragilityCurve']['DamageStates']['DamageState']
+        if isinstance(DSs, dict):
+            DS = DSs
+        else:
+            DS = DSs[ds-1]
+        if 'DamageStates' in DS:
+            # 存在相同等级的互斥损伤状态
+            subDSs: list[dict] = DS['DamageStates']['DamageState']
+            DSGroupType: str = DS['DamageStates']['DSGroupType']
+            if DSGroupType == 'MutuallyExclusive':
+                # 互斥的子损伤状态
+                percents = []
+                for subDS in subDSs:
+                    percents.append(float(subDS['Percent']))
+                if is_random:
+                    # 根据percents随机选择一个子损伤状态
+                    subDS = np.random.choice(subDSs, p=percents)
+                else:
+                    # 使用percents中较大概率数对应的子损伤状态
+                    subDS = subDSs[np.argmax(percents)]
+                energy_median, energy_type, energy_dispersion = _extract_energy(subDS)
+            elif DSGroupType == 'Simultaneous':
+                # 并行的子损伤状态
+                energy = 0
+                for subDS in subDSs:
+                    percent = float(subDS['Percent'])
+                    energy_median, energy_type, energy_dispersion = _extract_energy(subDS)
+                    energy_i = _get_prob_cons(1, energy_median, 2, energy_median, energy_dispersion,
+                                              energy_type, quantity, is_random)
+                    if is_random:
+                        energy_i = np.random.choice([energy_i, 0], p=[percent, 1-percent])
+                    else:
+                        energy_i = percent * energy_i
+                    energy += energy_i
+                return energy
+        else:
+            energy_median, energy_type, energy_dispersion = _extract_energy(DS)
+        energy = _get_prob_cons(1, energy_median, 2, energy_median, energy_dispersion,
+                              energy_type, quantity, is_random)
+        return energy
+
+    def _get_carbon(self,
+            quantity: float,
+            ds: int,
+            is_random: bool = False
+        ) -> float:
+        """计算在给定损伤状态的情况下的构件修复的能量消耗
+
+        Args:
+            quantity (float): 数量
+            ds (int): 损伤状态序号，从1开始
+            is_random (bool, optional): 是否考虑随机分布，默认False，即使用中值
+
+        Returns:
+            float: 碳排放
+        """
+        DS_data = self.comp_data['FragilityCurve']['DamageStates']['DamageState']
+        if ds > len(DS_data):
+            raise ValueError(f'Component {self.ID} has only {len(DS_data)} damage states, but {ds} is given.')
+        elif ds < 1:
+            raise ValueError(f'Damage state should be a positive integer, but {ds} is given.')
+        DSs: dict = self.comp_data['FragilityCurve']['DamageStates']['DamageState']
+        if isinstance(DSs, dict):
+            DS = DSs
+        else:
+            DS = DSs[ds-1]
+        if 'DamageStates' in DS:
+            # 存在相同等级的互斥损伤状态
+            subDSs: list[dict] = DS['DamageStates']['DamageState']
+            DSGroupType: str = DS['DamageStates']['DSGroupType']
+            if DSGroupType == 'MutuallyExclusive':
+                # 互斥的子损伤状态
+                percents = []
+                for subDS in subDSs:
+                    percents.append(float(subDS['Percent']))
+                if is_random:
+                    # 根据percents随机选择一个子损伤状态
+                    subDS = np.random.choice(subDSs, p=percents)
+                else:
+                    # 使用percents中较大概率数对应的子损伤状态
+                    subDS = subDSs[np.argmax(percents)]
+                carbon_median, carbon_type, carbon_dispersion = _extract_carbon(subDS)
+            elif DSGroupType == 'Simultaneous':
+                # 并行的子损伤状态
+                carbon = 0
+                for subDS in subDSs:
+                    percent = float(subDS['Percent'])
+                    carbon_median, carbon_type, carbon_dispersion = _extract_carbon(subDS)
+                    carbon_i = _get_prob_cons(1, carbon_median, 2, carbon_median, carbon_dispersion,
+                                              carbon_type, quantity, is_random)
+                    if is_random:
+                        carbon_i = np.random.choice([carbon_i, 0], p=[percent, 1-percent])
+                    else:
+                        carbon_i = percent * carbon_i
+                    carbon += carbon_i
+                return carbon
+        else:
+            carbon_median, carbon_type, carbon_dispersion = _extract_carbon(DS)
+        carbon = _get_prob_cons(1, carbon_median, 2, carbon_median, carbon_dispersion,
+                              carbon_type, quantity, is_random)
+        return carbon
+
+    def _get_casualty(self,
+            quantity: float,
+            ds: int,
+            is_random: bool = False
+        ) -> tuple[float, float, float]:
+        """计算在给定损伤状态的情况下的构件造成的死亡人数和严重受伤人数
+
+        Args:
+            quantity (float): 数量
+            ds (int): 损伤状态序号，从1开始
+            is_random (bool, optional): 是否考虑随机分布，默认False，即使用中值
+
+        Returns:
+            tuple[float, float, float]: 受影响的总面积，死亡率，伤亡率
+        """
+        DS_data = self.comp_data['FragilityCurve']['DamageStates']['DamageState']
+        if ds > len(DS_data):
+            raise ValueError(f'Component {self.ID} has only {len(DS_data)} damage states, but {ds} is given.')
+        elif ds < 1:
+            raise ValueError(f'Damage state should be a positive integer, but {ds} is given.')
+        DSs: dict = self.comp_data['FragilityCurve']['DamageStates']['DamageState']
+        if isinstance(DSs, dict):
+            DS = DSs
+        else:
+            DS = DSs[ds-1]
+        if 'DamageStates' in DS:
+            # 存在相同等级的互斥损伤状态
+            subDSs: list[dict] = DS['DamageStates']['DamageState']
+            DSGroupType: str = DS['DamageStates']['DSGroupType']
+            if DSGroupType == 'MutuallyExclusive':
+                # 互斥的子损伤状态
+                percents = []
+                for subDS in subDSs:
+                    percents.append(float(subDS['Percent']))
+                if is_random:
+                    # 根据percents随机选择一个子损伤状态
+                    subDS = np.random.choice(subDSs, p=percents)
+                else:
+                    # 使用percents中较大概率数对应的子损伤状态
+                    subDS = subDSs[np.argmax(percents)]
+                use_casualty, area, death_rate, death_rate_beta, injury_rate, injury_rate_beta = _extract_casualty(subDS)
+            elif DSGroupType == 'Simultaneous':
+                # 并行的子损伤状态
+                death_rate, injury_rate = 0, 0
+                for subDS in subDSs:
+                    percent = float(subDS['Percent'])
+                    use_casualty, area, death_rate, death_rate_beta, injury_rate, injury_rate_beta = _extract_casualty(subDS)
+                    if not use_casualty:
+                        return area * quantity, 0, 0
+                    death_rate_i = _get_prob_cons(1, death_rate, 2, death_rate, death_rate_beta,
+                                                'Normal', 1, is_random)
+                    injury_rate_i = _get_prob_cons(1, injury_rate, 2, injury_rate, injury_rate_beta,
+                                                'Normal', 1, is_random)
+                    if is_random:
+                        (death_rate_i, injury_rate_i) = np.random.choice([(death_rate_i, injury_rate_i), (0, 0)], p=[percent, 1-percent])
+                    else:
+                        death_rate_i, injury_rate_i = percent * death_rate_i, percent * injury_rate_i
+                    death_rate += death_rate_i
+                    injury_rate += injury_rate_i
+                return area * quantity, death_rate, injury_rate
+        else:
+            use_casualty, area, death_rate, death_rate_beta, injury_rate, injury_rate_beta = _extract_casualty(DS)
+        if not use_casualty:
+            return area * quantity, 0, 0
+        death_rate = _get_prob_cons(1, death_rate, 2, death_rate, death_rate_beta,
+                                    'Normal', 1, is_random)
+        injury_rate = _get_prob_cons(1, injury_rate, 2, injury_rate, injury_rate_beta,
+                                    'Normal', 1, is_random)
+        return area * quantity, death_rate, injury_rate
+  
+    def show_info(self, is_print: bool = True) -> dict[str, str]:
+        """获取构件关键信息
+
+        Args:
+            is_print (bool, optional): 是否打印，默认True
+        
+        Returns:
+            dict[str, str]: 构件关键信息
+        """
+        data = self.comp_data['FragilityCurve']
+        info = {
+            'ID': self.ID,
+            'component_name': data['Name'],
+            'description': data['Directional'],
+            'EDP_type': data['EDPType']["TypeName"],
+            'EDP_unit': data['EDPType']["DefaultUnits"],
+        }
+        if is_print:
+            pprint(info)
+        return info
 
 
-# def _parse_damage_state(DS: dict, is_subDS: Literal[False, 'unkown']):
-#     """解析单个损伤状态"""
-#     if not is_subDS:
-#         median = float(DS['Median'])
-#         beta = float(DS['Beta'])
-#     if 'DamageStates' in DS:
-#         # 存在相同等级的互斥损伤状态
-#         subDSs: list[dict] = DS['DamageStates']['DamageState']
-#         sub_data_ls = []
-#         for subDS in subDSs:
-#             sub_data_ls.append(_parse_damage_state(subDS, True))
-#     cons_group: dict = DS['ConsequenceGroup']  # Consequence group
-#     use_casualty: bool = cons_group['UseCasualty']  # True
-#     energy_type: str = cons_group['EnergyCurveType']  # Normal
-#     energy_median = float(cons_group['EnergyMedian'])
-#     energy_dispersion = float(cons_group['EnergyDispersion'])
-#     carbon_type: str = cons_group['CarbonCurveType']
-#     carbon_median = float(cons_group['CarbonMedian'])
-#     carbon_dispersion = float(cons_group['CarbonDispersion'])
-#     cost_cons: dict = cons_group['CostConsequence']
-#     cost_lower_quantity = float(cost_cons['LowerQuantity'])
-#     cost_max_amount = float(cost_cons['MaxAmount'])
-#     cost_upper_quantity = float(cost_cons['UpperQuantity'])
-#     cost_min_amount = float(cost_cons['MinAmount'])
-#     cost_uncertainty = float(cost_cons['Uncertainty'])
-#     cost_type: str = cost_cons['CurveType']
-#     time_cons: dict = cons_group['TimeConsequence']
-#     time_lower_quantity = float(time_cons['LowerQuantity'])
-#     time_max_amount = float(time_cons['MaxAmount'])
-#     time_upper_quantity = float(time_cons['UpperQuantity'])
-#     time_min_amount = float(time_cons['MinAmount'])
-#     time_uncertainty = float(time_cons['Uncertainty'])
-#     time_type: str = time_cons['CurveType']
-#     data = (use_casualty, energy_type, energy_median, energy_dispersion,\
-#         carbon_type, carbon_median, carbon_dispersion, cost_lower_quantity,\
-#         cost_max_amount, cost_upper_quantity, cost_min_amount, cost_uncertainty, cost_type,\
-#         time_lower_quantity, time_max_amount, time_upper_quantity, time_min_amount,\
-#         time_uncertainty, time_type)
-#     if is_subDS:
-#         return data
-#     else:
-#         return median, beta, data
 
 def _extract_cost(DS: dict):
     """提取修复损失"""
@@ -197,7 +451,49 @@ def _extract_cost(DS: dict):
             pass
     return cost_cons
 
-def _get_prob_cost(
+def _extract_time(DS: dict):
+    """提取修复时间"""
+    cons_group: dict = DS['ConsequenceGroup']  # Consequence group
+    time_cons: dict[str, str | float] = cons_group['TimeConsequence']
+    for key, val in time_cons.items():
+        try:
+            time_cons[key] = float(val)
+        except ValueError:
+            pass
+    return time_cons
+
+def _extract_energy(DS: dict):
+    """提取修复能量消耗"""
+    cons_group: dict = DS['ConsequenceGroup']  # Consequence group
+    energy_median = float(cons_group['EnergyMedian'])
+    energy_type: DISTR_TYPING = cons_group['EnergyCurveType']
+    energy_dispersion = float(cons_group['EnergyDispersion'])
+    return energy_median, energy_type, energy_dispersion
+
+def _extract_carbon(DS: dict):
+    """提取碳排放"""
+    cons_group: dict = DS['ConsequenceGroup']  # Consequence group
+    carbon_median = float(cons_group['CarbonMedian'])
+    carbon_type: DISTR_TYPING = cons_group['CarbonCurveType']
+    carbon_dispersion = float(cons_group['CarbonDispersion'])
+    return carbon_median, carbon_type, carbon_dispersion
+
+def _extract_casualty(DS: dict):
+    """提取伤亡信息"""
+    cons_group: dict = DS['ConsequenceGroup']  # Consequence group
+    use_casualty: bool = cons_group['UseCasualty']
+    area = cons_group['AffectedFloorArea']
+    if area is None:
+        area = 0
+    else:
+        area = float(area['Area']['Value'])  # 单位恒为 Square Foot
+    death_rate: float = float(cons_group['AffectedDeathRate'])
+    death_rate_beta = float(cons_group['AffectedDeathRateBeta'])
+    injury_rate: float = float(cons_group['AffectedInjuryRate'])
+    injury_rate_beta = float(cons_group['AffectedInjuryRateBeta'])
+    return use_casualty, area, death_rate, death_rate_beta, injury_rate, injury_rate_beta
+
+def _get_prob_cons(
     lower_quantity: float,
     max_amount: float,
     upper_quantity: float,
@@ -206,14 +502,14 @@ def _get_prob_cost(
     curve_type: DISTR_TYPING,
     quantity: float,
     is_random: bool,
-):
-    """计算概率修复成本
+) -> float:
+    """计算概率修复成本和时间成本，考虑规模效应
 
     Args:
         lower_quantity (float): 最小数量
-        max_amount (float): 单价中值上限
+        max_amount (float): 单价/修复时间中值上限
         upper_quantity (float): 最大数量
-        min_amount (float): 单价中值下限
+        min_amount (float): 单价/修复时间中值下限
         uncertainty (float): 不确定性
         curve_type (DISTR_TYPING): 概率分布类型
         quantity (float): 数量
@@ -222,10 +518,16 @@ def _get_prob_cost(
     Returns:
         float: 修复成本
     """
-    quantity = np.clip(quantity, lower_quantity, upper_quantity)
-    median = max_amount - (max_amount - min_amount) * (
-        (quantity - lower_quantity) / (upper_quantity - lower_quantity)
-    )
+    if quantity < lower_quantity:
+        median = max_amount
+    elif quantity > upper_quantity:
+        median = min_amount
+    else:
+        median = max_amount - (max_amount - min_amount) * (
+            (quantity - lower_quantity) / (upper_quantity - lower_quantity)
+        )
+    if isclose(median, 0):
+        return 0.0
     if is_random:
         if curve_type == 'Normal':
             std = uncertainty * median

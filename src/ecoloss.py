@@ -1,14 +1,16 @@
 import numpy as np
 from .building import Building
 from .compenent import Component
+from ._calculation import get_EDP_fragility
 
 
-def ecoloss(
-    building: Building,
+def intensity_based_loss(
     Sa_ls: np.ndarray,
-    collapse_limit: float,
+    building: Building,
 ):
     ...
-    
 
+
+def time_based_loss():
+    ...
 

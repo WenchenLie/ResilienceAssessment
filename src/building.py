@@ -56,6 +56,8 @@ class Building:
         -----
         * `story`和`floor`不得同时为`None`
         """
+        if story is None and floor is None:
+            raise ValueError('Either `story` or `floor` should be provided.')
         self.components.append((component, quantity, story, floor))
     
     def add_IDAdata(self,
@@ -67,7 +69,11 @@ class Building:
             IDR_factor: float = 1.0,
             RIDR_factor: float = 1.0,
             PFA_factor: float = 1.0,
-            PFV_factor: float = 1.0
+            PFV_factor: float = 1.0,
+            IDR_range: tuple[float, float] = None,
+            RIDR_range: tuple[float, float] = None,
+            PFA_range: tuple[float, float] = None,
+            PFV_range: tuple[float, float] = None,
         ):
         """导入IDA结果的csv文件，格式可参考`template_*.csv`
 
@@ -92,8 +98,13 @@ class Building:
         self.IDR_data = _read_IDA_file(file_IDR, self.Nstory, gm_num, IDR_factor)
         self.RIDR_data = _read_IDA_file(file_RIDR, self.Nstory, gm_num, RIDR_factor, is_RIDR=True)
         self.PFA_data = _read_IDA_file(file_PFA, self.Nstory, gm_num, PFA_factor)
+        self.PFV_data = None
         if file_PFV is not None:
             self.PFV_data = _read_IDA_file(file_IDR, self.Nstory, gm_num, PFV_factor)
+        self.IDR_range = IDR_range
+        self.RIDR_range = RIDR_range
+        self.PFA_range = PFA_range
+        self.PFV_range = PFV_range
         LOGGER.success(f'IDA data is imported successfully.')
 
 

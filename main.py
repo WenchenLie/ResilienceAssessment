@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from src.compenent import Component
 from src.building import Building
-from src.ecoloss2 import intensity_based_loss
+from src.ecoloss import intensity_based_loss
 
 
 if __name__ == "__main__":

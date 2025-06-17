@@ -4,8 +4,9 @@ from math import isclose
 from pathlib import Path
 from typing import Literal, Self
 import numpy as np
+from scipy.stats import norm
 from scipy.stats import truncnorm
-from config.config import AVAILABLE_COMP, DISTR_TYPING
+from config.config import AVAILABLE_COMP, DISTR_TYPING, EDP_TYPING
 
 
 class Component:
@@ -74,14 +75,41 @@ class Component:
     def _simu_DS(self,
         edp: float,
         is_random: bool = False
-    ):
-        ds_ls = self.damage_states['median']
-        beta_ls = self.damage_states['beta']
-        P_ds = np.zeros(len(ds_ls) + 1)
+    ) -> int:
+        """在给定edp下，模拟构件的损伤状态
+
+        Args:
+            edp (float): _description_
+            is_random (bool, optional): _description_. Defaults to False.
+
+        Returns:
+            int: 损伤状态序号，从0(无损伤)开始，1开始表示具体的损伤状态
+        """
+        median_ls: list[float] = self.damage_states['median']  # 各个损伤状态的edp中值
+        ds_flag = [i for i in range(1, len(median_ls) + 1)]  # 各个损伤状态的序号
+        beta_ls: list[float] = self.damage_states['beta']  # 各个损伤状态edp的beta
+        prob = []  # 各个损伤状态的概率
+        for i in range(len(ds_flag)):
+            median, beta = median_ls[i], beta_ls[i]
+            pi = norm.cdf(np.log((edp / median) / beta), 0, 1)  # 构件易损性曲线纵坐标值
+            prob.append(pi)
+        ds_flag.insert(0, 0)  # 添加无损伤状态
+        prob.insert(0, 1)  # 无损伤状态的概率为1
+        ds = zip(ds_flag, prob)  # 各个损伤状态的序号、超越概率
+        ds = sorted(ds, key=lambda x: x[1], reverse=True)  # 按照prob降序排列
+        ds_flag, prob = zip(*ds)
+        prob1 = []  # 各个损伤状态的概率(包含无损伤)(总和=1)
+        for i in range(len(ds_flag)):
+            if i != len(ds_flag) - 1:
+                prob1.append(prob[i] - prob[i + 1])
+            else:
+                prob1.append(prob[-1])
         if is_random:
-            P_ds = 
-            for i, (ds, beta    ) in enumerate(zip(ds_ls, beta_ls)):
-                ...
+            ds = np.random.choice(ds_flag, p=prob1)
+        else:
+            ds = ds_flag[np.argmax(prob1)]  # 取概率最大的损伤状态
+        return ds
+                
 
     def _get_cost(self,
             quantity: float,

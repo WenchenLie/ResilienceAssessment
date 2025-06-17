@@ -1,6 +1,8 @@
+import numpy as np
+import matplotlib.pyplot as plt
 from src.compenent import Component
 from src.building import Building
-from config.config import AVAILABLE_COMP
+from src.ecoloss2 import intensity_based_loss
 
 
 if __name__ == "__main__":
@@ -14,7 +16,7 @@ if __name__ == "__main__":
         size=(x_size, y_size),
         heights=[4.3, 4, 4, 4],
         unit='m',
-        replacement_cost=1000000)
+        replacement_cost=12_000_000)
     
     shear_connection = Component('B1031.001')
     column_base = Component('B1031.011b')
@@ -33,7 +35,6 @@ if __name__ == "__main__":
     electronic_equipment_on_wall_mount_brackets = Component('E2022.021')
     desktop_electronics = Component('E2022.022')
     bookcase_2shelves = Component('E2022.102b')
-    print(moment_connection_both_side.damage_states)
     # Ref: Seismic fragility and loss estimation of self-centering steel braced frames under mainshock-aftershock sequences
 
     for story in range(1, 5):
@@ -61,26 +62,38 @@ if __name__ == "__main__":
             [-3.024, 1.046, 0.4],
             [-3.024, 1.046, 0.4],
             [-3.024, 1.046, 0.4],
-            [-3.024, 1.046, 0.4]
-        ],
-        RIDR_PSDM=[
-            [-4.291, 2.178, 0.4],
-            [-4.291, 2.178, 0.4],
-            [-4.291, 2.178, 0.4],
-            [-4.291, 2.178, 0.4]
-        ],
+            [-3.024, 1.046, 0.4]],
         PFA_PSDM=[
             [0.384, 0.731, 0.4],
             [0.384, 0.731, 0.4],
             [0.384, 0.731, 0.4],
-            [0.384, 0.731, 0.4]
-        ],
-        clps_frag=[2.0, 0.4]
-    )
-    building.set_demolishment_prob(
-        median_RIDR=0.01,
-        logstd=0.3
-    )
-
+            [0.384, 0.731, 0.4]],
+        RIDR_PSDM=[-4.291, 2.178, 0.4])
+    building.set_demolishment_prob(median_RIDR=0.01, logstd_RIDR=0.3)
+    building.set_collapse_prob(median_clps=3.0, logstd_clps=0.4)
     
+    Sa = np.linspace(0.01, 4, 100)
+    intensity_based_results = intensity_based_loss(
+        n=1000,
+        Sa_ls=Sa,
+        building=building,
+        parallel=15
+    )
+    cost_total, cost_mat_clps, cost_mat_dm, cost_mat_repair = intensity_based_results
+    np.save('temp/cost_total.npy', cost_total)
+    np.save('temp/cost_mat_clps.npy', cost_mat_clps)
+    np.save('temp/cost_mat_dm.npy', cost_mat_dm)
+    np.save('temp/cost_mat_repair.npy', cost_mat_repair)
+    
+
+    plt.plot(Sa, np.mean(cost_mat_clps, axis=1), label='Collapse')
+    plt.legend()
+    plt.plot(Sa, np.mean(cost_mat_dm, axis=1), label='Demolition')
+    plt.legend()
+    plt.plot(Sa, np.mean(cost_mat_repair, axis=1), label='Repair')
+    plt.legend()
+    plt.plot(Sa, np.mean(cost_total, axis=1), label='Total')
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
 

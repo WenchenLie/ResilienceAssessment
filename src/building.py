@@ -114,20 +114,20 @@ class Building:
 
     def set_seismic_response(self,
             IDR_PSDM: list[VECTOR],
-            RIDR_PSDM: VECTOR,
             PFA_PSDM: list[VECTOR],
+            RIDR_PSDM: VECTOR = None,
             PFV_PSDM: list[VECTOR] = None,
             IDR_factor: float = 1.0,
-            RIDR_factor: float = 1.0,
             PFA_factor: float = 1.0,
+            RIDR_factor: float = 1.0,
             PFV_factor: float = 1.0,
         ):
         """导入概率地震需求模型和倒塌易损性
 
         Args:
             IDR_PSDM (list[VECTOR]): 各层位移角的PSDM (rad)
-            RIDR_PSDM (VECTOR): 最大残余位移角的PSDM (rad)
             PFA_PSDM (list[VECTOR]): 各层绝对加速度的PSDM (g)
+            RIDR_PSDM (VECTOR): 最大残余位移角的PSDM (rad)
             PFV_PSDM (list[VECTOR], optional): 各层绝对速度的PSDM (in/s)
             IDR_factor (float, optional): 位移角需求的缩放系数
             RIDR_factor (float, optional): 残余位移角的缩放系数
@@ -190,25 +190,39 @@ class Building:
         LOGGER.success(f'Probability of demolishment has been defined.')
 
     def _simu_clps(self,
-            Sa: float
+            Sa: float,
+            is_random: bool = True
         ) -> bool:
-        """模拟倒塌"""
-        if self.median_clps is None:
+        # 模拟倒塌
+        if self.account_for_clps is None:
             return False  # 没有定义倒塌易损性，不考虑倒塌
-        prob = norm.cdf(np.log(Sa / self.median_clps) / self.logstd_clps, 0, 1)
-        clps = np.random.uniform() < prob
+        p = norm.cdf(np.log(Sa / self.median_clps) / self.logstd_RIDR, 0, 1)
+        if is_random:
+            clps = np.random.uniform() < p
+        else:
+            if p > 0.5:
+                clps = True
+            else:
+                clps = False
         return bool(clps)
 
     def _simu_demolishment(self,
-            RIDR: float
+            RIDR: float,
+            is_random: bool = True
         ) -> bool:
-        """模拟拆除"""
-        if self.median_RIDR is None:
+        # 模拟拆除
+        if self.account_for_dm is None:
             return False  # 没有定义拆除概率，不考虑拆除
-        prob = norm.cdf(np.log(RIDR / self.median_RIDR) / self.logstd_RIDR, 0, 1)
-        dm = np.random.uniform() < prob
+        p = norm.cdf(np.log(RIDR / self.median_RIDR) / self.logstd_RIDR, 0, 1)
+        if is_random:
+            dm = np.random.uniform() < p
+        else:
+            if p > 0.5:
+                dm = True
+            else:
+                dm = False
         return bool(dm)
-    
+
     def _simu_IDR(self,
                 Sa: float,
             is_random: bool = True
@@ -217,9 +231,9 @@ class Building:
         IDR = np.zeros(self.Nstory)
         for i in range(self.Nstory):
             A, B, logstd = self.IDR_PSDM[i]
-            ln_median = A[i] + B[i] * np.log(Sa)
+            ln_median = A + B * np.log(Sa)
             if is_random:
-                IDR[i] = np.exp(np.random.normal(ln_median, logstd[i]))
+                IDR[i] = np.exp(np.random.normal(ln_median, logstd))
             else:
                 IDR[i] = np.exp(ln_median)
         IDR = np.where(IDR < 0, 0, IDR)
@@ -230,8 +244,9 @@ class Building:
             is_random: bool = True
         ) -> float:
         # ln(RIDR) = A + B * ln(Sa)
-        if self.PFV_PSDM is None:
-            return None
+        if self.RIDR_PSDM is None:
+            LOGGER.warning('RIDR_PSDM is not defined, returning 0% RIDR')
+            return 0
         A, B, logstd = self.RIDR_PSDM
         ln_median = A + B * np.log(Sa)
         if is_random:
@@ -249,9 +264,9 @@ class Building:
         PFA = np.zeros(self.Nstory)
         for i in range(self.Nstory):
             A, B, logstd = self.PFA_PSDM[i]
-            ln_median = A[i] + B[i] * np.log(Sa)
+            ln_median = A + B * np.log(Sa)
             if is_random:
-                PFA[i] = np.exp(np.random.normal(ln_median, logstd[i]))
+                PFA[i] = np.exp(np.random.normal(ln_median, logstd))
             else:
                 PFA[i] = np.exp(ln_median)
         PFA = np.where(PFA < 0, 0, PFA)
@@ -265,48 +280,13 @@ class Building:
         PFV = np.zeros(self.Nstory)
         for i in range(self.Nstory):
             A, B, logstd = self.PFV_PSDM[i]
-            ln_median = A[i] + B[i] * np.log(Sa)
+            ln_median = A + B * np.log(Sa)
             if is_random:
-                PFV[i] = np.exp(np.random.normal(ln_median, logstd[i]))
+                PFV[i] = np.exp(np.random.normal(ln_median, logstd))
             else:
                 PFV[i] = np.exp(ln_median)
         PFV = np.where(PFV < 0, 0, PFV)
         return PFV * self.PFV_factor
-
-    def _simu_clps(self,
-            Sa: float,
-            is_random: bool = True
-        ) -> bool:
-        # 模拟倒塌
-        if self.clps_frag is None:
-            return False  # 没有定义倒塌易损性，不考虑倒塌
-        clps_median, beta = self.clps_frag  # 倒塌强度中值和对数标准差
-        Pc = norm.cdf(np.log(Sa / clps_median) / beta, 0, 1)
-        if is_random:
-            clps = np.random.uniform() < Pc
-        else:
-            if Pc > 0.5:
-                clps = True
-            else:
-                clps = False
-        return bool(clps)
-
-    def _simu_demolishment(self,
-            RIDR: float,
-            is_random: bool = True
-        ) -> bool:
-        # 模拟拆除
-        if self.median_RIDR is None:
-            return False  # 没有定义拆除概率，不考虑拆除
-        Pd = norm.cdf(np.log(RIDR / self.median_RIDR) / self.logstd, 0, 1)
-        if is_random:
-            dm = np.random.uniform() < Pd
-        else:
-            if Pd > 0.5:
-                dm = True
-            else:
-                dm = False
-        return bool(dm)
 
 
 def _read_IDA_file(

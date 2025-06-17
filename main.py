@@ -1,15 +1,16 @@
+from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 from src.compenent import Component
 from src.building import Building
-from src.ecoloss import intensity_based_loss
+from src.ecoloss import intensity_based_loss, time_based_loss
+from src.visualization import visualize_IBL
 
 
-if __name__ == "__main__":
+def itensity_base_loss_calculation(output_dir: str | Path):
 
     x_size, y_size = 36.6, 24.4
     area = x_size * y_size
-
     building = Building(
         name='test_building',
         Nstory=4,
@@ -69,31 +70,21 @@ if __name__ == "__main__":
             [0.384, 0.731, 0.4],
             [0.384, 0.731, 0.4]],
         RIDR_PSDM=[-4.291, 2.178, 0.4])
-    building.set_demolishment_prob(median_RIDR=0.01, logstd_RIDR=0.3)
+    building.set_demolishment_prob(median_RIDR=0.005, logstd_RIDR=0.3)
     building.set_collapse_prob(median_clps=3.0, logstd_clps=0.4)
     
     Sa = np.linspace(0.01, 4, 100)
-    intensity_based_results = intensity_based_loss(
+    intensity_based_loss(
         n=1000,
         Sa_ls=Sa,
         building=building,
+        output_dir=output_dir,
         parallel=15
     )
-    cost_total, cost_mat_clps, cost_mat_dm, cost_mat_repair = intensity_based_results
-    np.save('temp/cost_total.npy', cost_total)
-    np.save('temp/cost_mat_clps.npy', cost_mat_clps)
-    np.save('temp/cost_mat_dm.npy', cost_mat_dm)
-    np.save('temp/cost_mat_repair.npy', cost_mat_repair)
-    
 
-    plt.plot(Sa, np.mean(cost_mat_clps, axis=1), label='Collapse')
-    plt.legend()
-    plt.plot(Sa, np.mean(cost_mat_dm, axis=1), label='Demolition')
-    plt.legend()
-    plt.plot(Sa, np.mean(cost_mat_repair, axis=1), label='Repair')
-    plt.legend()
-    plt.plot(Sa, np.mean(cost_total, axis=1), label='Total')
-    plt.legend()
-    plt.tight_layout()
-    plt.show()
 
+if __name__ == "__main__":
+    # itensity_base_loss_calculation('results_IBL')
+    # visualize_IBL('results_IBL')
+    hazard_curve = np.loadtxt(r'data\hazard_curves\0.83.txt')
+    time_based_loss('results_IBL', hazard_curve, 'results_TBL')

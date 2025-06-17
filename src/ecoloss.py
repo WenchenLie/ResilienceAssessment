@@ -1,5 +1,7 @@
+import os
+import json
+from pathlib import Path
 import numpy as np
-import multiprocessing
 from multiprocessing import Pool, Manager
 from threading import Thread
 from typing import Tuple
@@ -11,6 +13,7 @@ def intensity_based_loss(
     n: int,
     Sa_ls: np.ndarray,
     building: Building,
+    output_dir: str | Path,
     is_random: bool = True,
     random_seed: int = None,
     parallel: int = 1
@@ -58,6 +61,17 @@ def intensity_based_loss(
     cost_mat_clps /= building.replacement_cost
     cost_mat_dm /= building.replacement_cost
     cost_mat_repair /= building.replacement_cost
+    
+    output_dir = Path(output_dir)
+    if not output_dir.exists():
+        os.makedirs(output_dir)
+    # 所有保存的经济损失均为归一化数据
+    np.save(output_dir / 'cost_total.npy', cost_total)
+    np.save(output_dir / 'cost_collapse.npy', cost_mat_clps)
+    np.save(output_dir / 'cost_demolishment.npy', cost_mat_dm)
+    np.save(output_dir / 'cost_repair.npy', cost_mat_repair)
+    np.save(output_dir / 'Sa.npy', Sa_ls)
+    np.save(output_dir / 'replacement_cost.npy', building.replacement_cost)
 
     return cost_total, cost_mat_clps, cost_mat_dm, cost_mat_repair
 
@@ -73,15 +87,15 @@ def _worker_wrapper(
         if random_seed is not None:
             np.random.seed(random_seed + idx_MC)
         cost_clps, cost_dm, cost_repair = np.zeros_like(Sa_ls), np.zeros_like(Sa_ls), np.zeros_like(Sa_ls)
-        for idx_Sa, Sa in enumerate(Sa_ls):
+        for idSa_ls, Sa in enumerate(Sa_ls):
             IDR = building._simu_IDR(Sa, is_random)
             RIDR = building._simu_RIDR(Sa, is_random)
             PFA = building._simu_PFA(Sa, is_random)
             if building._simu_clps(Sa, is_random):
-                cost_clps[idx_Sa] = building.replacement_cost
+                cost_clps[idSa_ls] = building.replacement_cost
                 continue
             if building._simu_demolishment(RIDR, is_random):
-                cost_dm[idx_Sa] = building.replacement_cost
+                cost_dm[idSa_ls] = building.replacement_cost
                 continue
             cost = 0
             for comp, quantity, story, floor in building.components:
@@ -101,7 +115,7 @@ def _worker_wrapper(
                 else:
                     cost_i = comp._get_cost(quantity, ds_flag, is_random)
                 cost += cost_i
-            cost_repair[idx_Sa] = cost
+            cost_repair[idSa_ls] = cost
     except Exception as e:
         LOGGER.error(f"Error in Monte Carlo simulation {idx_MC}: {e}")
         print(e)
@@ -109,3 +123,72 @@ def _worker_wrapper(
     if queue is not None:
         queue.put(1)
     return idx_MC, cost_clps, cost_dm, cost_repair
+
+def time_based_loss(
+        results_IBL: str | Path,
+        hazard_curve: np.ndarray,
+        output_dir: str | Path,
+    ) -> tuple[float, float, float, float]:
+    
+    import matplotlib.pyplot as plt
+    from scipy.interpolate import interp1d
+    
+    results_IBL = Path(results_IBL)
+    Sa_ls: np.ndarray = np.load(results_IBL / 'Sa.npy')
+    cost_total: np.ndarray = np.load(results_IBL / 'cost_total.npy')
+    cost_clps: np.ndarray = np.load(results_IBL / 'cost_collapse.npy')
+    cost_dm: np.ndarray = np.load(results_IBL / 'cost_demolishment.npy')
+    cost_repair: np.ndarray = np.load(results_IBL / 'cost_repair.npy')
+    # replacement_cost: np.ndarray = np.load(results_IBL /'replacement_cost.npy')
+    
+    cost_total_mean, cost_total_median, cost_total_std =\
+        np.mean(cost_total, axis=1), np.median(cost_total, axis=1), np.std(cost_total, axis=1)
+    cost_clps_mean, cost_clps_median, cost_clps_std =\
+        np.mean(cost_clps, axis=1), np.median(cost_clps, axis=1), np.std(cost_clps, axis=1)
+    cost_dm_mean, cost_dm_median, cost_dm_std =\
+        np.mean(cost_dm, axis=1), np.median(cost_dm, axis=1), np.std(cost_dm, axis=1)
+    cost_repair_mean, cost_repair_median, cost_repair_std =\
+        np.mean(cost_repair, axis=1), np.median(cost_repair, axis=1), np.std(cost_repair, axis=1)
+    
+    get_log10_harzard_curve = interp1d(np.log10(hazard_curve[:, 0]), np.log10(hazard_curve[:, 1]),
+                                       kind='cubic', fill_value='extrapolate', bounds_error=False)
+    x_hazard = np.linspace(hazard_curve[0, 0], hazard_curve[-1, 0], 1000)  # 仅用于画图
+    y_hazard = pow(10, get_log10_harzard_curve(np.log10(x_hazard)))
+    log10_HSa = get_log10_harzard_curve(np.log10(Sa_ls))  # 灾害曲线的对数
+    HSa = np.power(10, log10_HSa)  # 灾害曲线纵坐标
+    diff_HSa = np.append(0, np.diff(HSa))  # 灾害曲线的差分
+    # 年度经济损失
+    EAL_total = float(np.sum(cost_total_mean * np.abs(diff_HSa)))
+    EAL_clps = float(np.sum(cost_clps_mean * np.abs(diff_HSa)))
+    EAL_dm = float(np.sum(cost_dm_mean * np.abs(diff_HSa)))
+    EAL_repair = float(np.sum(cost_repair_mean * np.abs(diff_HSa)))
+    LOGGER.info(f'Expected annual loss ratio (total): {EAL_total:.2%}')
+    LOGGER.info(f'Expected annual loss ratio (collapse): {EAL_clps:.2%}')
+    LOGGER.info(f'Expected annual loss ratio (demolishment): {EAL_dm:.2%}')
+    LOGGER.info(f'Expected annual loss ratio (repair): {EAL_repair:.2%}')
+    output_dir = Path(output_dir)
+    if not output_dir.exists():
+        os.makedirs(output_dir)
+    data = {
+        'EAL_total': f'{EAL_total:.2%}',
+        'EAL_collapse': f'{EAL_clps:.2%}',
+        'EAL_demolishment': f'{EAL_dm:.2%}',
+        'EAL_repair': f'{EAL_repair:.2%}'
+    }
+    json.dump(data, open(output_dir / 'Expected annual loss ratio.json', 'w', encoding='utf-8'),
+              ensure_ascii=False, indent=4)
+    # 画饼状图
+    plt.figure(figsize=(12, 6))
+    plt.subplot(121)
+    plt.loglog(hazard_curve[:, 0], hazard_curve[:, 1], '-o', label='USGS data')
+    plt.loglog(x_hazard, y_hazard, label='Cubic fitting')
+    plt.grid(True)
+    plt.xlabel('Sa')
+    plt.ylabel(f'MAF of Sa')
+    plt.title('Hazard Curve')
+    plt.legend()
+    plt.subplot(122)
+    plt.pie([EAL_clps, EAL_dm, EAL_repair], labels=['Collapse', 'Demolishment', 'Repair'], autopct='%1.1f%%',)
+    plt.legend(loc='upper left')
+    plt.show()
+    return EAL_total, EAL_clps, EAL_dm, EAL_repair

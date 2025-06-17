@@ -71,6 +71,18 @@ class Component:
             damage_states['beta'].append(beta)
         return damage_states
 
+    def _simu_DS(self,
+        edp: float,
+        is_random: bool = False
+    ):
+        ds_ls = self.damage_states['median']
+        beta_ls = self.damage_states['beta']
+        P_ds = np.zeros(len(ds_ls) + 1)
+        if is_random:
+            P_ds = 
+            for i, (ds, beta    ) in enumerate(zip(ds_ls, beta_ls)):
+                ...
+
     def _get_cost(self,
             quantity: float,
             ds: int,

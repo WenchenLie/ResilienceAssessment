@@ -33,6 +33,7 @@ if __name__ == "__main__":
     electronic_equipment_on_wall_mount_brackets = Component('E2022.021')
     desktop_electronics = Component('E2022.022')
     bookcase_2shelves = Component('E2022.102b')
+    print(moment_connection_both_side.damage_states)
     # Ref: Seismic fragility and loss estimation of self-centering steel braced frames under mainshock-aftershock sequences
 
     for story in range(1, 5):

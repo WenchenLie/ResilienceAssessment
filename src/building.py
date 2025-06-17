@@ -39,7 +39,8 @@ class Building:
         self.heights = to_foot(heights, unit)
         self.replacement_cost = replacement_cost
         self.components: list[tuple[Component, float, int, int]] = []
-        self.median_RIDR = None  # 不为None则考虑残余变形过大导致的拆除概率
+        self.account_for_clps: bool = False  # 是否考虑倒塌
+        self.account_for_dm: bool = False  # 是否考虑残余变形过大导致的拆除
         LOGGER.success(f'Building "{self.name}" is created successfully.')
 
     def add_component(self,
@@ -112,16 +113,16 @@ class Building:
         LOGGER.success(f'IDA data is imported successfully.')
 
     def set_seismic_response(self,
-        IDR_PSDM: list[VECTOR],
-        RIDR_PSDM: VECTOR,
-        PFA_PSDM: list[VECTOR],
-        PFV_PSDM: list[VECTOR] = None,
-        IDR_factor: float = 1.0,
-        RIDR_factor: float = 1.0,
-        PFA_factor: float = 1.0,
-        PFV_factor: float = 1.0,
-        clps_frag: VECTOR = None,
-    ):
+            IDR_PSDM: list[VECTOR],
+            RIDR_PSDM: VECTOR,
+            PFA_PSDM: list[VECTOR],
+            PFV_PSDM: list[VECTOR] = None,
+            IDR_factor: float = 1.0,
+            RIDR_factor: float = 1.0,
+            PFA_factor: float = 1.0,
+            PFV_factor: float = 1.0,
+            clps_frag: VECTOR = None,
+        ):
         """导入概率地震需求模型和倒塌易损性
 
         Args:
@@ -133,7 +134,6 @@ class Building:
             RIDR_factor (float, optional): 残余位移角的缩放系数
             PFA_factor (float, optional): 楼层加速度的缩放系数
             PFV_factor (float, optional): 楼层速度的缩放系数
-            clps_frag (VECTOR, optional): 倒塌易损性曲线参数，每层的倒塌概率
         
         Note:
         -----
@@ -158,22 +158,62 @@ class Building:
         self.RIDR_factor = RIDR_factor
         self.PFA_factor = PFA_factor
         self.PFV_factor = PFV_factor
-        self.clps_frag = clps_frag
         LOGGER.success(f'Seismic_response has been defined.')
     
+    def set_collapse_prob(self,
+            median_clps: float,
+            logstd_clps: float
+        ):
+        """定义倒塌概率（与地震动强度相关）
+
+        Args:
+            median_clps (float): 50%倒塌概率对应的中值倒塌强度
+            logstd_clps (float): 倒塌强度的对数标准差
+        """
+        self.median_clps = median_clps
+        self.logstd_clps = logstd_clps
+        self.account_for_clps = True  # 考虑倒塌
+        LOGGER.success(f'Probability of collapse has been defined.')
+
     def set_demolishment_prob(self,
             median_RIDR: float,
-            logstd: float
+            logstd_RIDR: float
         ):
-        """定义拆除概率"""
+        """定义拆除概率（与RIDR相关）
+
+        Args:
+            median_RIDR (float): 50%拆除概率对应的中值RIDR
+            logstd_RIDR (float): RIDR的对数标准差
+        """
         self.median_RIDR = median_RIDR
-        self.logstd = logstd
+        self.logstd_RIDR = logstd_RIDR
+        self.account_for_dm = True  # 考虑拆除
         LOGGER.success(f'Probability of demolishment has been defined.')
+
+    def _simu_clps(self,
+            Sa: float
+        ) -> bool:
+        """模拟倒塌"""
+        if self.median_clps is None:
+            return False  # 没有定义倒塌易损性，不考虑倒塌
+        prob = norm.cdf(np.log(Sa / self.median_clps) / self.logstd_clps, 0, 1)
+        clps = np.random.uniform() < prob
+        return bool(clps)
+
+    def _simu_demolishment(self,
+            RIDR: float
+        ) -> bool:
+        """模拟拆除"""
+        if self.median_RIDR is None:
+            return False  # 没有定义拆除概率，不考虑拆除
+        prob = norm.cdf(np.log(RIDR / self.median_RIDR) / self.logstd_RIDR, 0, 1)
+        dm = np.random.uniform() < prob
+        return bool(dm)
     
     def _simu_IDR(self,
-        Sa: float
-    ) -> np.ndarray:
-        # ln(IDR) = A + B * ln(Sa)
+            Sa: float
+        ) -> np.ndarray:
+        """模拟层间位移角需求，ln(IDR) = A + B * ln(Sa)"""
         IDR = np.zeros(self.Nstory)
         for i in range(self.Nstory):
             A, B, logstd = self.IDR_PSDM[i]
@@ -183,9 +223,9 @@ class Building:
         return IDR * self.IDR_factor
     
     def _simu_RIDR(self,
-        Sa: float
-    ) -> float:
-        # ln(RIDR) = A + B * ln(Sa)
+            Sa: float
+        ) -> float:
+        """模拟残余变形需求，ln(RIDR) = A + B * ln(Sa)"""
         if self.PFV_PSDM is None:
             return None
         A, B, logstd = self.RIDR_PSDM
@@ -195,9 +235,9 @@ class Building:
         return RIDR * self.RIDR_factor
 
     def _simu_PFA(self,
-        Sa: float
-    ) -> np.ndarray:
-        # ln(PFA) = A + B * ln(Sa)
+            Sa: float
+        ) -> np.ndarray:
+        """模拟加速度需求，ln(PFA) = A + B * ln(Sa)"""
         PFA = np.zeros(self.Nstory)
         for i in range(self.Nstory):
             A, B, logstd = self.PFA_PSDM[i]
@@ -207,9 +247,9 @@ class Building:
         return PFA * self.PFA_factor
 
     def _simu_PFV(self,
-        Sa: float
-    ) -> np.ndarray:
-        # ln(PFV) = A + B * ln(Sa)
+            Sa: float
+        ) -> np.ndarray:
+        """模拟速度需求，ln(PFV) = A + B * ln(Sa)"""
         PFV = np.zeros(self.Nstory)
         for i in range(self.Nstory):
             A, B, logstd = self.PFV_PSDM[i]
@@ -217,27 +257,6 @@ class Building:
             PFV[i] = np.exp(np.random.normal(ln_median, logstd[i]))
         PFV = np.where(PFV < 0, 0, PFV)
         return PFV * self.PFV_factor
-
-    def _simu_clps(self,
-            Sa: float
-        ) -> bool:
-        # 模拟倒塌
-        if self.clps_frag is None:
-            return False  # 没有定义倒塌易损性，不考虑倒塌
-        clps_median, beta = self.clps_frag  # 倒塌强度中值和对数标准差
-        Pc = norm.cdf(np.log(Sa / clps_median) / beta, 0, 1)
-        clps = np.random.uniform() < Pc
-        return bool(clps)
-
-    def _simu_demolishment(self,
-            RIDR: float
-        ) -> bool:
-        # 模拟拆除
-        if self.median_RIDR is None:
-            return False  # 没有定义拆除概率，不考虑拆除
-        Pc = norm.cdf(np.log(RIDR / self.median_RIDR) / self.logstd, 0, 1)
-        dm = np.random.uniform() < Pc
-        return bool(dm)
 
 
 def _read_IDA_file(

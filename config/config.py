@@ -20,6 +20,7 @@ EDP_TYPES = {
 }
 VECTOR = List[float]
 EDP_TYPING = TypeVar(list(EDP_TYPES.keys()))
+EDP_ABBR_TYPING = Literal['D', 'ED', 'A', 'L', 'LB', 'V']
 DISTR_TYPING = Literal['Normal', 'LogNormal']
 UNITS_TYPING = Literal['m', 'mm', 'in', 'ft']
 

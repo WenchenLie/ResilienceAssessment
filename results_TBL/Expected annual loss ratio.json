@@ -1,6 +1,6 @@
 {
-    "EAL_total": "2.29%",
-    "EAL_collapse": "0.01%",
-    "EAL_demolishment": "0.39%",
-    "EAL_repair": "1.89%"
+    "EAL_total": 0.023086507786863823,
+    "EAL_collapse": 7.219473391668159e-05,
+    "EAL_demolishment": 0.003928711342604903,
+    "EAL_repair": 0.019085601710342234
 }

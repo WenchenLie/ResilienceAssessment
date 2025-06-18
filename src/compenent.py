@@ -6,14 +6,20 @@ from typing import Literal, Self
 import numpy as np
 from scipy.stats import norm
 from scipy.stats import truncnorm
-from config.config import AVAILABLE_COMP, DISTR_TYPING, EDP_TYPING
+from config.config import AVAILABLE_COMP, DISTR_TYPING
 
 
 class Component:
+    ID: int
+    category: Literal['S', 'NS', 'C']
+    comp_data: dict
+    damage_states: dict[str, str | list]
+    edp_type: Literal['D', 'ED', 'A', 'L', 'LB', 'V']
     comp_data_path = Path('data/ATCCurves_json')
 
     def __init__(self,
             ID: str,
+            category: Literal['S', 'NS', 'C'],
             show_info: bool = False,
             __user_defined: bool = False,
             __json_file: str | Path = None
@@ -22,12 +28,15 @@ class Component:
 
         Args:
             ID (str): 构件ID
+            category (Literal['S', 'NS', 'C']): 构件类别，仅用于计算结果的统计
+              (S:结构构件，NS:非结构构件，C:建筑内容)
             show_info (bool, optional): 是否打印主要信息
         """
         if not __user_defined:
             if not ID in AVAILABLE_COMP:
                 raise ValueError(f'Component "{ID}" is not available')
             self.ID = ID
+            self.category = category
             self.comp_data = self._get_comp_data()
         else:
             self.comp_data: dict = json.load(open(__json_file, "r"))
@@ -56,12 +65,25 @@ class Component:
 
     def _get_DSs(self):
         damage_states: dict[str, str | list] = {
-            'edp_type': None,  # EDP类型
             'median': [],  # 中值EDP
             'beta': [],  # 离差
         }
         edp_type: str = self.comp_data['FragilityCurve']['EDPType']['TypeName']
-        damage_states['edp_type'] = edp_type
+        match edp_type:
+            case 'Story Drift Ratio':
+                self.edp_type = 'D'
+            case 'Effective Drift':
+                self.edp_type = 'ED'
+            case 'Acceleration':
+                self.edp_type = 'A'
+            case 'Link Rotation Angle':
+                self.edp_type = 'L'
+            case 'Link Beam Chord Rotation':
+                self.edp_type = 'LB'
+            case 'Peak Floor Velocity':
+                self.edp_type = 'V'
+            case _:
+                assert False, f'Unknown EDP type: "{edp_type}"'
         DSs: list[dict] = self.comp_data['FragilityCurve']['DamageStates']['DamageState']
         if isinstance(DSs, dict):
             DSs = [DSs]  # 只有一个损伤状态的情况

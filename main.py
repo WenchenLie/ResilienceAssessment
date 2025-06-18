@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from src.compenent import Component
 from src.building import Building
 from src.ecoloss import intensity_based_loss, time_based_loss
-from src.visualization import visualize_IBL
+from src.visualization import visualize_IBL, visualize_TBL
 
 
 def itensity_base_loss_calculation(output_dir: str | Path):
@@ -19,23 +19,23 @@ def itensity_base_loss_calculation(output_dir: str | Path):
         unit='m',
         replacement_cost=12_000_000)
     
-    shear_connection = Component('B1031.001')
-    column_base = Component('B1031.011b')
-    column_splices = Component('B1031.021b')
+    shear_connection = Component('B1031.001', 'S')
+    column_base = Component('B1031.011b', 'S')
+    column_splices = Component('B1031.021b', 'S')
     # moment_connection_one_side = Component('B1035.021')
-    moment_connection_both_side = Component('B1035.031')
-    crtain_wall = Component('B2022.001')
-    stair = Component('C2011.011b')
-    suspended_ceiling = Component('C3032.003a')
-    independent_pendant_lighting = Component('C3034.001')
-    cold_or_hot_potable = Component('D2021.011a')
-    sanitary_waste_piping = Component('D2031.011b')
-    HVAC = Component('D3041.001a')
-    modular_office_work_stations = Component('E2022.001')
-    unsecured_fragile_objects_on_shelves = Component('E2022.010')
-    electronic_equipment_on_wall_mount_brackets = Component('E2022.021')
-    desktop_electronics = Component('E2022.022')
-    bookcase_2shelves = Component('E2022.102b')
+    moment_connection_both_side = Component('B1035.031', 'S')
+    crtain_wall = Component('B2022.001', 'NS')
+    stair = Component('C2011.011b', 'NS')
+    suspended_ceiling = Component('C3032.003a', 'C')
+    independent_pendant_lighting = Component('C3034.001', 'C')
+    cold_or_hot_potable = Component('D2021.011a', 'C')
+    sanitary_waste_piping = Component('D2031.011b', 'C')
+    HVAC = Component('D3041.001a', 'C')
+    modular_office_work_stations = Component('E2022.001', 'C')
+    unsecured_fragile_objects_on_shelves = Component('E2022.010', 'C')
+    electronic_equipment_on_wall_mount_brackets = Component('E2022.021', 'C')
+    desktop_electronics = Component('E2022.022', 'C')
+    bookcase_2shelves = Component('E2022.102b', 'C')
     # Ref: Seismic fragility and loss estimation of self-centering steel braced frames under mainshock-aftershock sequences
 
     for story in range(1, 5):
@@ -79,12 +79,13 @@ def itensity_base_loss_calculation(output_dir: str | Path):
         Sa_ls=Sa,
         building=building,
         output_dir=output_dir,
-        parallel=15
+        parallel=20
     )
 
 
 if __name__ == "__main__":
-    # itensity_base_loss_calculation('results_IBL')
-    # visualize_IBL('results_IBL')
+    itensity_base_loss_calculation('results_IBL')
+    visualize_IBL('results_IBL')
     hazard_curve = np.loadtxt(r'data\hazard_curves\0.83.txt')
     time_based_loss('results_IBL', hazard_curve, 'results_TBL')
+    visualize_TBL('results_TBL')

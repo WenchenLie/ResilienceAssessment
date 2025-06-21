@@ -4,25 +4,42 @@ from pathlib import Path
 import numpy as np
 from multiprocessing import Pool, Manager
 from threading import Thread
-from typing import Literal
 from .building import Building
-from config.config import LOGGER, EDP_ABBR_TYPING
+from ._realization import _realization
+from config.config import LOGGER
 
 
-def intensity_based_loss(
+def consequance_estimate(
     n: int,
     Sa_ls: np.ndarray,
     building: Building,
-    output_dir: str | Path,
+    hazard_curve: np.ndarray,
+    root: str | Path,
     is_random: bool = True,
     random_seed: int = None,
     parallel: int = 1
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
-    """基于地震动强度计算建筑的直接经济损失 (支持并行+进度监控)"""
+    """计算建筑的损失，包括修复成本、修复时间
 
+    Args:
+        n (int): 蒙特卡洛模拟次数
+        Sa_ls (np.ndarray): 地震动强度
+        building (Building): Building实例
+        root (str | Path): 输出文件夹路径
+        is_random (bool, optional): 是否考虑随机分布
+        random_seed (int, optional): 随机数种子
+        parallel (int, optional): 并行计算的进程数，默认为1，即串行
+
+    Returns:
+        tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]: _description_
+    """
+    root = Path(root)
+    if not root.exists():
+        os.makedirs(root)
     cost_mat_clps = np.zeros((len(Sa_ls), n))
     cost_mat_dm = np.zeros((len(Sa_ls), n))
     cost_mat_repair = np.zeros((len(Sa_ls), n))
+    repair_time_mat = np.zeros((len(Sa_ls), n))
     cost_mat_repair_category = {
         'S': np.zeros((len(Sa_ls), n)),
         'NS': np.zeros((len(Sa_ls), n)),
@@ -41,11 +58,12 @@ def intensity_based_loss(
         # 串行
         for idx_MC in range(n):
             print(f"  Running Monte Carlo simulation: {idx_MC+1}/{n}", end='\r')
-            idx_MC, cost_clps, cost_dm, cost_repair, cost_repair_category, cost_repair_sensitivity\
-                = _worker_wrapper(idx_MC, Sa_ls, building, is_random, random_seed, None)
+            idx_MC, cost_clps, cost_dm, cost_repair, cost_repair_category, cost_repair_sensitivity,\
+                repair_time = _realization(idx_MC, Sa_ls, building, is_random, random_seed, None)
             cost_mat_clps[:, idx_MC] = cost_clps
             cost_mat_dm[:, idx_MC] = cost_dm
             cost_mat_repair[:, idx_MC] = cost_repair
+            repair_time_mat[:, idx_MC] = repair_time
             for key, arr in cost_repair_category.items():
                 cost_mat_repair_category[key][:, idx_MC] = arr
             for key, arr in cost_repair_sensitivity.items():
@@ -67,11 +85,13 @@ def intensity_based_loss(
         monitor_thread.start()
         with Pool(processes=parallel) as pool:
             args_list = [(idx_MC, Sa_ls, building, is_random, random_seed, queue) for idx_MC in range(n)]
-            results = pool.starmap(_worker_wrapper, args_list)
-            for idx_MC, cost_clps, cost_dm, cost_repair, cost_repair_category, cost_repair_sensitivity in results:
+            results = pool.starmap(_realization, args_list)
+            for idx_MC, cost_clps, cost_dm, cost_repair, cost_repair_category, cost_repair_sensitivity,\
+                repair_time in results:
                 cost_mat_clps[:, idx_MC] = cost_clps
                 cost_mat_dm[:, idx_MC] = cost_dm
                 cost_mat_repair[:, idx_MC] = cost_repair
+                repair_time_mat[:, idx_MC] = repair_time
                 for key, arr in cost_repair_category.items():
                     cost_mat_repair_category[key][:, idx_MC] = arr
                 for key, arr in cost_repair_sensitivity.items():
@@ -89,123 +109,44 @@ def intensity_based_loss(
     for key, arr in cost_repair_sensitivity.items():
         cost_mat_repair_sensitivity[key] /= building.replacement_cost
 
-    output_dir = Path(output_dir)
+    # 保存结果
+    np.savetxt(root / 'Sa.txt', Sa_ls)
+    np.savetxt(root / 'replacement_cost.txt', np.array([building.replacement_cost]))
+    np.savetxt(root / 'replacement_time.txt', np.array([building.replacement_time]))
+    # 修复成本
+    output_dir = root / 'Repair cost'
     if not output_dir.exists():
         os.makedirs(output_dir)
-    # 所有保存的经济损失均为归一化数据
     np.save(output_dir / 'cost_total.npy', cost_total)
     np.save(output_dir / 'cost_collapse.npy', cost_mat_clps)
     np.save(output_dir / 'cost_demolishment.npy', cost_mat_dm)
     np.save(output_dir / 'cost_repair.npy', cost_mat_repair)
+    _time_based_loss(Sa_ls, cost_total, cost_mat_clps, cost_mat_dm, cost_mat_repair,
+                     hazard_curve, root, output_dir)
     for key, arr in cost_mat_repair_category.items():
         np.save(output_dir / f'cost_repair_category_{key}.npy', arr)
     for key, arr in cost_mat_repair_sensitivity.items():
         np.save(output_dir / f'cost_repair_sensitivity_{key}.npy', arr)
-    np.save(output_dir / 'Sa.npy', Sa_ls)
-    np.save(output_dir / 'replacement_cost.npy', building.replacement_cost)
+    # 修复时间
+    output_dir = root / 'Repair time'
+    if not output_dir.exists():
+        os.makedirs(output_dir)
+    np.save(output_dir /'repair_time.npy', repair_time_mat)
+    
 
-    return cost_total, cost_mat_clps, cost_mat_dm, cost_mat_repair
-
-def _worker_wrapper(
-        idx_MC: int,
+def _time_based_loss(
         Sa_ls: np.ndarray,
-        building: Building,
-        is_random: bool,
-        random_seed: int | None,
-        queue
-    ) -> tuple[int, np.ndarray, np.ndarray, np.ndarray,
-               dict[str, np.ndarray], dict[str, np.ndarray]]:
-    try:
-        if random_seed is not None:
-            np.random.seed(random_seed)
-        cost_clps, cost_dm, cost_repair = np.zeros_like(Sa_ls), np.zeros_like(Sa_ls), np.zeros_like(Sa_ls)
-        cost_repair_category = {
-            'S': np.zeros_like(Sa_ls),
-            'NS': np.zeros_like(Sa_ls),
-            'C': np.zeros_like(Sa_ls)
-        }  # 不同类型(S, NS, C)的构件的修复成本，总和应等于cost_repair
-        cost_repair_sensitivity = {
-            'D': np.zeros_like(Sa_ls),
-            'ED': np.zeros_like(Sa_ls),
-            'A': np.zeros_like(Sa_ls),
-            'L': np.zeros_like(Sa_ls),
-            'LB': np.zeros_like(Sa_ls),
-            'V': np.zeros_like(Sa_ls)
-        }  # 不同敏感性类型的构件的修复成本
-        for idx_Sa, Sa in enumerate(Sa_ls):
-            IDR = building._simu_IDR(Sa, is_random)
-            RIDR = building._simu_RIDR(Sa, is_random)
-            PFA = building._simu_PFA(Sa, is_random)
-            if building._simu_clps(Sa, is_random):
-                cost_clps[idx_Sa] = building.replacement_cost
-                continue
-            if building._simu_demolishment(RIDR, is_random):
-                cost_dm[idx_Sa] = building.replacement_cost
-                continue
-            cost = 0
-            for comp, quantity, story, floor in building.components:
-                edp_type: EDP_ABBR_TYPING = comp.edp_type
-                if edp_type == 'D':
-                    edp = IDR[story - 1]
-                elif edp_type == 'A':
-                    if floor >= 2:
-                        edp = PFA[floor - 2]
-                    else:
-                        edp = Sa
-                else:
-                    raise NotImplementedError(f'其他类型的EDP尚未实现: "{edp_type}"')
-                ds_flag = comp._simu_DS(edp, is_random)
-                if ds_flag == 0:
-                    cost_i = 0
-                else:
-                    cost_i = comp._get_cost(quantity, ds_flag, is_random)
-                cost += cost_i
-                match comp.category:
-                    case 'S':
-                        cost_repair_category['S'][idx_Sa] += cost_i
-                    case 'NS':
-                        cost_repair_category['NS'][idx_Sa] += cost_i
-                    case 'C':
-                        cost_repair_category['C'][idx_Sa] += cost_i
-                match edp_type:
-                    case 'D':
-                        cost_repair_sensitivity['D'][idx_Sa] += cost_i
-                    case 'ED':
-                        cost_repair_sensitivity['ED'][idx_Sa] += cost_i
-                    case 'A':
-                        cost_repair_sensitivity['A'][idx_Sa] += cost_i
-                    case 'L':
-                        cost_repair_sensitivity['L'][idx_Sa] += cost_i
-                    case 'LB':
-                        cost_repair_sensitivity['LB'][idx_Sa] += cost_i
-                    case 'V':
-                        cost_repair_sensitivity['V'][idx_Sa] += cost_i
-            cost_repair[idx_Sa] = cost
-    except Exception as e:
-        LOGGER.error(f"Error in Monte Carlo simulation {idx_MC}: {e}")
-        print(e)
-        raise e
-    if queue is not None:
-        queue.put(1)
-    return idx_MC, cost_clps, cost_dm, cost_repair, cost_repair_category, cost_repair_sensitivity
-
-def time_based_loss(
-        results_IBL: str | Path,
+        cost_total: np.ndarray,
+        cost_clps: np.ndarray,
+        cost_dm: np.ndarray,
+        cost_repair: np.ndarray,
         hazard_curve: np.ndarray,
-        output_dir: str | Path,
+        root: Path,
+        output_dir: Path
     ) -> tuple[float, float, float, float]:
     
-    import matplotlib.pyplot as plt
     from scipy.interpolate import interp1d
-    
-    results_IBL = Path(results_IBL)
-    Sa_ls: np.ndarray = np.load(results_IBL / 'Sa.npy')
-    cost_total: np.ndarray = np.load(results_IBL / 'cost_total.npy')
-    cost_clps: np.ndarray = np.load(results_IBL / 'cost_collapse.npy')
-    cost_dm: np.ndarray = np.load(results_IBL / 'cost_demolishment.npy')
-    cost_repair: np.ndarray = np.load(results_IBL / 'cost_repair.npy')
-    # replacement_cost: np.ndarray = np.load(results_IBL /'replacement_cost.npy')
-    
+
     cost_total_mean, cost_total_median, cost_total_std =\
         np.mean(cost_total, axis=1), np.median(cost_total, axis=1), np.std(cost_total, axis=1)
     cost_clps_mean, cost_clps_median, cost_clps_std =\
@@ -242,9 +183,6 @@ def time_based_loss(
             d_lamda = np.abs(diff_HSa[idx_Sa])
             annual_rate[idx_loss] += P * d_lamda
 
-    output_dir = Path(output_dir)
-    if not output_dir.exists():
-        os.makedirs(output_dir)
     data = {
         'EAL_total': EAL_total,
         'EAL_collapse': EAL_clps,
@@ -254,8 +192,6 @@ def time_based_loss(
 
     json.dump(data, open(output_dir / 'Expected annual loss ratio.json', 'w', encoding='utf-8'),
               ensure_ascii=False, indent=4)
-    np.save(output_dir / 'USGS_hazard.npy', hazard_curve)
-    np.save(output_dir / 'hazard_fitting.npy', np.column_stack((x_hazard, y_hazard)))
+    np.savetxt(root / 'Hazard_USGS.txt', hazard_curve)
+    np.savetxt(root / 'Hazard_fitting.txt', np.column_stack((x_hazard, y_hazard)))
     np.save(output_dir / 'annual_rate.npy', np.column_stack((loss_ls, annual_rate)))
-
-    return EAL_total, EAL_clps, EAL_dm, EAL_repair

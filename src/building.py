@@ -18,7 +18,9 @@ class Building:
             size: tuple[float, float],
             heights: list[float],
             unit: UNITS_TYPING,
-            replacement_cost: float):
+            replacement_cost: float,
+            replacement_time: float
+        ):
         """定义一栋建筑，并设置基本参数
 
         Args:
@@ -28,6 +30,7 @@ class Building:
             heights (list[float]): 层高列表
             unit (UNITS_TYPING): 尺寸和层高的单位
             replacement_cost (float): 重建成本
+            replacement_time (float): 重建时间
         
         Notes:
         ------
@@ -38,6 +41,7 @@ class Building:
         self.size = to_foot(size, unit)
         self.heights = to_foot(heights, unit)
         self.replacement_cost = replacement_cost
+        self.replacement_time = replacement_time
         self.components: list[tuple[Component, float, int, int]] = []
         self.account_for_clps: bool = False  # 是否考虑倒塌
         self.account_for_dm: bool = False  # 是否考虑残余变形过大导致的拆除

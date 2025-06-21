@@ -3,11 +3,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from src.compenent import Component
 from src.building import Building
-from src.ecoloss import intensity_based_loss, time_based_loss
-from src.visualization import visualize_IBL, visualize_TBL
+from src.consequance_estimate import consequance_estimate
+from src.post_processing import post_processing
 
 
-def itensity_base_loss_calculation(output_dir: str | Path):
+def calculate(output_dir: str | Path, hazard_curve: np.ndarray):
+    """计算建筑震后损失
+
+    Args:
+        output_dir (str | Path): 输出文件夹路径
+    """
 
     x_size, y_size = 36.6, 24.4
     area = x_size * y_size
@@ -17,7 +22,8 @@ def itensity_base_loss_calculation(output_dir: str | Path):
         size=(x_size, y_size),
         heights=[4.3, 4, 4, 4],
         unit='m',
-        replacement_cost=12_000_000)
+        replacement_cost=12_000_000,
+        replacement_time=720)
     
     shear_connection = Component('B1031.001', 'S')
     column_base = Component('B1031.011b', 'S')
@@ -74,18 +80,18 @@ def itensity_base_loss_calculation(output_dir: str | Path):
     building.set_collapse_prob(median_clps=3.0, logstd_clps=0.4)
     
     Sa = np.linspace(0.01, 4, 100)
-    intensity_based_loss(
+    consequance_estimate(
         n=1000,
         Sa_ls=Sa,
         building=building,
-        output_dir=output_dir,
-        parallel=20
+        hazard_curve=hazard_curve,
+        root=output_dir,
+        parallel=12
     )
 
 
 if __name__ == "__main__":
-    itensity_base_loss_calculation('results_IBL')
-    visualize_IBL('results_IBL')
+    root = Path('Results')
     hazard_curve = np.loadtxt(r'data\hazard_curves\0.83.txt')
-    time_based_loss('results_IBL', hazard_curve, 'results_TBL')
-    visualize_TBL('results_TBL')
+    # calculate(root, hazard_curve)
+    post_processing(root)

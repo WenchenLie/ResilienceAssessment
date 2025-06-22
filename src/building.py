@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 from math import isclose
 from typing import Literal
@@ -9,7 +10,7 @@ from openpyxl.worksheet.worksheet import Worksheet
 from .compenent import Component
 from .unit_convertor import to_foot
 from config.config import UNITS_TYPING, LOGGER,\
-    VECTOR
+    VECTOR, OCCUPANCIES_TYPING
 
 
 class Building:
@@ -20,7 +21,12 @@ class Building:
             heights: list[float],
             unit: UNITS_TYPING,
             replacement_cost: float,
-            replacement_time: float
+            replacement_time: float,
+            occupancy: OCCUPANCIES_TYPING,
+            collapse_fatality_rate: float=0.01,
+            collapse_fatality_COV: float=0.5,
+            collapse_injury_rate: float=0.01,
+            collapse_injury_COV: float=0.5,
         ):
         """定义一栋建筑，并设置基本参数
 
@@ -32,6 +38,11 @@ class Building:
             unit (UNITS_TYPING): 尺寸和层高的单位
             replacement_cost (float): 重建成本
             replacement_time (float): 重建时间
+            occupancy (OCCUPANCIES_TYPING): 建筑使用功能
+            collapse_fatality_rate (float, optional): 倒塌死亡率，默认100%
+            collapse_fatality_COV (float, optional): 倒塌死亡率的协方差，默认0.5
+            collapse_injury_rate (float, optional): 倒塌受伤率，默认100%
+            collapse_injury_COV (float, optional): 倒塌受伤率的协方差，默认0.5
         
         Notes:
         ------
@@ -43,10 +54,24 @@ class Building:
         self.heights = to_foot(heights, unit)
         self.replacement_cost = replacement_cost
         self.replacement_time = replacement_time
+        self.occupancy = occupancy
+        self.collapse_fatality_rate = collapse_fatality_rate
+        self.collapse_fatality_COV = collapse_fatality_COV
+        self.collapse_injury_rate = collapse_injury_rate
+        self.collapse_injury_COV = collapse_injury_COV
         self.components: list[tuple[Component, float, int, int]] = []
         self.account_for_clps: bool = False  # 是否考虑倒塌
         self.account_for_dm: bool = False  # 是否考虑残余变形过大导致的拆除
+        self._init_population()
         LOGGER.success(f'Building "{self.name}" is created successfully.')
+
+    def _init_population(self):
+        """根据建筑使用功能读取人口模型"""
+        pop_model: dict = json.load(open(f'data/population models/{self.occupancy}.json', 'r'))
+        self.pop_num: float = pop_model['Peak number per 1000sf']
+        self.pop_beta: float = pop_model['Dispersion']
+        self.pop_day: dict[str, list[float, float]] = pop_model['Day']
+        self.pop_month: dict[str, list[float, float]] = pop_model['Month']
 
     def add_component(self,
             component: Component,

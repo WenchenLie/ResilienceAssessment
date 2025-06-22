@@ -13,7 +13,6 @@ def calculate(output_dir: str | Path, hazard_curve: np.ndarray):
     Args:
         output_dir (str | Path): 输出文件夹路径
     """
-
     x_size, y_size = 36.6, 24.4
     area = x_size * y_size
     building = Building(

@@ -8,7 +8,7 @@ from scipy.stats import norm
 from scipy.stats import truncnorm
 from config.config import AVAILABLE_COMP, DISTR_TYPING
 
-
+# TODO: 通过0-1随机数模拟
 class Component:
     ID: int
     category: Literal['S', 'NS', 'C']

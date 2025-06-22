@@ -19,11 +19,11 @@ def to_foot(
     if old_unit == 'ft':
         sf = 1
     elif old_unit == 'in':
-        sf = 12
+        sf = 1 / 12
     elif old_unit =='mm':
-        sf = 12 / 0.3048
+        sf = 1 / 304.8
     elif old_unit =='m':
-        sf = 12 / 0.3048 / 1000
+        sf = 1 / 0.3048
     else:
         raise ValueError(f"Invalid unit: {old_unit}")
     if isinstance(value, tuple):

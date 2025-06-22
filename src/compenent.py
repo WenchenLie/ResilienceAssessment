@@ -1,14 +1,15 @@
-import json
+import json, time
 from pprint import pprint
 from math import isclose
 from pathlib import Path
 from typing import Literal, Self
 import numpy as np
-from scipy.stats import norm
+# from scipy.stats import norm
 from scipy.stats import truncnorm
+from ._calculation import _cdf, _normal, _lognormal
 from config.config import AVAILABLE_COMP, DISTR_TYPING
 
-# TODO: 通过0-1随机数模拟
+
 class Component:
     ID: int
     category: Literal['S', 'NS', 'C']
@@ -113,7 +114,7 @@ class Component:
         prob = []  # 各个损伤状态的概率
         for i in range(len(ds_flag)):
             median, beta = median_ls[i], beta_ls[i]
-            pi = norm.cdf(np.log((edp / median) / beta), 0, 1)  # 构件易损性曲线纵坐标值
+            pi = _cdf(np.log((edp / median) / beta))  # 构件易损性曲线纵坐标值
             prob.append(pi)
         ds_flag.insert(0, 0)  # 添加无损伤状态
         prob.insert(0, 1)  # 无损伤状态的概率为1
@@ -473,10 +474,11 @@ class Component:
             use_casualty, area, death_rate, death_rate_beta, injury_rate, injury_rate_beta = _extract_casualty(DS)
         if not use_casualty:
             return area * quantity, 0, 0
-        death_rate = _get_prob_cons(1, death_rate, 2, death_rate, death_rate_beta,
-                                    'Normal', 1, is_random)
-        injury_rate = _get_prob_cons(1, injury_rate, 2, injury_rate, injury_rate_beta,
-                                    'Normal', 1, is_random)
+        if is_random:
+            death_rate = _normal(death_rate, death_rate_beta)
+            injury_rate = _normal(injury_rate, injury_rate_beta)
+        death_rate = max(death_rate, 0)
+        injury_rate = max(injury_rate, 0)
         return area * quantity, death_rate, injury_rate
   
     def show_info(self, is_print: bool = True) -> dict[str, str]:
@@ -592,20 +594,10 @@ def _get_prob_cons(
         return 0.0
     if is_random:
         if curve_type == 'Normal':
-            std = uncertainty * median
-            low_bound = median - 1.28155 * std  # 10%分位数
-            high_bound = median + 1.28155 * std  # 90%分位数
-            a = (low_bound - median) / std
-            b = (high_bound - median) / std 
-            unit_cost = truncnorm.rvs(a, b, loc=median, scale=std)  # 截断采样
+            unit_cost = _normal(median, uncertainty, trunc=False)
         elif curve_type == 'LogNormal':
-            log_median = np.log(median)
-            log_low = log_median - 1.28155 * uncertainty
-            log_high = log_median + 1.28155 * uncertainty
-            a = (log_low - log_median) / uncertainty
-            b = (log_high - log_median) / uncertainty
-            log_unit_cost = truncnorm.rvs(a, b, loc=log_median, scale=uncertainty)
-            unit_cost = np.exp(log_unit_cost)
+            unit_cost = _lognormal(median, uncertainty, trunc=False)
     else:
         unit_cost = median
     return unit_cost * quantity
+

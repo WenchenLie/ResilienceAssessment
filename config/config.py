@@ -30,7 +30,18 @@ OCCUPANCIES = [
     'Retail',
     'Warehouse'
 ]
-OCCUPANCIES_TYPING = TypeVar(OCCUPANCIES)
+OCCUPANCIES_TYPING = Literal[
+    'Commercial Office',
+    'Elementary Schools',
+    'Middle Schools',
+    'High Schools',
+    'Healthcare',
+    'Hospitality',
+    'Multi-unit Residential',
+    'Research',
+    'Retail',
+    'Warehouse'
+]
 VECTOR = List[float]
 EDP_TYPING = TypeVar(list(EDP_TYPES.keys()))
 EDP_ABBR_TYPING = Literal['D', 'ED', 'A', 'L', 'LB', 'V']

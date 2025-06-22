@@ -1,5 +1,5 @@
 {
-    "Peak number per 10000sf": 3.1,
+    "Peak number per 1000sf": 3.1,
     "Dispersion": 0.2,
     "Day": {
         "00:00": [100, 100],

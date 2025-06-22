@@ -1,4 +1,4 @@
-from math import isclose
+from math import isclose, erf, sqrt
 import numpy as np
 import pandas as pd
 from scipy.stats import norm
@@ -23,8 +23,6 @@ def get_EDP_fragility(
                 raise ValueError(f'EDP值({edp})超出IDA曲线范围({min(x)}, {max(x)})')
             yi = _get_y(x, y, edp)  # 给定EDP值下，IDA曲线对应的地震强度
             IM_ls[idx_gm] = yi
-
-
 
 
 def _get_y(x: list, y: list, x0: float, error: bool=True) -> float:
@@ -61,3 +59,43 @@ def _get_y(x: list, y: list, x0: float, error: bool=True) -> float:
     else:
         raise ValueError('【Error】未找到交点-2')
 
+
+def _cdf(x: float):
+    return 0.5 * (1.0 + erf(x / sqrt(2.0)))
+
+
+def _normal(mean: float, std: float, trunc=False) -> float:
+    """正态分布采样
+
+    Args:
+        mean (float): 均值
+        std (float): 标准差
+        trunc (bool, optional): 是否按10%-90%分位数进行截断采样
+
+    Returns:
+        float: 采样值
+    """
+    x = np.random.normal(mean, std)
+    if trunc:
+        if not mean - 1.28155 * std < x < mean + 1.28155 * std:
+            x = _normal(mean, std, trunc)
+    return float(x)
+
+
+def _lognormal(mean: float, log_std: float, trunc=False) -> float:
+    """正态分布采样
+
+    Args:
+        mean (float): 均值
+        log_std (float): 对数标准差
+        trunc (bool, optional): 是否按10%-90%分位数进行截断采样
+
+    Returns:
+        float: 采样值
+    """
+    log_mean = np.log(mean)
+    x = np.random.lognormal(log_mean, log_std)
+    if trunc:
+        if not log_mean - 1.28155 * log_std < np.log(x) < log_mean + 1.28155 * log_std:
+            x = _lognormal(mean, log_std, trunc)
+    return float(x)

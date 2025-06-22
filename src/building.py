@@ -5,10 +5,11 @@ from typing import Literal
 import numpy as np
 import matplotlib.pyplot as plt
 import openpyxl as px
-from scipy.stats import norm
+# from scipy.stats import norm
 from openpyxl.worksheet.worksheet import Worksheet
 from .compenent import Component
 from .unit_convertor import to_foot
+from ._calculation import _cdf, _normal, _lognormal
 from config.config import UNITS_TYPING, LOGGER,\
     VECTOR, OCCUPANCIES_TYPING
 
@@ -51,6 +52,7 @@ class Building:
         self.name = name
         self.Nstory = Nstory
         self.size = to_foot(size, unit)
+        self.floor_area = self.size[0] * self.size[1]
         self.heights = to_foot(heights, unit)
         self.replacement_cost = replacement_cost
         self.replacement_time = replacement_time
@@ -244,7 +246,7 @@ class Building:
         # 模拟倒塌
         if self.account_for_clps is None:
             return False  # 没有定义倒塌易损性，不考虑倒塌
-        p = norm.cdf(np.log(Sa / self.median_clps) / self.logstd_RIDR, 0, 1)
+        p = _cdf(np.log(Sa / self.median_clps) / self.logstd_RIDR)
         if is_random:
             clps = np.random.uniform() < p
         else:
@@ -261,7 +263,7 @@ class Building:
         # 模拟拆除
         if self.account_for_dm is None:
             return False  # 没有定义拆除概率，不考虑拆除
-        p = norm.cdf(np.log(RIDR / self.median_RIDR) / self.logstd_RIDR, 0, 1)
+        p = _cdf(np.log(RIDR / self.median_RIDR) / self.logstd_RIDR)
         if is_random:
             dm = np.random.uniform() < p
         else:
@@ -281,7 +283,7 @@ class Building:
             A, B, logstd = self.IDR_PSDM[i]
             ln_median = A + B * np.log(Sa)
             if is_random:
-                IDR[i] = np.exp(np.random.normal(ln_median, logstd))
+                IDR[i] = np.exp(_normal(ln_median, logstd))
             else:
                 IDR[i] = np.exp(ln_median)
         IDR = np.where(IDR < 0, 0, IDR)
@@ -298,7 +300,7 @@ class Building:
         A, B, logstd = self.RIDR_PSDM
         ln_median = A + B * np.log(Sa)
         if is_random:
-            RIDR = np.exp(np.random.normal(ln_median, logstd))
+            RIDR = np.exp(_normal(ln_median, logstd))
         else:
             RIDR = np.exp(ln_median)
         RIDR = np.where(RIDR < 0, 0, RIDR)
@@ -314,7 +316,7 @@ class Building:
             A, B, logstd = self.PFA_PSDM[i]
             ln_median = A + B * np.log(Sa)
             if is_random:
-                PFA[i] = np.exp(np.random.normal(ln_median, logstd))
+                PFA[i] = np.exp(_normal(ln_median, logstd))
             else:
                 PFA[i] = np.exp(ln_median)
         PFA = np.where(PFA < 0, 0, PFA)
@@ -330,7 +332,7 @@ class Building:
             A, B, logstd = self.PFV_PSDM[i]
             ln_median = A + B * np.log(Sa)
             if is_random:
-                PFV[i] = np.exp(np.random.normal(ln_median, logstd))
+                PFV[i] = np.exp(_normal(ln_median, logstd))
             else:
                 PFV[i] = np.exp(ln_median)
         PFV = np.where(PFV < 0, 0, PFV)

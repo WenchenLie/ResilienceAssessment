@@ -1,6 +1,7 @@
 from typing import TypeVar, Literal
 import numpy as np
 from src.building import Building
+from ._calculation import _normal
 from config.config import EDP_ABBR_TYPING, LOGGER,\
     HOURS, MONTHS
 
@@ -14,22 +15,15 @@ def _realization(
         queue
     ) -> tuple[int, np.ndarray, np.ndarray, np.ndarray,
                dict[str, np.ndarray], dict[str, np.ndarray]]:
-    """对应于一次蒙特卡洛模拟"""
+    """进行一次蒙特卡洛模拟计算consequence"""
     try:
         if random_seed is not None:
             np.random.seed(random_seed)
-        hour: TypeVar[HOURS] = np.random.choice(HOURS)
-        month: TypeVar[HOURS] = np.random.choice(MONTHS)
-        weekday: int = np.random.choice([0, 1], p=[5/7, 2/7])
-        pop_num = building.pop_num * building.pop_day[hour][weekday] / 100 *\
-            building.pop_month[month][weekday] / 100
-        beta = building.pop_beta
-        pop_num = np.random.normal(pop_num, beta)  # 每1000sf的人数
         # ↓ 由倒塌、拆除、修复导致的经济损失
         cost_clps, cost_dm, cost_repair = np.zeros_like(Sa_ls), np.zeros_like(Sa_ls), np.zeros_like(Sa_ls)
         repair_time = np.zeros_like(Sa_ls)  # 修复时间
-        death = np.zeros_like(Sa_ls)  # 死亡人数
-        injury = np.zeros_like(Sa_ls)  # 受伤人数
+        death_rate = np.zeros_like(Sa_ls)  # 死亡率
+        injury_rate = np.zeros_like(Sa_ls)  # 受伤率
         cost_repair_category = {
             'S': np.zeros_like(Sa_ls),
             'NS': np.zeros_like(Sa_ls),
@@ -43,30 +37,55 @@ def _realization(
             'LB': np.zeros_like(Sa_ls),
             'V': np.zeros_like(Sa_ls)
         }  # 不同敏感性类型的构件的修复成本
+
         for idx_Sa, Sa in enumerate(Sa_ls):
             IDR = building._simu_IDR(Sa, is_random)
             RIDR = building._simu_RIDR(Sa, is_random)
             PFA = building._simu_PFA(Sa, is_random)
+            hour: TypeVar[HOURS] = np.random.choice(HOURS)
+            month: TypeVar[HOURS] = np.random.choice(MONTHS)
+            weekday: Literal[0, 1] = np.random.choice([0, 1], p=[5/7, 2/7])
+            pop_num = building.pop_num * building.pop_day[hour][weekday] / 100 *\
+                building.pop_month[month][weekday] / 100
+            beta = building.pop_beta
+            pop_num = _normal(pop_num, beta)  # 每1000sf的人数
+            pop_num = max(pop_num, 1)  # 人数不能为0
+            total_pop = pop_num * building.floor_area / 1000 * building.Nstory  # 总人口
+            flag: Literal['rp', 'clps', 'dm'] = 'rp'
+
             if building._simu_clps(Sa, is_random):
                 # 结构倒塌
                 cost_clps[idx_Sa] = building.replacement_cost
                 repair_time[idx_Sa] = building.replacement_time
                 potential_clps_modes: list[tuple[int]] = list(building.collapse_modes.keys())
                 p = list(building.collapse_modes.values())
-                clps_mode: tuple[int] = np.random.choice(potential_clps_modes, p=p)  # 倒塌模式
-                
-                continue
+                clps_mode_idx: int = np.random.choice(range(len(potential_clps_modes)), p=p)  # 倒塌模式
+                clps_mode: tuple[int] = potential_clps_modes[clps_mode_idx]
+                # 计算倒塌导致的人员伤亡(数量)
+                death_, injury_ = 0, 0
+                collapse_fatality_rate = _normal(building.collapse_fatality_rate, building.collapse_fatality_COV)
+                collapse_injury_rate = _normal(building.collapse_injury_rate, building.collapse_injury_COV)
+                collapse_fatality_rate = max(collapse_fatality_rate, 0)
+                collapse_injury_rate = max(collapse_injury_rate, 0)
+                for story in clps_mode:
+                    # 倒塌的楼层
+                    death_i = collapse_fatality_rate * pop_num * building.floor_area / 1000  # 死亡人数
+                    injury_i = collapse_injury_rate * pop_num * building.floor_area / 1000  # 受伤人数
+                    death_ += death_i
+                    injury_ += injury_i
+                death_rate[idx_Sa] = death_ / total_pop
+                injury_rate[idx_Sa] = injury_ / total_pop
+                flag = 'clps'
+                # continue
+
             if building._simu_demolishment(RIDR, is_random):
                 # 结构因残余变形过大而拆除
-                cost_dm[idx_Sa] = building.replacement_cost
-                repair_time[idx_Sa] = building.replacement_time
+                if not flag == 'clps':
+                    cost_dm[idx_Sa] = building.replacement_cost
+                    repair_time[idx_Sa] = building.replacement_time
                 flag = 'dm'
-            if building._simu_clps(Sa, is_random):
-                # 结构倒塌
-                cost_clps[idx_Sa] = building.replacement_cost
-                repair_time[idx_Sa] = building.replacement_time
-                flag = 'clps'
-                # TODO: 计算倒塌情况下的死亡和受伤人数
+                # continue
+
             cost_, time_, death_, injury_ = 0, 0, 0, 0
             for comp, quantity, story, floor in building.components:
                 # 遍历构件(每批)计算损失
@@ -94,14 +113,16 @@ def _realization(
                         # 仅当可修复时才计算修复成本和时间
                         cost_i = comp._get_cost(quantity, ds_flag, is_random)  # 单个构件修复成本
                         time_i = comp._get_time(quantity, ds_flag, is_random)  # 单个构件修复时间
-                    area, death_rate, injury_rate\
-                        = comp._get_casualty(quantity, ds_flag, is_random)  # 该楼层受影响的总面积，死亡率，伤害率
-                    death_i = area / 1000 * pop_num * death_rate  # 死亡人数
-                    injury_i = area / 1000 * pop_num * injury_rate  # 受伤人数
+                    elif flag in ['rp', 'dm']:
+                        # 仅当可修复或拆除时才计算伤亡
+                        area, death_rate_, injury_rate_\
+                            = comp._get_casualty(quantity, ds_flag, is_random)  # 该楼层受影响的总面积，死亡率，伤害率
+                        death_i = area / 1000 * pop_num * death_rate_  # 死亡人数
+                        injury_i = area / 1000 * pop_num * injury_rate_  # 受伤人数
                 cost_ += cost_i
                 time_ += time_i
-                death_ += death_i
-                injury_ += injury_i
+                death_ += death_i / total_pop
+                injury_ += injury_i / total_pop
 
                 # 记录结果
                 if flag == 'rp':
@@ -125,11 +146,12 @@ def _realization(
                             cost_repair_sensitivity['LB'][idx_Sa] += cost_i
                         case 'V':
                             cost_repair_sensitivity['V'][idx_Sa] += cost_i
-            if flag == 'rp':
+            if flag in 'rp':
                 cost_repair[idx_Sa] = cost_
-            repair_time[idx_Sa] = time_
-            death[idx_Sa] = death_
-            injury[idx_Sa] = injury_
+                repair_time[idx_Sa] = time_
+            if flag in ['rp', 'dm']:
+                death_rate[idx_Sa] = death_
+                injury_rate[idx_Sa] = injury_
     except Exception as e:
         LOGGER.error(f"Error in Monte Carlo simulation {idx_MC}: {e}")
         print(e)
@@ -137,5 +159,5 @@ def _realization(
     if queue is not None:
         queue.put(1)
     return idx_MC, cost_clps, cost_dm, cost_repair, cost_repair_category, cost_repair_sensitivity,\
-        repair_time
+        repair_time, death_rate, injury_rate
 

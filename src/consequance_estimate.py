@@ -40,6 +40,8 @@ def consequance_estimate(
     cost_mat_dm = np.zeros((len(Sa_ls), n))
     cost_mat_repair = np.zeros((len(Sa_ls), n))
     repair_time_mat = np.zeros((len(Sa_ls), n))
+    death_rate_mat = np.zeros((len(Sa_ls), n))
+    injury_rate_mat = np.zeros((len(Sa_ls), n))
     cost_mat_repair_category = {
         'S': np.zeros((len(Sa_ls), n)),
         'NS': np.zeros((len(Sa_ls), n)),
@@ -59,11 +61,13 @@ def consequance_estimate(
         for idx_MC in range(n):
             print(f"  Running Monte Carlo simulation: {idx_MC+1}/{n}", end='\r')
             idx_MC, cost_clps, cost_dm, cost_repair, cost_repair_category, cost_repair_sensitivity,\
-                repair_time = _realization(idx_MC, Sa_ls, building, is_random, random_seed, None)
+                repair_time, death_rate, injury_rate = _realization(idx_MC, Sa_ls, building, is_random, random_seed, None)
             cost_mat_clps[:, idx_MC] = cost_clps
             cost_mat_dm[:, idx_MC] = cost_dm
             cost_mat_repair[:, idx_MC] = cost_repair
             repair_time_mat[:, idx_MC] = repair_time
+            death_rate_mat[:, idx_MC] = death_rate
+            injury_rate_mat[:, idx_MC] = injury_rate
             for key, arr in cost_repair_category.items():
                 cost_mat_repair_category[key][:, idx_MC] = arr
             for key, arr in cost_repair_sensitivity.items():
@@ -87,11 +91,13 @@ def consequance_estimate(
             args_list = [(idx_MC, Sa_ls, building, is_random, random_seed, queue) for idx_MC in range(n)]
             results = pool.starmap(_realization, args_list)
             for idx_MC, cost_clps, cost_dm, cost_repair, cost_repair_category, cost_repair_sensitivity,\
-                repair_time in results:
+                repair_time, death_rate, injury_rate in results:
                 cost_mat_clps[:, idx_MC] = cost_clps
                 cost_mat_dm[:, idx_MC] = cost_dm
                 cost_mat_repair[:, idx_MC] = cost_repair
                 repair_time_mat[:, idx_MC] = repair_time
+                death_rate_mat[:, idx_MC] = death_rate
+                injury_rate_mat[:, idx_MC] = injury_rate
                 for key, arr in cost_repair_category.items():
                     cost_mat_repair_category[key][:, idx_MC] = arr
                 for key, arr in cost_repair_sensitivity.items():
@@ -132,6 +138,12 @@ def consequance_estimate(
     if not output_dir.exists():
         os.makedirs(output_dir)
     np.save(output_dir /'repair_time.npy', repair_time_mat)
+    # 人员伤亡
+    output_dir = root / 'Casualties'
+    if not output_dir.exists():
+        os.makedirs(output_dir)
+    np.save(output_dir / 'Death_rate.npy', death_rate_mat)
+    np.save(output_dir / 'Injury_rate.npy', injury_rate_mat)
     
 
 def _time_based_loss(

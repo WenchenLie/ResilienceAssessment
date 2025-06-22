@@ -15,7 +15,8 @@ def post_processing(root: str | Path):
         os.makedirs(output_dir)
     # _visualize_IBL(root, output_dir)
     # _visualize_TBL(root, output_dir)
-    _visualize_repair_time(root, output_dir)
+    # _visualize_repair_time(root, output_dir)
+    _visualize_casualties(root, output_dir)
 
 
 def _visualize_IBL(root: Path, output_dir: Path):
@@ -191,3 +192,19 @@ def _visualize_repair_time(root: Path, output_dir: Path):
     plt.savefig(output_dir / 'Repair time.png', dpi=600)
     plt.show()
 
+
+def _visualize_casualties(root: Path, output_dir: Path):
+    Sa = np.loadtxt(root / 'Sa.txt')
+    death_rate: np.ndarray = np.load(root / 'Casualties/Death_rate.npy') * 100
+    injury_rate: np.ndarray = np.load(root / 'Casualties/Injury_rate.npy') * 100
+    death_rate = np.mean(death_rate, axis=1)
+    injury_rate = np.mean(injury_rate, axis=1)
+    plt.plot(Sa, death_rate, label='Death rate')
+    plt.plot(Sa, injury_rate, label='Injury rate')
+    plt.xlabel('Sa (g)')
+    plt.ylabel('Rate (%)')
+    plt.title('Casualty Rate')
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(output_dir / 'Casualty rate.png', dpi=600)
+    plt.show()

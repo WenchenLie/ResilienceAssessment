@@ -22,7 +22,8 @@ def calculate(output_dir: str | Path, hazard_curve: np.ndarray):
         heights=[4.3, 4, 4, 4],
         unit='m',
         replacement_cost=12_000_000,
-        replacement_time=720)
+        replacement_time=720,
+        occupancy='Commercial Office')
     
     shear_connection = Component('B1031.001', 'S')
     column_base = Component('B1031.011b', 'S')
@@ -76,7 +77,10 @@ def calculate(output_dir: str | Path, hazard_curve: np.ndarray):
             [0.384, 0.731, 0.4]],
         RIDR_PSDM=[-4.291, 2.178, 0.4])
     building.set_demolishment_prob(median_RIDR=0.005, logstd_RIDR=0.3)
-    building.set_collapse_prob(median_clps=3.0, logstd_clps=0.4, collapse_modes={(1, 2, 3, 4): 1})
+    building.set_collapse_prob(median_clps=3.0, logstd_clps=0.4,
+                               collapse_modes={
+                                   (1, 2, 3, 4): 0.6,
+                                   (1,): 0.4})
     
     Sa = np.linspace(0.01, 4, 100)
     consequance_estimate(
@@ -90,7 +94,9 @@ def calculate(output_dir: str | Path, hazard_curve: np.ndarray):
 
 
 if __name__ == "__main__":
+    from viztracer import VizTracer
     root = Path('Results')
     hazard_curve = np.loadtxt(r'data\hazard_curves\0.83.txt')
-    calculate(root, hazard_curve)
+    # with VizTracer(log_gc=True, log_async=True, output_file='results.json', max_stack_depth=1000000):
+    # calculate(root, hazard_curve)
     post_processing(root)

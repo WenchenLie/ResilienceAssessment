@@ -1,4 +1,5 @@
 from pathlib import Path
+from math import isclose
 from typing import Literal
 import numpy as np
 import matplotlib.pyplot as plt
@@ -165,16 +166,34 @@ class Building:
     
     def set_collapse_prob(self,
             median_clps: float,
-            logstd_clps: float
+            logstd_clps: float,
+            collapse_modes: dict[tuple[int], float]
         ):
         """定义倒塌概率（与地震动强度相关）
 
         Args:
             median_clps (float): 50%倒塌概率对应的中值倒塌强度
             logstd_clps (float): 倒塌强度的对数标准差
+            collapse_modes (dict[tuple[int], float]): 倒塌模式及对应的概率
+        
+        Note:
+        -----
+        * `collapse_modes`的key为倒塌模式中倒塌的楼层编号(从1开始)，value为概率，
+          概率之和应为1
+        
+        Example:
+        -------
+        >>> collapse_modes = {
+            (1,): 0.6,
+            (1, 2): 0.4}
+        
+        表示有60%的概率发生底层倒塌，有40%的概率发生1-2层倒塌
         """
         self.median_clps = median_clps
         self.logstd_clps = logstd_clps
+        if not isclose(sum(collapse_modes.values()), 1):
+            raise ValueError('The sum of probability of collapse modes should be 1')
+        self.collapse_modes = collapse_modes
         self.account_for_clps = True  # 考虑倒塌
         LOGGER.success(f'Probability of collapse has been defined.')
 

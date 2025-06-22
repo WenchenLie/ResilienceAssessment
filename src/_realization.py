@@ -42,6 +42,10 @@ def _realization(
                 # 结构倒塌
                 cost_clps[idx_Sa] = building.replacement_cost
                 repair_time[idx_Sa] = building.replacement_time
+                potential_clps_modes: list[tuple[int]] = list(building.collapse_modes.keys())
+                p = list(building.collapse_modes.values())
+                clps_mode: tuple[int] = np.random.choice(potential_clps_modes, p=p)  # 倒塌模式
+                
                 continue
             if building._simu_demolishment(RIDR, is_random):
                 # 结构因残余变形过大而拆除

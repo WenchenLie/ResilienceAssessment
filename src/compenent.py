@@ -16,7 +16,7 @@ class Component:
     comp_data: dict
     damage_states: dict[str, str | list]
     edp_type: Literal['D', 'ED', 'A', 'L', 'LB', 'V']
-    comp_data_path = Path('data/ATCCurves_json')
+    comp_data_path = Path(__file__).parent.parent / 'data/ATCCurves_json'
 
     def __init__(self,
             ID: str,
@@ -37,27 +37,30 @@ class Component:
             if not ID in AVAILABLE_COMP:
                 raise ValueError(f'Component "{ID}" is not available')
             self.ID = ID
-            self.category = category
             self.comp_data = self._get_comp_data()
         else:
             self.comp_data: dict = json.load(open(__json_file, "r"))
             self.ID = self.comp_data['FragilityCurve']['ID']
+        self.category = category
         self.damage_states = self._get_DSs()
         if show_info:
             self.show_info()
-    
+
     @classmethod
     def user_component(cls,
             json_file: str | Path,
+            category: Literal['S', 'NS', 'C'],
             show_info: bool = False
         ) -> Self:
         """用户自定义一个构件
 
         Args:
             json_file (str | Path): 包含易损性信息的json文件，可参考`template.json`
+            category (Literal['S', 'NS', 'C']): 构件类别，仅用于计算结果的统计
+              (S:结构构件，NS:非结构构件，C:建筑内容)
             show_info (bool, optional): 是否打印主要信息
         """
-        return cls(None, show_info, True, json_file)
+        return cls(None, category, show_info, True, json_file)
     
     def _get_comp_data(self):
         with open(self.comp_data_path / f'{self.ID}.json', "r") as f:

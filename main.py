@@ -7,24 +7,29 @@ from src.consequance_estimate import consequance_estimate
 from src.post_processing import post_processing
 
 
-def calculate(output_dir: str | Path, hazard_curve: np.ndarray):
+def calculate(
+    output_dir: str | Path,
+    hazard_curve: np.ndarray,
+):
     """计算建筑震后损失
 
     Args:
         output_dir (str | Path): 输出文件夹路径
+        hazard_curve (np.ndarray): 地震危险性曲线
     """
+    Nstory = 4
     x_size, y_size = 36.6, 24.4
     area = x_size * y_size
     building = Building(
         name='test_building',
-        Nstory=4,
+        Nstory=Nstory,
         size=(x_size, y_size),
         heights=[4.3, 4, 4, 4],
         unit='m',
         replacement_cost=12_000_000,
         replacement_time=720,
         occupancy='Commercial Office')
-    
+
     shear_connection = Component('B1031.001', 'S')
     column_base = Component('B1031.011b', 'S')
     column_splices = Component('B1031.021b', 'S')
@@ -44,7 +49,7 @@ def calculate(output_dir: str | Path, hazard_curve: np.ndarray):
     bookcase_2shelves = Component('E2022.102b', 'C')
     # Ref: Seismic fragility and loss estimation of self-centering steel braced frames under mainshock-aftershock sequences
 
-    for story in range(1, 5):
+    for story in range(1, Nstory + 1):
         top_floor = story + 1
         bot_floor = story
         building.add_component(shear_connection, 24, story=story)
@@ -81,7 +86,7 @@ def calculate(output_dir: str | Path, hazard_curve: np.ndarray):
                                collapse_modes={
                                    (1, 2, 3, 4): 0.6,
                                    (1,): 0.4})
-    
+
     Sa = np.linspace(0.01, 4, 100)
     consequance_estimate(
         n=1000,
@@ -98,5 +103,5 @@ if __name__ == "__main__":
     root = Path('Results')
     hazard_curve = np.loadtxt(r'data\hazard_curves\0.83.txt')
     # with VizTracer(log_gc=True, log_async=True, output_file='results.json', max_stack_depth=1000000):
-    # calculate(root, hazard_curve)
+    calculate(root, hazard_curve)
     post_processing(root)

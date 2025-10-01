@@ -13,9 +13,9 @@ def post_processing(root: str | Path):
     output_dir = root / 'Post-processing'
     if not output_dir.exists():
         os.makedirs(output_dir)
-    # _visualize_IBL(root, output_dir)
-    # _visualize_TBL(root, output_dir)
-    # _visualize_repair_time(root, output_dir)
+    _visualize_IBL(root, output_dir)
+    _visualize_TBL(root, output_dir)
+    _visualize_repair_time(root, output_dir)
     _visualize_casualties(root, output_dir)
 
 
@@ -72,7 +72,10 @@ def _visualize_IBL(root: Path, output_dir: Path):
     # 不同构件类型(S, NS, C)损失堆叠面积图
     sum_curve = sum([np.mean(data, axis=1) for data in cost_rapair_category.values()])
     # 截取sum_curve直至首个元素等于0为止
-    cond = np.where(sum_curve == 0)[0][0]
+    try:
+        cond = np.where(sum_curve == 0)[0][0]
+    except IndexError:
+        cond = len(sum_curve)
     sum_curve = sum_curve[:cond]
     bot_curve = np.zeros_like(Sa)[:cond]
     top_curve = np.zeros_like(Sa)[:cond]
@@ -98,7 +101,10 @@ def _visualize_IBL(root: Path, output_dir: Path):
     # 不同构件的敏感性类型(D, ED, A, L, LB, V)损失堆叠面积图
     sum_curve = sum([np.mean(data, axis=1) for data in cost_repair_sensitivity.values()])
     # 截取sum_curve直至首个元素等于0为止
-    cond = np.where(sum_curve == 0)[0][0]
+    try:
+        cond = np.where(sum_curve == 0)[0][0]
+    except IndexError:
+        cond = len(sum_curve)
     sum_curve = sum_curve[:cond]
     bot_curve = np.zeros_like(Sa)[:cond]
     top_curve = np.zeros_like(Sa)[:cond]

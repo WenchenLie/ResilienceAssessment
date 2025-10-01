@@ -15,6 +15,8 @@ from config.config import UNITS_TYPING, LOGGER,\
 
 
 class Building:
+    root = Path(__file__).parent.parent
+    
     def __init__(self,
             name: str,
             Nstory: int,
@@ -69,7 +71,7 @@ class Building:
 
     def _init_population(self):
         """根据建筑使用功能读取人口模型"""
-        pop_model: dict = json.load(open(f'data/population models/{self.occupancy}.json', 'r'))
+        pop_model: dict = json.load(open(self.root / f'data/population models/{self.occupancy}.json', 'r'))
         self.pop_num: float = pop_model['Peak number per 1000sf']
         self.pop_beta: float = pop_model['Dispersion']
         self.pop_day: dict[str, list[float, float]] = pop_model['Day']
@@ -274,9 +276,9 @@ class Building:
         return bool(dm)
 
     def _simu_IDR(self,
-                Sa: float,
+            Sa: float,
             is_random: bool = True
-            ) -> np.ndarray:
+        ) -> np.ndarray:
         """模拟层间位移角需求，ln(IDR) = A + B * ln(Sa)"""
         IDR = np.zeros(self.Nstory)
         for i in range(self.Nstory):

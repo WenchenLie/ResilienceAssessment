@@ -6,6 +6,7 @@ from typing import Literal, Self
 import numpy as np
 # from scipy.stats import norm
 from scipy.stats import truncnorm
+# from scipy.stats import norm
 from ._calculation import _cdf, _normal, _lognormal
 from config.config import AVAILABLE_COMP, DISTR_TYPING
 
@@ -117,7 +118,7 @@ class Component:
         prob = []  # 各个损伤状态的概率
         for i in range(len(ds_flag)):
             median, beta = median_ls[i], beta_ls[i]
-            pi = _cdf(np.log((edp / median) / beta))  # 构件易损性曲线纵坐标值
+            pi = _cdf(np.log(edp / median) / beta)  # 构件易损性曲线纵坐标值
             prob.append(pi)
         ds_flag.insert(0, 0)  # 添加无损伤状态
         prob.insert(0, 1)  # 无损伤状态的概率为1
@@ -565,7 +566,7 @@ def _get_prob_cons(
     max_amount: float,
     upper_quantity: float,
     min_amount: float,
-    uncertainty: float,
+    cov: float,
     curve_type: DISTR_TYPING,
     quantity: float,
     is_random: bool,
@@ -577,7 +578,7 @@ def _get_prob_cons(
         max_amount (float): 单价/修复时间中值上限
         upper_quantity (float): 最大数量
         min_amount (float): 单价/修复时间中值下限
-        uncertainty (float): 不确定性
+        cov (float): 变异系数
         curve_type (DISTR_TYPING): 概率分布类型
         quantity (float): 数量
         is_random (bool, optional): 是否考虑概率分布
@@ -595,11 +596,17 @@ def _get_prob_cons(
         )
     if isclose(median, 0):
         return 0.0
+    rng = np.random.default_rng()
     if is_random:
         if curve_type == 'Normal':
-            unit_cost = _normal(median, uncertainty, trunc=False)
+            sigma = median * cov
+            unit_cost = rng.normal(median, sigma)
         elif curve_type == 'LogNormal':
-            unit_cost = _lognormal(median, uncertainty, trunc=False)
+            sigma_sq = np.log(1 + cov ** 2)
+            sigma = np.sqrt(sigma_sq)
+            unit_cost_ln = np.log(median) - 0.5 * sigma_sq
+            unit_cost = rng.lognormal(unit_cost_ln, sigma)
+        unit_cost = max(unit_cost, 0)
     else:
         unit_cost = median
     return unit_cost * quantity

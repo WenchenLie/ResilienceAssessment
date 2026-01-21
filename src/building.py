@@ -2,21 +2,25 @@ import json
 from pathlib import Path
 from math import isclose
 from typing import Literal
+
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 import openpyxl as px
-# from scipy.stats import norm
+from scipy.stats import linregress
 from openpyxl.worksheet.worksheet import Worksheet
+
 from .compenent import Component
+from .edp_matrix_expander import EDPMatrixExpander
 from .unit_convertor import to_foot
-from ._calculation import _cdf, _normal, _lognormal
+from ._calculation import _cdf, _normal
 from config.config import UNITS_TYPING, LOGGER,\
     VECTOR, OCCUPANCIES_TYPING
 
 
 class Building:
     root = Path(__file__).parent.parent
-    
+
     def __init__(self,
             name: str,
             Nstory: int,
@@ -26,6 +30,9 @@ class Building:
             replacement_cost: float,
             replacement_time: float,
             occupancy: OCCUPANCIES_TYPING,
+            n_MC: int,
+            Sa_ls: np.ndarray,
+            edp_correlation: bool = True,
             collapse_fatality_rate: float=0.01,
             collapse_fatality_COV: float=0.5,
             collapse_injury_rate: float=0.01,
@@ -42,6 +49,9 @@ class Building:
             replacement_cost (float): 重建成本
             replacement_time (float): 重建时间
             occupancy (OCCUPANCIES_TYPING): 建筑使用功能
+            n_MC (int): 蒙特卡洛模拟次数
+            Sa_ls (np.ndarray): 地震动强度序列
+            edp_correlation (bool, optional): 是否考虑EDP之间的相关性，默认True
             collapse_fatality_rate (float, optional): 倒塌死亡率，默认100%
             collapse_fatality_COV (float, optional): 倒塌死亡率的协方差，默认0.5
             collapse_injury_rate (float, optional): 倒塌受伤率，默认100%
@@ -49,7 +59,9 @@ class Building:
         
         Notes:
         ------
-        所有长度量纲的单位都将转换为英尺(foot)
+        * 所有长度量纲的单位都将转换为英尺(foot)
+        * 当考虑EDP之间的相关性时，将扩充工程参数矩阵，各EDP符合联合概率分布，若不考虑，
+          则每个EDP按照其PSDM来模拟
         """
         self.name = name
         self.Nstory = Nstory
@@ -59,13 +71,23 @@ class Building:
         self.replacement_cost = replacement_cost
         self.replacement_time = replacement_time
         self.occupancy = occupancy
+        self.n_MC = n_MC
+        self.Sa_ls = Sa_ls
+        self.edp_correlation = edp_correlation
         self.collapse_fatality_rate = collapse_fatality_rate
         self.collapse_fatality_COV = collapse_fatality_COV
         self.collapse_injury_rate = collapse_injury_rate
         self.collapse_injury_COV = collapse_injury_COV
+        self.IDR_factor = 1
+        self.RIDR_factor = 1
+        self.PFA_factor = 1
+        self.PFV_factor = 1
         self.components: list[tuple[Component, float, int, int]] = []
         self.account_for_clps: bool = False  # 是否考虑倒塌
         self.account_for_dm: bool = False  # 是否考虑残余变形过大导致的拆除
+        self.logstd_IDR = None  # 覆盖项，模拟IDR、maxRIDR或PFA的对数标准差，若为None则使用计算值
+        self.logstd_maxRIDR = None
+        self.logstd_PFA = None
         self._init_population()
         LOGGER.success(f'Building "{self.name}" is created successfully.')
 
@@ -146,35 +168,19 @@ class Building:
         self.PFV_range = PFV_range
         LOGGER.success(f'IDA data is imported successfully.')
 
-    def set_seismic_response(self,
-            IDR_PSDM: list[VECTOR],
-            PFA_PSDM: list[VECTOR],
-            RIDR_PSDM: VECTOR = None,
-            PFV_PSDM: list[VECTOR] = None,
-            IDR_factor: float = 1.0,
-            PFA_factor: float = 1.0,
-            RIDR_factor: float = 1.0,
-            PFV_factor: float = 1.0,
+    def _set_PSDM(self,
+            EDPmat_file: Path,
         ):
-        """导入概率地震需求模型和倒塌易损性
+        """导入概率地震需求模型
 
         Args:
-            IDR_PSDM (list[VECTOR]): 各层位移角的PSDM (rad)
-            PFA_PSDM (list[VECTOR]): 各层绝对加速度的PSDM (g)
-            RIDR_PSDM (VECTOR): 最大残余位移角的PSDM (rad)
-            PFV_PSDM (list[VECTOR], optional): 各层绝对速度的PSDM (in/s)
-            IDR_factor (float, optional): 位移角需求的缩放系数
-            RIDR_factor (float, optional): 残余位移角的缩放系数
-            PFA_factor (float, optional): 楼层加速度的缩放系数
-            PFV_factor (float, optional): 楼层速度的缩放系数
+            EDPmat_file (Path): 原始工程需求参数矩阵文件路径
         
         Note:
         -----
-        * FEMA P58采用实际计算得到的需求矩阵来预测地震需求，但是实际IDA计算中，
-          每条地震动的强度和计算次数都会动态调整，IDA结果无法与FEMA P58的方法
-          适配，因此此处采用概率地震需求模型(PSDM)来预测给定地震强度下的结构地
-          震需求，但是仍根据倒塌易损性曲线来计算倒塌概率，因为倒塌级别的地震动
-          强度下PSDM会失真。
+        * 采用概率地震需求模型(PSDM)来预测给定地震强度下的结构地震需求。这将结构各种类型
+          的EDP视作独立事件，忽略其相关性。
+        * 结构倒塌概率仍根据倒塌易损性曲线来计算，因为倒塌级别的地震动强度下PSDM会失真。
         * 每种类型EDP的PSDM需传入分别导入`A`、`B`、`sgm`三个参数，并认为
           `ln(DM) = A + B * ln(IM)`，标准差为`sgm`
         * `clps_frag`参数分别为倒塌强度中值`θ`和对数标准差`β`，倒塌概率为：
@@ -183,15 +189,64 @@ class Building:
           (g)、(in/s)，如果导入的数据不是采用这些单位，则需要调整`IDR_factor`、
           `PFA_factor`和`PFV_factor`
         """
+        edp_mat = pd.read_csv(EDPmat_file)
+        IM = edp_mat['IM'].values  # Sa_ls
+        
+        IDR_PSDM: list[tuple[float, float, float]] = []
+        PFA_PSDM: list[tuple[float, float, float]] = []
+        maxRIDR_PSDM: tuple[float, float, float] = None
+        # 计算各层IDR的PSDM
+        for i in range(1, self.Nstory + 1):
+            DM = edp_mat[f'IDR{i}']
+            A, B, R, log_std = _get_PSDM(IM, DM)
+            IDR_PSDM.append((A, B, log_std))
+        # 计算各层PFA的PSDM
+        for i in range(1, self.Nstory + 1):
+            DM = edp_mat[f'PFA{i}']
+            A, B, R, log_std = _get_PSDM(IM, DM)
+            PFA_PSDM.append((A, B, log_std))
+        # 计算最大残余层间位移角的PSDM
+        DM = edp_mat['MaxRIDR']
+        A, B, R, log_std = _get_PSDM(IM, DM)
+        maxRIDR_PSDM = (A, B, log_std)
+        
         self.IDR_PSDM = IDR_PSDM
-        self.RIDR_PSDM = RIDR_PSDM
         self.PFA_PSDM = PFA_PSDM
-        self.PFV_PSDM = PFV_PSDM
+        self.PFV_PSDM = None
+        self.maxRIDR_PSDM = maxRIDR_PSDM
+        LOGGER.success(f'Seismic_response has been defined.')
+    
+    def set_expanded_EDPmat(self,
+            EDPmat_file: Path,
+            IDR_factor: float = 1.0,
+            PFA_factor: float = 1.0,
+            RIDR_factor: float = 1.0,
+            PFV_factor: float = 1.0,
+            
+        ):
+        """设置工程需求参数矩阵，并进行矩阵扩充
+
+        Args:
+            EDPmat_file (Path): 原始工程需求参数矩阵文件路径
+            IDR_factor (float, optional): 位移角需求的缩放系数
+            RIDR_factor (float, optional): 残余位移角的缩放系数
+            PFA_factor (float, optional): 楼层加速度的缩放系数
+PFV_factor            PFV_factor (float, optional): 楼层速度的缩放系数
+        
+        Note:
+        -----
+        * 工程需求参数矩阵应为csv文件，第一列为IM，后面各列为各层工程需求参数，
+        """
+        self._set_PSDM(EDPmat_file)
+        self.expander = EDPMatrixExpander()
+        self.expander.load_data(EDPmat_file, im_column=0)
+        self.expander.fit_models()
+        self.expander.generate_samples(self.Sa_ls, samples_per_im=self.n_MC)
         self.IDR_factor = IDR_factor
         self.RIDR_factor = RIDR_factor
         self.PFA_factor = PFA_factor
         self.PFV_factor = PFV_factor
-        LOGGER.success(f'Seismic_response has been defined.')
+        LOGGER.success(f'EDP matrix has been defined.')
     
     def set_collapse_prob(self,
             median_clps: float,
@@ -227,17 +282,17 @@ class Building:
         LOGGER.success(f'Probability of collapse has been defined.')
 
     def set_demolishment_prob(self,
-            median_RIDR: float,
-            logstd_RIDR: float
+            median_demo_RIDR: float,
+            logstd_demo_RIDR: float
         ):
         """定义拆除概率（与RIDR相关）
 
         Args:
-            median_RIDR (float): 50%拆除概率对应的中值RIDR
-            logstd_RIDR (float): RIDR的对数标准差
+            median_demo_RIDR (float): 50%拆除概率对应的中值RIDR
+            logstd_demo_RIDR (float): RIDR的对数标准差
         """
-        self.median_RIDR = median_RIDR
-        self.logstd_RIDR = logstd_RIDR
+        self.median_demo_RIDR = median_demo_RIDR
+        self.logstd_demo_RIDR = logstd_demo_RIDR
         self.account_for_dm = True  # 考虑拆除
         LOGGER.success(f'Probability of demolishment has been defined.')
 
@@ -245,10 +300,10 @@ class Building:
             Sa: float,
             is_random: bool = True
         ) -> bool:
-        # 模拟倒塌
+        """模拟倒塌(基于倒塌易损性函数)"""
         if self.account_for_clps is None:
             return False  # 没有定义倒塌易损性，不考虑倒塌
-        p = _cdf(np.log(Sa / self.median_clps) / self.logstd_RIDR)
+        p = _cdf(np.log(Sa / self.median_clps) / self.logstd_clps)  # 倒塌易损性函数
         if is_random:
             clps = np.random.uniform() < p
         else:
@@ -262,10 +317,10 @@ class Building:
             RIDR: float,
             is_random: bool = True
         ) -> bool:
-        # 模拟拆除
+        """模拟拆除(通过拆除概率函数)"""
         if self.account_for_dm is None:
             return False  # 没有定义拆除概率，不考虑拆除
-        p = _cdf(np.log(RIDR / self.median_RIDR) / self.logstd_RIDR)
+        p = _cdf(np.log(RIDR / self.median_demo_RIDR) / self.logstd_demo_RIDR)
         if is_random:
             dm = np.random.uniform() < p
         else:
@@ -277,50 +332,76 @@ class Building:
 
     def _simu_IDR(self,
             Sa: float,
-            is_random: bool = True
+            is_random: bool = True,
+            idx_im: int = None,
+            idx_iter: int = None
         ) -> np.ndarray:
-        """模拟层间位移角需求，ln(IDR) = A + B * ln(Sa)"""
+        """模拟各层层间位移角需求"""
+        # HACK: 当self.edp_correlation为True时，is_random=False不生效
         IDR = np.zeros(self.Nstory)
-        for i in range(self.Nstory):
-            A, B, logstd = self.IDR_PSDM[i]
-            ln_median = A + B * np.log(Sa)
-            if is_random:
-                IDR[i] = np.exp(_normal(ln_median, logstd))
-            else:
-                IDR[i] = np.exp(ln_median)
+        if self.edp_correlation:
+            edp = self.expander.get_edp(idx_im, idx_iter)
+            for i in range(self.Nstory):
+                IDR[i] = float(edp[f'IDR{i+1}'])
+        else:
+            for i in range(self.Nstory):
+                A, B, logstd = self.IDR_PSDM[i]
+                if self.logstd_IDR is not None:
+                    logstd = self.logstd_IDR
+                ln_median = A + B * np.log(Sa)
+                if is_random:
+                    IDR[i] = np.exp(_normal(ln_median, logstd))
+                else:
+                    IDR[i] = np.exp(ln_median)
         IDR = np.where(IDR < 0, 0, IDR)
         return IDR * self.IDR_factor
     
     def _simu_RIDR(self,
             Sa: float,
-            is_random: bool = True
+            is_random: bool = True,
+            idx_im: int = None,
+            idx_iter: int = None
         ) -> float:
-        # ln(RIDR) = A + B * ln(Sa)
-        if self.RIDR_PSDM is None:
-            LOGGER.warning('RIDR_PSDM is not defined, returning 0% RIDR')
-            return 0
-        A, B, logstd = self.RIDR_PSDM
-        ln_median = A + B * np.log(Sa)
-        if is_random:
-            RIDR = np.exp(_normal(ln_median, logstd))
+        """模拟最大残余层间位移角需求"""
+        if self.edp_correlation:
+            edp = self.expander.get_edp(idx_im, idx_iter)
+            maxRIDR = float(edp['MaxRIDR'])
         else:
-            RIDR = np.exp(ln_median)
-        RIDR = np.where(RIDR < 0, 0, RIDR)
-        return RIDR * self.RIDR_factor
+            if self.maxRIDR_PSDM is None:
+                LOGGER.warning('RIDR_PSDM is not defined, returning 0% RIDR')
+                return 0
+            A, B, logstd = self.maxRIDR_PSDM
+            if self.logstd_maxRIDR is not None:
+                logstd = self.logstd_maxRIDR
+            ln_median = A + B * np.log(Sa)
+            if is_random:
+                maxRIDR = np.exp(_normal(ln_median, logstd))
+            else:
+                maxRIDR = np.exp(ln_median)
+        maxRIDR = np.where(maxRIDR < 0, 0, maxRIDR)
+        return maxRIDR * self.RIDR_factor
 
     def _simu_PFA(self,
             Sa: float,
-            is_random: bool = True
+            is_random: bool = True,
+            idx_im: int = None,
+            idx_iter: int = None
         ) -> np.ndarray:
-        # ln(PFA) = A + B * ln(Sa)
         PFA = np.zeros(self.Nstory)
-        for i in range(self.Nstory):
-            A, B, logstd = self.PFA_PSDM[i]
-            ln_median = A + B * np.log(Sa)
-            if is_random:
-                PFA[i] = np.exp(_normal(ln_median, logstd))
-            else:
-                PFA[i] = np.exp(ln_median)
+        if self.edp_correlation:
+            edp = self.expander.get_edp(idx_im, idx_iter)
+            for i in range(self.Nstory):
+                PFA[i] = float(edp[f'PFA{i+1}'])
+        else:
+            for i in range(self.Nstory):
+                A, B, logstd = self.PFA_PSDM[i]
+                if self.logstd_PFA is not None:
+                    logstd = self.logstd_PFA
+                ln_median = A + B * np.log(Sa)
+                if is_random:
+                    PFA[i] = np.exp(_normal(ln_median, logstd))
+                else:
+                    PFA[i] = np.exp(ln_median)
         PFA = np.where(PFA < 0, 0, PFA)
         return PFA * self.PFA_factor
 
@@ -377,3 +458,13 @@ def _read_column(ws: Worksheet, row: int, col: int) -> np.ndarray:
             break
     return np.array(data)
 
+def _get_PSDM(IM: np.ndarray, DM: np.ndarray
+    ) -> tuple[float, float, float, float]:
+    x, y = np.log(IM), np.log(DM)
+    res = linregress(x, y)
+    B, A, R, _, _ = map(float, res)
+    y_pred = B * x + A
+    N = len(IM)
+    RSS = np.sum((y - y_pred) ** 2)
+    log_std = np.sqrt(RSS / (N - 2))
+    return A, B, R, log_std

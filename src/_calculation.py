@@ -93,9 +93,11 @@ def _lognormal(mean: float, log_std: float, trunc=False) -> float:
     Returns:
         float: 采样值
     """
-    log_mean = np.log(mean)
-    x = np.random.lognormal(log_mean, log_std)
+    ln_mean = np.log(mean)
+    # x = np.random.lognormal(log_mean, log_std)
+    lnx = np.random.normal(ln_mean, log_std)
+    x = np.exp(lnx)
     if trunc:
-        if not log_mean - 1.28155 * log_std < np.log(x) < log_mean + 1.28155 * log_std:
+        if not ln_mean - 1.28155 * log_std < np.log(x) < ln_mean + 1.28155 * log_std:
             x = _lognormal(mean, log_std, trunc)
     return float(x)

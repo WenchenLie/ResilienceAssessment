@@ -38,10 +38,17 @@ def _realization(
             'V': np.zeros_like(Sa_ls)
         }  # 不同敏感性类型的构件的修复成本
 
+        IDR_mat = np.zeros((len(Sa_ls), building.Nstory))
+        maxRIDR_ls = np.zeros(len(Sa_ls))
+        PFA_mat = np.zeros((len(Sa_ls), building.Nstory))
+        flags: list[Literal['clps', 'dm', 'rp']] = []
         for idx_Sa, Sa in enumerate(Sa_ls):
-            IDR = building._simu_IDR(Sa, is_random)
-            RIDR = building._simu_RIDR(Sa, is_random)
-            PFA = building._simu_PFA(Sa, is_random)
+            IDR = building._simu_IDR(Sa, is_random, idx_Sa, idx_MC)
+            maxRIDR = building._simu_RIDR(Sa, is_random, idx_Sa, idx_MC)
+            PFA = building._simu_PFA(Sa, is_random, idx_Sa, idx_MC)
+            IDR_mat[idx_Sa] = IDR
+            maxRIDR_ls[idx_Sa] = maxRIDR
+            PFA_mat[idx_Sa] = PFA
             hour: TypeVar[HOURS] = np.random.choice(HOURS)
             month: TypeVar[HOURS] = np.random.choice(MONTHS)
             weekday: Literal[0, 1] = np.random.choice([0, 1], p=[5/7, 2/7])
@@ -78,7 +85,7 @@ def _realization(
                 flag = 'clps'
                 # continue
 
-            if building._simu_demolishment(RIDR, is_random):
+            if building._simu_demolishment(maxRIDR, is_random):
                 # 结构因残余变形过大而拆除
                 if not flag == 'clps':
                     cost_dm[idx_Sa] = building.replacement_cost
@@ -99,7 +106,7 @@ def _realization(
                         edp = Sa
                 else:
                     raise NotImplementedError(f'其他类型的EDP尚未实现: "{edp_type}"')
-                ds_flag = comp._simu_DS(edp, is_random)  # 获取构件损伤状态
+                ds_flag = comp._simu_DS(float(edp), is_random)  # 获取构件损伤状态
                 cost_i = 0
                 time_i = 0
                 death_i = 0
@@ -152,6 +159,7 @@ def _realization(
             if flag in ['rp', 'dm']:
                 death_rate[idx_Sa] = death_
                 injury_rate[idx_Sa] = injury_
+            flags.append(flag)
     except Exception as e:
         LOGGER.error(f"Error in Monte Carlo simulation {idx_MC}: {e}")
         print(e)
@@ -159,5 +167,5 @@ def _realization(
     if queue is not None:
         queue.put(1)
     return idx_MC, cost_clps, cost_dm, cost_repair, cost_repair_category, cost_repair_sensitivity,\
-        repair_time, death_rate, injury_rate
+        repair_time, death_rate, injury_rate, IDR_mat, maxRIDR_ls, PFA_mat, flags
 

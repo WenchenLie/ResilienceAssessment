@@ -1,5 +1,6 @@
 from pathlib import Path
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from src.compenent import Component
 from src.building import Building
@@ -20,6 +21,8 @@ def calculate(
     Nstory = 4
     x_size, y_size = 36.6, 24.4
     area = x_size * y_size
+    n_MC = 1000
+    Sa_ls = np.linspace(0.01, 4, 100)
     building = Building(
         name='test_building',
         Nstory=Nstory,
@@ -28,7 +31,10 @@ def calculate(
         unit='m',
         replacement_cost=12_000_000,
         replacement_time=720,
-        occupancy='Commercial Office')
+        occupancy='Commercial Office',
+        n_MC=n_MC,
+        Sa_ls=Sa_ls
+    )
 
     shear_connection = Component('B1031.001', 'S')
     column_base = Component('B1031.011b', 'S')
@@ -69,30 +75,16 @@ def calculate(
     building.add_component(column_base, 35, 1)
     building.add_component(column_splices, 6, 3)
 
-    building.set_seismic_response(
-        IDR_PSDM=[
-            [-3.024, 1.046, 0.4],
-            [-3.024, 1.046, 0.4],
-            [-3.024, 1.046, 0.4],
-            [-3.024, 1.046, 0.4]],
-        PFA_PSDM=[
-            [0.384, 0.731, 0.4],
-            [0.384, 0.731, 0.4],
-            [0.384, 0.731, 0.4],
-            [0.384, 0.731, 0.4]],
-        RIDR_PSDM=[-4.291, 2.178, 0.4])
+    building.set_expanded_EDPmat(r"H:\results_TSSCB_Frame\IDA2\MRF4S8_base_frag\EDP_matrix.csv")
     building.set_demolishment_prob(median_RIDR=0.005, logstd_RIDR=0.3)
     building.set_collapse_prob(median_clps=3.0, logstd_clps=0.4,
                                collapse_modes={
                                    (1, 2, 3, 4): 0.6,
                                    (1,): 0.4})
 
-    Sa = np.linspace(0.01, 4, 100)
     consequance_estimate(
-        n=1000,
-        Sa_ls=Sa,
-        building=building,
-        hazard_curve=hazard_curve,
+        building,
+        hazard_curve,
         root=output_dir,
         parallel=12
     )

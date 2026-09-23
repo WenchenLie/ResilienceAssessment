@@ -1,3 +1,4 @@
+import traceback
 from typing import TypeVar, Literal
 import numpy as np
 from src.building import Building
@@ -35,7 +36,8 @@ def _realization(
             'A': np.zeros_like(Sa_ls),
             'L': np.zeros_like(Sa_ls),
             'LB': np.zeros_like(Sa_ls),
-            'V': np.zeros_like(Sa_ls)
+            'V': np.zeros_like(Sa_ls),
+            'VED': np.zeros_like(Sa_ls),
         }  # 不同敏感性类型的构件的修复成本
 
         IDR_mat = np.zeros((len(Sa_ls), building.Nstory))
@@ -46,6 +48,7 @@ def _realization(
             IDR = building._simu_IDR(Sa, is_random, idx_Sa, idx_MC)
             maxRIDR = building._simu_RIDR(Sa, is_random, idx_Sa, idx_MC)
             PFA = building._simu_PFA(Sa, is_random, idx_Sa, idx_MC)
+            VED = building._simu_VED(Sa, is_random, idx_Sa, idx_MC)
             IDR_mat[idx_Sa] = IDR
             maxRIDR_ls[idx_Sa] = maxRIDR
             PFA_mat[idx_Sa] = PFA
@@ -104,6 +107,8 @@ def _realization(
                         edp = PFA[floor - 2]
                     else:
                         edp = Sa
+                elif edp_type == 'VED':
+                    edp = VED[story - 1]
                 else:
                     raise NotImplementedError(f'其他类型的EDP尚未实现: "{edp_type}"')
                 ds_flag = comp._simu_DS(float(edp), is_random)  # 获取构件损伤状态
@@ -153,6 +158,8 @@ def _realization(
                             cost_repair_sensitivity['LB'][idx_Sa] += cost_i
                         case 'V':
                             cost_repair_sensitivity['V'][idx_Sa] += cost_i
+                        case 'VED':
+                            cost_repair_sensitivity['VED'][idx_Sa] += cost_i
             if flag in 'rp':
                 cost_repair[idx_Sa] = cost_
                 repair_time[idx_Sa] = time_
@@ -161,6 +168,7 @@ def _realization(
                 injury_rate[idx_Sa] = injury_
             flags.append(flag)
     except Exception as e:
+        traceback.print_exc()
         LOGGER.error(f"Error in Monte Carlo simulation {idx_MC}: {e}")
         print(e)
         raise e

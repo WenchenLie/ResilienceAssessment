@@ -87,6 +87,8 @@ class Component:
                 self.edp_type = 'LB'
             case 'Peak Floor Velocity':
                 self.edp_type = 'V'
+            case 'VED':
+                self.edp_type = 'VED'
             case _:
                 assert False, f'Unknown EDP type: "{edp_type}"'
         DSs: list[dict] = self.comp_data['FragilityCurve']['DamageStates']['DamageState']

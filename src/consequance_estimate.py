@@ -4,7 +4,9 @@ from pathlib import Path
 from typing import Literal
 import numpy as np
 import pandas as pd
+import multiprocessing
 from multiprocessing import Pool, Manager
+import logging
 from threading import Thread
 from .building import Building
 from ._realization import _realization
@@ -57,7 +59,8 @@ def consequance_estimate(
         'A': np.zeros((len(Sa_ls), n)),
         'L': np.zeros((len(Sa_ls), n)),
         'LB': np.zeros((len(Sa_ls), n)),
-        'V': np.zeros((len(Sa_ls), n))
+        'V': np.zeros((len(Sa_ls), n)),
+        'VED': np.zeros((len(Sa_ls), n)),
     }  # 5种敏感性类型(D, ED, A, L, LB, V)
 
     if parallel <= 1:
@@ -98,6 +101,33 @@ def consequance_estimate(
 
         monitor_thread = Thread(target=monitor)
         monitor_thread.start()
+        
+        # # 获取 multiprocessing 专用的 logger
+        # mp_logger = multiprocessing.get_logger()
+        
+        # # 设置日志级别
+        # mp_logger.setLevel(logging.DEBUG)
+        
+        # # 添加一个文件处理器，将日志写入文件
+        # fh = logging.FileHandler("multiprocessing_debug.log")
+        # fh.setLevel(logging.DEBUG)
+        
+        # # 定义日志格式（包含时间、级别、进程ID和消息）
+        # formatter = logging.Formatter(
+        #     '%(asctime)s - %(levelname)s - %(processName)s(%(process)d) - %(message)s'
+        # )
+        # fh.setFormatter(formatter)
+        # mp_logger.addHandler(fh)
+        
+        # # 可选：同时输出到控制台，便于实时查看
+        # ch = logging.StreamHandler()
+        # ch.setLevel(logging.DEBUG)
+        # ch.setFormatter(formatter)
+        # mp_logger.addHandler(ch)
+        
+        # # 启用 multiprocessing 的调试模式（额外打印更详细的信息）
+        # multiprocessing.log_to_stderr(logging.DEBUG)
+        
         with Pool(processes=parallel) as pool:
             args_list = [(idx_MC, Sa_ls, building, is_random, random_seed, queue) for idx_MC in range(n)]
             results = pool.starmap(_realization, args_list)

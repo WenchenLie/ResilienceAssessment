@@ -71,58 +71,49 @@ def _visualize_IBL(root: Path, output_dir: Path, plot: bool):
     plt.subplot(223)
     # 不同构件类型(S, NS, C)损失堆叠面积图
     sum_curve = sum([np.mean(data, axis=1) for data in cost_rapair_category.values()])
-    # 截取sum_curve直至首个元素等于0为止
-    try:
-        cond = np.where(sum_curve[3:] == 0)[0][0]
-    except IndexError:
-        cond = len(sum_curve)
-    sum_curve = sum_curve[:cond]
-    bot_curve = np.zeros_like(Sa)[:cond]
-    top_curve = np.zeros_like(Sa)[:cond]
+    sum_curve = sum_curve
+    bot_curve = np.zeros_like(Sa)
+    top_curve = np.zeros_like(Sa)
     colors = ['skyblue', 'lightgreen', 'salmon', 'orange', 'purple', 'pink']
     curves = []
     for i, (key, data) in enumerate(cost_rapair_category.items()):
-        top_curve += np.mean(data, axis=1)[:cond] / sum_curve
+        top_curve += np.mean(data, axis=1) / sum_curve
         if i == 0:
             bot_curve = 0
-        plt.fill_between(Sa[:cond], bot_curve, top_curve, color=colors[i], alpha=0.7,
+        plt.fill_between(Sa, bot_curve, top_curve, color=colors[i], alpha=0.7,
                          label=key, edgecolor='black')
         curves.append(top_curve.copy())
         bot_curve = top_curve.copy()
-    if cond != 0:
-        plt.xlim(np.min(Sa[:cond]), np.max(Sa[:cond]))
+    plt.xlim(0, np.max(Sa))
     plt.ylim(0, 1)
     plt.xlabel('Sa (g)')
     plt.ylabel('Proportion')
     plt.title('Repair cost disaggregation by component type')
     plt.legend(loc='lower right')
-    df = pd.DataFrame(np.column_stack((Sa[:cond], np.zeros_like(Sa[:cond]), *curves)), columns=['Sa', '0', *list(cost_rapair_category.keys())])
+    df = pd.DataFrame(np.column_stack((Sa, np.zeros_like(Sa), *curves)), columns=['Sa', '0', *list(cost_rapair_category.keys())])
+    df.fillna(0, inplace=True)
     df.to_csv(output_dir / 'Repair cost disaggregation-2.csv', index=False)
     plt.subplot(224)
     # 不同构件的敏感性类型(D, ED, A, L, LB, V)损失堆叠面积图
     sum_curve = sum([np.mean(data, axis=1) for data in cost_repair_sensitivity.values()])
     # 截取sum_curve直至首个元素等于0为止
-    try:
-        cond = np.where(sum_curve[3:] == 0)[0][0]
-    except IndexError:
-        cond = len(sum_curve)
-    sum_curve = sum_curve[:cond]
-    bot_curve = np.zeros_like(Sa)[:cond]
-    top_curve = np.zeros_like(Sa)[:cond]
+    sum_curve = sum_curve
+    bot_curve = np.zeros_like(Sa)
+    top_curve = np.zeros_like(Sa)
     colors = ['skyblue', 'lightgreen', 'salmon', 'orange', 'purple', 'pink']
     curves = []
     for i, (key, data) in enumerate(cost_repair_sensitivity.items()):
-        top_curve += np.mean(data, axis=1)[:cond] / sum_curve
+        top_curve += np.mean(data, axis=1) / sum_curve
         if i == 0:
             bot_curve = 0
-        plt.fill_between(Sa[:cond], bot_curve, top_curve, color=colors[i], alpha=0.7,
+        plt.fill_between(Sa, bot_curve, top_curve, color=colors[i], alpha=0.7,
                          label=key, edgecolor='black')
         curves.append(top_curve.copy())
         bot_curve = top_curve.copy()
-    df = pd.DataFrame(np.column_stack((Sa[:cond], np.zeros_like(Sa[:cond]), *curves)), columns=['Sa', '0', *list(cost_repair_sensitivity.keys())])
+    df = pd.DataFrame(np.column_stack((Sa, np.zeros_like(Sa), *curves)), columns=['Sa', '0', *list(cost_repair_sensitivity.keys())])
     df.to_csv(output_dir / 'Repair cost disaggregation-3.csv', index=False)
-    if cond != 0:
-        plt.xlim(np.min(Sa[:cond]), np.max(Sa[:cond]))
+    # if cond != 0:
+    #     plt.xlim(np.min(Sa[:cond]), np.max(Sa))
     plt.ylim(0, 1)
     plt.xlabel('Sa (g)')
     plt.ylabel('Proportion')

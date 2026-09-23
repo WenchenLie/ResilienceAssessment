@@ -33,6 +33,8 @@ class Building:
             n_MC: int,
             Sa_ls: np.ndarray,
             edp_correlation: bool = True,
+            RIDR_simu: Literal['simplfied', 'probabilistic'] = 'probabilistic',
+            theta_y: float | None = None,
             collapse_fatality_rate: float=0.01,
             collapse_fatality_COV: float=0.5,
             collapse_injury_rate: float=0.01,
@@ -52,6 +54,10 @@ class Building:
             n_MC (int): 蒙特卡洛模拟次数
             Sa_ls (np.ndarray): 地震动强度序列
             edp_correlation (bool, optional): 是否考虑EDP之间的相关性，默认True
+            RIDR_simu (Literal['simplfied', 'probabilistic'], optional): 计算RIDR的模拟方式，
+              simplfied - 按FEMA P58 Eq. (5-25)，根据IDR直接计算
+              probabilistic - 按概率需求模型计算
+            theta_y (float, optional): 屈服位移角，只有当`RIDR_simu`为`simplfied`时需要提供
             collapse_fatality_rate (float, optional): 倒塌死亡率，默认100%
             collapse_fatality_COV (float, optional): 倒塌死亡率的协方差，默认0.5
             collapse_injury_rate (float, optional): 倒塌受伤率，默认100%
@@ -74,6 +80,10 @@ class Building:
         self.n_MC = n_MC
         self.Sa_ls = Sa_ls
         self.edp_correlation = edp_correlation
+        self.RIDR_simu = RIDR_simu
+        self.theta_y = theta_y
+        if self.RIDR_simu =='simplfied' and self.theta_y is None:
+            raise ValueError('`theta_y` should be provided when `RIDR_simu` is `simplfied`')
         self.collapse_fatality_rate = collapse_fatality_rate
         self.collapse_fatality_COV = collapse_fatality_COV
         self.collapse_injury_rate = collapse_injury_rate
@@ -82,6 +92,7 @@ class Building:
         self.RIDR_factor = 1
         self.PFA_factor = 1
         self.PFV_factor = 1
+        self.VED_factor = 1
         self.components: list[tuple[Component, float, int, int]] = []
         self.account_for_clps: bool = False  # 是否考虑倒塌
         self.account_for_dm: bool = False  # 是否考虑残余变形过大导致的拆除
@@ -231,7 +242,7 @@ class Building:
             IDR_factor (float, optional): 位移角需求的缩放系数
             RIDR_factor (float, optional): 残余位移角的缩放系数
             PFA_factor (float, optional): 楼层加速度的缩放系数
-PFV_factor            PFV_factor (float, optional): 楼层速度的缩放系数
+            PFV_factor (float, optional): 楼层速度的缩放系数
         
         Note:
         -----
@@ -354,15 +365,54 @@ PFV_factor            PFV_factor (float, optional): 楼层速度的缩放系数
                 else:
                     IDR[i] = np.exp(ln_median)
         IDR = np.where(IDR < 0, 0, IDR)
+        if self.RIDR_simu == 'simplfied':
+            self._RIDR_simp = np.zeros_like(IDR)
+            self._RIDR_simp = np.where((self.theta_y < IDR) & (IDR < 4 * self.theta_y), 0.3 * (IDR - self.theta_y), self._RIDR_simp)
+            self._RIDR_simp = np.where(IDR >= 4 * self.theta_y, IDR - 3 * self.theta_y, self._RIDR_simp)
         return IDR * self.IDR_factor
-    
+
+    def _simu_VED(self,
+            Sa: float,
+            is_random: bool = True,
+            idx_im: int = None,
+            idx_iter: int = None
+        ) -> np.ndarray:
+        """模拟各层VED变形需求"""
+        # HACK: 当self.edp_correlation为True时，is_random=False不生效
+        VED = np.zeros(self.Nstory)
+        if self.edp_correlation:
+            edp = self.expander.get_edp(idx_im, idx_iter)
+            for i in range(self.Nstory):
+                try:
+                    VED[i] = float(edp[f'VED{i+1}'])
+                except KeyError:
+                    VED[i] = 0
+        else:
+            raise NotImplementedError('VED simulation withoud correlation is not implemented')
+            for i in range(self.Nstory):
+                A, B, logstd = self.VED_PSDM[i]
+                if self.logstd_VED is not None:
+                    logstd = self.logstd_VED
+                ln_median = A + B * np.log(Sa)
+                if is_random:
+                    VED[i] = np.exp(_normal(ln_median, logstd))
+                else:
+                    VED[i] = np.exp(ln_median)
+        VED = np.where(VED < 0, 0, VED)
+        return VED * self.VED_factor
+
     def _simu_RIDR(self,
             Sa: float,
             is_random: bool = True,
             idx_im: int = None,
             idx_iter: int = None
         ) -> float:
-        """模拟最大残余层间位移角需求"""
+        """模拟最大残余层间位移角需求
+        Note: 当self.RIDR_simu == 'simplfied'时，必须先_simu_IDR再_simu_RIDR"""
+        if self.RIDR_simu == 'simplfied':
+            maxRIDR = np.max(self._RIDR_simp)
+            self._RIDR_simp = None
+            return maxRIDR * self.RIDR_factor
         if self.edp_correlation:
             edp = self.expander.get_edp(idx_im, idx_iter)
             maxRIDR = float(edp['MaxRIDR'])

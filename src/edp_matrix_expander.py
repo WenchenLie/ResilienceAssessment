@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from pathlib import Path
 from scipy import stats
 from scipy.linalg import cholesky
 import seaborn as sns
@@ -16,11 +17,10 @@ class EDPMatrixExpander:
     """
     
     def __init__(self, random_state=None):
-        """
-        初始化
-        
-        Parameters:
-        random_state: 随机种子，用于结果可重现
+        """初始化
+
+        Args:
+            random_state (int, optional): 随机种子
         """
         self.random_state = random_state
         if random_state is not None:
@@ -32,13 +32,15 @@ class EDPMatrixExpander:
         self.edp_names = None  # EDP名称列表
         self.im_name = None  # IM名称
         
-    def load_data(self, csv_file_path, im_column: int=0):
-        """
-        从CSV文件加载数据
-        
-        Parameters:
-        csv_file_path: CSV文件路径
-        im_column: IM列的索引，从0开始，默认为第一列
+    def load_data(self, csv_file_path: Path | str, im_column: int=0):
+        """从CSV文件加载数据
+
+        Args:
+            csv_file_path (Path | str): csv文件路径
+            im_column (int, optional): IM列的索引，从0开始，默认为第一列
+
+        Returns:
+            _type_: _description_
         """
         self.data = pd.read_csv(csv_file_path)
         self.im_name = self.data.columns[im_column]
@@ -50,9 +52,7 @@ class EDPMatrixExpander:
         return self.data
     
     def fit_models(self):
-        """
-        拟合单变量概率模型和联合概率模型
-        """
+        """拟合单变量概率模型和联合概率模型"""
         # print("\n开始拟合概率模型...")
         
         # 准备对数变换的数据
@@ -103,15 +103,14 @@ class EDPMatrixExpander:
                          target_im_values: np.ndarray,
                          samples_per_im: int=1000
         ) -> pd.DataFrame:
-        """
-        生成扩充样本
-        
-        Parameters:
-        target_im_values: 目标IM值数组
-        samples_per_im: 每个IM水平生成的样本数量
-        
+        """生成扩充样本
+
+        Args:
+            target_im_values (np.ndarray): 目标IM值数组
+            samples_per_im (int, optional): 每个IM水平生成的样本数量
+
         Returns:
-        expanded_data: 扩充后的数据DataFrame
+            pd.DataFrame: 扩充后的数据Dataframe
         """
         # print(f"\n开始生成扩充样本...")
         # print(f"  - 目标IM数量: {len(target_im_values)}")
@@ -166,14 +165,13 @@ class EDPMatrixExpander:
         """
         return self.expanded_data.iloc[idx_im * self.samples_per_im + idx_iter, 1:]
     
-    def validate_models(self, original_data, expanded_data, n_bins=10):
-        """
-        验证模型拟合效果
-        
-        Parameters:
-        original_data: 原始数据
-        expanded_data: 扩充后的数据
-        n_bins: IM分箱数量
+    def validate_models(self, original_data: pd.DataFrame, expanded_data: pd.DataFrame, n_bins: int=10):
+        """验证模型拟合效果
+
+        Args:
+            original_data (pd.DataFrame): 原始数据
+            expanded_data (pd.DataFrame): 扩充后数据
+            n_bins (int, optional): IM值分箱数量，默认为10
         """
         print("\n开始模型验证...")
         
@@ -266,9 +264,7 @@ class EDPMatrixExpander:
         print("模型验证完成!")
     
     def plot_model_fit(self):
-        """
-        绘制模型拟合效果图
-        """
+        """绘制模型拟合效果图"""
         fig, axes = plt.subplots(2, 2, figsize=(15, 12))
         axes = axes.flatten()
         
@@ -312,47 +308,15 @@ class EDPMatrixExpander:
         plt.show()
 
 def main():
-    """
-    主函数 - 使用示例
-    """
-    # 初始化扩充器
     expander = EDPMatrixExpander(random_state=42)
-    
-    # 示例1: 加载数据（请替换为您的CSV文件路径）
-    # 假设CSV文件格式: 第一列为IM，后面各列为不同的EDP
-    # try:
-        # 替换为您的CSV文件路径
-    csv_file_path = "EDP_matrix.csv"  
+    csv_file_path = "H:/results_RockingMRFwithVED2/IDA/MRF_4_frag/EDP_matrix.csv"
     original_data = expander.load_data(csv_file_path, im_column=0)
-    # except FileNotFoundError:
-    #     print(f"文件 {csv_file_path} 未找到，生成示例数据进行演示...")
-    #     # 生成示例数据
-    #     np.random.seed(42)
-    #     n_samples = 100
-    #     im_values = np.random.lognormal(mean=np.log(0.3), sigma=0.8, size=n_samples)
-        
-    #     # 生成相关的EDP数据
-    #     edp1 = 0.01 * im_values**1.5 * np.random.lognormal(mean=0, sigma=0.3, size=n_samples)
-    #     edp2 = 0.5 * im_values**1.2 * np.random.lognormal(mean=0, sigma=0.25, size=n_samples)
-    #     edp3 = 2.0 * im_values**0.8 * np.random.lognormal(mean=0, sigma=0.35, size=n_samples)
-        
-    #     original_data = pd.DataFrame({
-    #         'SaT1': im_values,
-    #         'MaxDrift': edp1,
-    #         'PeakAccel': edp2,
-    #         'ResidualDrift': edp3
-    #     })
-    #     original_data.to_csv("example_ida_data.csv", index=False)
-    #     print("示例数据已保存至 'example_ida_data.csv'")
-        
-    #     # 重新加载示例数据
-    #     original_data = expander.load_data("example_ida_data.csv", im_column='SaT1')
-    
+
     # 步骤2: 拟合概率模型
     regression_params, corr_matrix = expander.fit_models()
     
     # 步骤3: 绘制模型拟合图
-    # expander.plot_model_fit()
+    expander.plot_model_fit()
     
     # 步骤4: 定义目标IM范围并生成扩充样本
     im_min, im_max = original_data[expander.im_name].min(), original_data[expander.im_name].max()
@@ -361,6 +325,8 @@ def main():
     expander.generate_samples(target_im_values, samples_per_im=500)
     
     print(expander.get_edp(1, 4))
+    
+    expander.validate_models(original_data, expander.expanded_data)
 
 
 if __name__ == "__main__":
